@@ -1,0 +1,2 @@
+C:/Users/SUBHASH/Desktop/ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc/android/app/.cxx/debug/1f3k5w3f/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/SUBHASH/Desktop/ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc/android/app/.cxx/debug/1f3k5w3f/arm64-v8a/CMakeFiles/rebuild_cache.dir

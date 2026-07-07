@@ -1,0 +1,1507 @@
+[ +128 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +2 ms] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[   +2 ms] executing: [C:\src\flutter/] git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[+2140 ms] Exit code 0 from: git -c log.showSignature=false log HEAD -n 1 --pretty=format:%ad --date=iso
+[        ] 2026-01-28 13:43:12 -0800
+[  +44 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +3 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +98 ms] executing: C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe devices -l
+[ +495 ms] List of devices attached
+           q88dzhmrs4fa69g6       device product:rubypro_in model:22101316UP device:rubypro transport_id:1
+[   +8 ms] C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe -s q88dzhmrs4fa69g6 shell getprop
+[ +209 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +2 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[ +274 ms] Skipping pub get: version match.
+[ +371 ms] Found plugin permission_handler at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler-11.4.0\
+[   +9 ms] Found plugin permission_handler_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_windows-0.2.1\
+[  +12 ms] Found plugin permission_handler_html at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_html-0.1.3+5\
+[   +5 ms] Found plugin permission_handler_apple at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_apple-9.4.7\
+[   +3 ms] Found plugin permission_handler_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-12.1.0\
+[  +22 ms] Found plugin flutter_native_splash at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.7\
+[ +116 ms] Found plugin webview_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.13.1\
+[   +3 ms] Found plugin webview_flutter_wkwebview at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.23.5\
+[  +16 ms] Found plugin webview_flutter_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.10.11\
+[   +9 ms] Found plugin url_launcher at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +5 ms] Found plugin url_launcher_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +9 ms] Found plugin url_launcher_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.2\
+[   +9 ms] Found plugin url_launcher_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +7 ms] Found plugin url_launcher_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[   +8 ms] Found plugin url_launcher_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.3.6\
+[   +8 ms] Found plugin url_launcher_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.28\
+[   +8 ms] Found plugin syncfusion_flutter_pdfviewer at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_flutter_pdfviewer-30.2.7\
+[   +7 ms] Found plugin syncfusion_pdfviewer_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_windows-30.2.7\
+[   +3 ms] Found plugin syncfusion_pdfviewer_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_web-30.2.7\
+[   +4 ms] Found plugin syncfusion_pdfviewer_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_macos-30.2.7\
+[   +4 ms] Found plugin syncfusion_pdfviewer_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_linux-30.2.7\
+[  +21 ms] Found plugin device_info_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-11.5.0\
+[  +18 ms] Found plugin shared_preferences at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences-2.5.4\
+[   +5 ms] Found plugin shared_preferences_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_windows-2.4.1\
+[   +7 ms] Found plugin path_provider_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +8 ms] Found plugin shared_preferences_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_web-2.4.3\
+[   +3 ms] Found plugin shared_preferences_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_linux-2.4.1\
+[   +3 ms] Found plugin path_provider_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +7 ms] Found plugin shared_preferences_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_foundation-2.5.6\
+[   +2 ms] Found plugin shared_preferences_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.20\
+[   +2 ms] Found plugin record at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record-6.2.0\
+[   +2 ms] Found plugin record_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_windows-1.0.7\
+[   +4 ms] Found plugin record_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_web-1.3.0\
+[   +2 ms] Found plugin record_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_macos-1.2.1\
+[   +2 ms] Found plugin record_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_linux-1.3.0\
+[   +2 ms] Found plugin record_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_ios-1.2.0\
+[   +3 ms] Found plugin record_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_android-1.5.1\
+[   +2 ms] Found plugin razorpay_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\razorpay_flutter-1.4.0\
+[   +3 ms] Found plugin fluttertoast at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\fluttertoast-8.2.14\
+[  +28 ms] Found plugin path_provider at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +3 ms] Found plugin path_provider_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.6.0\
+[  +13 ms] Found plugin path_provider_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.22\
+[   +2 ms] Found plugin onesignal_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\onesignal_flutter-5.5.2\
+[  +13 ms] Found plugin image_picker at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker-1.2.1\
+[   +3 ms] Found plugin image_picker_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_windows-0.2.2\
+[   +7 ms] Found plugin file_selector_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_windows-0.9.3+5\
+[   +4 ms] Found plugin image_picker_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_macos-0.2.2+1\
+[   +2 ms] Found plugin file_selector_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_macos-0.9.5\
+[   +2 ms] Found plugin image_picker_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_linux-0.2.2\
+[   +2 ms] Found plugin file_selector_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_linux-0.9.4\
+[   +2 ms] Found plugin image_picker_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_ios-0.8.13+5\
+[   +2 ms] Found plugin image_picker_for_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_for_web-3.1.1\
+[   +2 ms] Found plugin image_picker_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_android-0.8.13+13\
+[   +3 ms] Found plugin flutter_plugin_android_lifecycle at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_plugin_android_lifecycle-2.0.33\
+[   +7 ms] Found plugin google_sign_in at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in-6.3.0\
+[   +4 ms] Found plugin google_sign_in_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_web-0.12.4+4\
+[   +9 ms] Found plugin google_sign_in_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_ios-5.9.0\
+[   +2 ms] Found plugin google_sign_in_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.2.1\
+[  +18 ms] Found plugin flutter_local_notifications at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications-18.0.1\
+[   +5 ms] Found plugin flutter_local_notifications_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications_linux-5.0.0\
+[  +12 ms] Found plugin firebase_storage at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage-12.4.10\
+[   +2 ms] Found plugin firebase_storage_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage_web-3.10.17\
+[   +3 ms] Found plugin firebase_core at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.15.2\
+[   +1 ms] Found plugin firebase_core_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core_web-2.24.1\
+[   +4 ms] Found plugin firebase_messaging at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging-15.2.10\
+[   +1 ms] Found plugin firebase_messaging_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging_web-3.10.10\
+[   +5 ms] Found plugin firebase_auth at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.7.0\
+[   +2 ms] Found plugin firebase_auth_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth_web-5.15.3\
+[   +8 ms] Found plugin connectivity_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\connectivity_plus-6.1.5\
+[   +4 ms] Found plugin cloud_firestore at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\
+[   +2 ms] Found plugin cloud_firestore_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore_web-4.4.12\
+[   +9 ms] Found plugin sqflite at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite-2.4.2\
+[   +6 ms] Found plugin sqflite_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_darwin-2.4.2\
+[   +2 ms] Found plugin sqflite_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.2+2\
+[  +10 ms] Found plugin audioplayers at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers-6.6.0\
+[   +2 ms] Found plugin audioplayers_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_windows-4.3.0\
+[   +3 ms] Found plugin audioplayers_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_web-5.2.0\
+[   +2 ms] Found plugin audioplayers_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_linux-4.2.1\
+[   +2 ms] Found plugin audioplayers_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_darwin-6.4.0\
+[   +2 ms] Found plugin audioplayers_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-5.2.1\
+[   +3 ms] Found plugin agora_rtc_engine at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\agora_rtc_engine-6.5.3\
+[   +4 ms] Found plugin iris_method_channel at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\iris_method_channel-2.2.4\
+[ +176 ms] Found plugin permission_handler at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler-11.4.0\
+[   +1 ms] Found plugin permission_handler_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_windows-0.2.1\
+[   +4 ms] Found plugin permission_handler_html at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_html-0.1.3+5\
+[   +3 ms] Found plugin permission_handler_apple at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_apple-9.4.7\
+[   +2 ms] Found plugin permission_handler_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-12.1.0\
+[  +11 ms] Found plugin flutter_native_splash at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.7\
+[  +43 ms] Found plugin webview_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.13.1\
+[   +1 ms] Found plugin webview_flutter_wkwebview at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.23.5\
+[   +3 ms] Found plugin webview_flutter_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.10.11\
+[   +3 ms] Found plugin url_launcher at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +1 ms] Found plugin url_launcher_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +3 ms] Found plugin url_launcher_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.2\
+[   +1 ms] Found plugin url_launcher_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +1 ms] Found plugin url_launcher_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[   +1 ms] Found plugin url_launcher_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.3.6\
+[   +2 ms] Found plugin url_launcher_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.28\
+[   +2 ms] Found plugin syncfusion_flutter_pdfviewer at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_flutter_pdfviewer-30.2.7\
+[   +1 ms] Found plugin syncfusion_pdfviewer_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_windows-30.2.7\
+[   +1 ms] Found plugin syncfusion_pdfviewer_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_web-30.2.7\
+[   +2 ms] Found plugin syncfusion_pdfviewer_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_macos-30.2.7\
+[   +1 ms] Found plugin syncfusion_pdfviewer_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_linux-30.2.7\
+[   +7 ms] Found plugin device_info_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-11.5.0\
+[   +5 ms] Found plugin shared_preferences at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences-2.5.4\
+[   +1 ms] Found plugin shared_preferences_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_windows-2.4.1\
+[   +3 ms] Found plugin path_provider_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +5 ms] Found plugin shared_preferences_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_web-2.4.3\
+[   +1 ms] Found plugin shared_preferences_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_linux-2.4.1\
+[   +1 ms] Found plugin path_provider_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +4 ms] Found plugin shared_preferences_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_foundation-2.5.6\
+[   +2 ms] Found plugin shared_preferences_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.20\
+[   +2 ms] Found plugin record at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record-6.2.0\
+[   +1 ms] Found plugin record_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_windows-1.0.7\
+[   +2 ms] Found plugin record_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_web-1.3.0\
+[   +1 ms] Found plugin record_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_macos-1.2.1\
+[   +1 ms] Found plugin record_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_linux-1.3.0\
+[   +1 ms] Found plugin record_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_ios-1.2.0\
+[   +2 ms] Found plugin record_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_android-1.5.1\
+[   +1 ms] Found plugin razorpay_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\razorpay_flutter-1.4.0\
+[   +3 ms] Found plugin fluttertoast at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\fluttertoast-8.2.14\
+[  +22 ms] Found plugin path_provider at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +1 ms] Found plugin path_provider_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.6.0\
+[   +7 ms] Found plugin path_provider_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.22\
+[   +1 ms] Found plugin onesignal_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\onesignal_flutter-5.5.2\
+[   +8 ms] Found plugin image_picker at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker-1.2.1\
+[   +2 ms] Found plugin image_picker_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_windows-0.2.2\
+[   +4 ms] Found plugin file_selector_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_windows-0.9.3+5\
+[   +3 ms] Found plugin image_picker_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_macos-0.2.2+1\
+[   +1 ms] Found plugin file_selector_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_macos-0.9.5\
+[   +1 ms] Found plugin image_picker_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_linux-0.2.2\
+[   +1 ms] Found plugin file_selector_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_linux-0.9.4\
+[   +2 ms] Found plugin image_picker_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_ios-0.8.13+5\
+[   +2 ms] Found plugin image_picker_for_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_for_web-3.1.1\
+[   +2 ms] Found plugin image_picker_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_android-0.8.13+13\
+[   +1 ms] Found plugin flutter_plugin_android_lifecycle at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_plugin_android_lifecycle-2.0.33\
+[   +3 ms] Found plugin google_sign_in at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in-6.3.0\
+[   +1 ms] Found plugin google_sign_in_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_web-0.12.4+4\
+[   +4 ms] Found plugin google_sign_in_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_ios-5.9.0\
+[   +1 ms] Found plugin google_sign_in_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.2.1\
+[  +15 ms] Found plugin flutter_local_notifications at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications-18.0.1\
+[   +4 ms] Found plugin flutter_local_notifications_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications_linux-5.0.0\
+[   +9 ms] Found plugin firebase_storage at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage-12.4.10\
+[   +1 ms] Found plugin firebase_storage_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage_web-3.10.17\
+[   +2 ms] Found plugin firebase_core at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.15.2\
+[   +1 ms] Found plugin firebase_core_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core_web-2.24.1\
+[   +4 ms] Found plugin firebase_messaging at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging-15.2.10\
+[   +3 ms] Found plugin firebase_messaging_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging_web-3.10.10\
+[  +16 ms] Found plugin firebase_auth at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.7.0\
+[   +3 ms] Found plugin firebase_auth_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth_web-5.15.3\
+[   +9 ms] Found plugin connectivity_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\connectivity_plus-6.1.5\
+[   +5 ms] Found plugin cloud_firestore at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\
+[   +1 ms] Found plugin cloud_firestore_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore_web-4.4.12\
+[   +7 ms] Found plugin sqflite at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite-2.4.2\
+[   +5 ms] Found plugin sqflite_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_darwin-2.4.2\
+[   +1 ms] Found plugin sqflite_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.2+2\
+[   +6 ms] Found plugin audioplayers at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers-6.6.0\
+[   +1 ms] Found plugin audioplayers_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_windows-4.3.0\
+[   +2 ms] Found plugin audioplayers_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_web-5.2.0\
+[   +1 ms] Found plugin audioplayers_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_linux-4.2.1\
+[   +1 ms] Found plugin audioplayers_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_darwin-6.4.0\
+[   +1 ms] Found plugin audioplayers_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-5.2.1\
+[   +6 ms] Found plugin agora_rtc_engine at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\agora_rtc_engine-6.5.3\
+[   +4 ms] Found plugin iris_method_channel at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\iris_method_channel-2.2.4\
+[  +35 ms] Generating C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\app\src\main\java\io\flutter\plugins\GeneratedPluginRegistrant.java
+[  +35 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+[   +6 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+[   +5 ms] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+[  +50 ms] ro.hardware = mt6877
+[        ] ro.build.characteristics = nosdcard
+[ +381 ms] Initializing file store
+[  +25 ms] Skipping target: gen_localizations
+[   +3 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\.dart_tool\package_config.json,C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\.dart_tool\flutter_build\dart_plugin_registrant.dart}
+[ +447 ms] Found plugin permission_handler at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler-11.4.0\
+[   +3 ms] Found plugin permission_handler_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_windows-0.2.1\
+[  +17 ms] Found plugin permission_handler_html at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_html-0.1.3+5\
+[  +14 ms] Found plugin permission_handler_apple at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_apple-9.4.7\
+[  +18 ms] Found plugin permission_handler_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-12.1.0\
+[  +44 ms] Found plugin flutter_native_splash at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_native_splash-2.4.7\
+[  +56 ms] Found plugin webview_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter-4.13.1\
+[   +1 ms] Found plugin webview_flutter_wkwebview at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_wkwebview-3.23.5\
+[   +3 ms] Found plugin webview_flutter_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\webview_flutter_android-4.10.11\
+[   +3 ms] Found plugin url_launcher at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher-6.3.2\
+[   +2 ms] Found plugin url_launcher_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_windows-3.1.5\
+[   +3 ms] Found plugin url_launcher_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_web-2.4.2\
+[   +1 ms] Found plugin url_launcher_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_macos-3.2.5\
+[   +1 ms] Found plugin url_launcher_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_linux-3.2.2\
+[   +2 ms] Found plugin url_launcher_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_ios-6.3.6\
+[   +1 ms] Found plugin url_launcher_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\url_launcher_android-6.3.28\
+[   +2 ms] Found plugin syncfusion_flutter_pdfviewer at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_flutter_pdfviewer-30.2.7\
+[   +2 ms] Found plugin syncfusion_pdfviewer_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_windows-30.2.7\
+[   +1 ms] Found plugin syncfusion_pdfviewer_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_web-30.2.7\
+[   +4 ms] Found plugin syncfusion_pdfviewer_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_macos-30.2.7\
+[   +3 ms] Found plugin syncfusion_pdfviewer_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\syncfusion_pdfviewer_linux-30.2.7\
+[  +13 ms] Found plugin device_info_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-11.5.0\
+[   +7 ms] Found plugin shared_preferences at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences-2.5.4\
+[   +1 ms] Found plugin shared_preferences_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_windows-2.4.1\
+[   +3 ms] Found plugin path_provider_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +5 ms] Found plugin shared_preferences_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_web-2.4.3\
+[   +1 ms] Found plugin shared_preferences_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_linux-2.4.1\
+[   +2 ms] Found plugin path_provider_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +2 ms] Found plugin shared_preferences_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_foundation-2.5.6\
+[   +1 ms] Found plugin shared_preferences_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\shared_preferences_android-2.4.20\
+[   +1 ms] Found plugin record at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record-6.2.0\
+[   +1 ms] Found plugin record_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_windows-1.0.7\
+[   +2 ms] Found plugin record_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_web-1.3.0\
+[   +1 ms] Found plugin record_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_macos-1.2.1\
+[   +1 ms] Found plugin record_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_linux-1.3.0\
+[   +1 ms] Found plugin record_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_ios-1.2.0\
+[   +1 ms] Found plugin record_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\record_android-1.5.1\
+[   +2 ms] Found plugin razorpay_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\razorpay_flutter-1.4.0\
+[   +3 ms] Found plugin fluttertoast at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\fluttertoast-8.2.14\
+[  +19 ms] Found plugin path_provider at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +1 ms] Found plugin path_provider_foundation at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.6.0\
+[   +8 ms] Found plugin path_provider_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.22\
+[   +2 ms] Found plugin onesignal_flutter at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\onesignal_flutter-5.5.2\
+[   +6 ms] Found plugin image_picker at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker-1.2.1\
+[   +2 ms] Found plugin image_picker_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_windows-0.2.2\
+[   +4 ms] Found plugin file_selector_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_windows-0.9.3+5\
+[   +4 ms] Found plugin image_picker_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_macos-0.2.2+1\
+[   +8 ms] Found plugin file_selector_macos at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_macos-0.9.5\
+[   +2 ms] Found plugin image_picker_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_linux-0.2.2\
+[   +2 ms] Found plugin file_selector_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\file_selector_linux-0.9.4\
+[   +2 ms] Found plugin image_picker_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_ios-0.8.13+5\
+[   +2 ms] Found plugin image_picker_for_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_for_web-3.1.1\
+[   +2 ms] Found plugin image_picker_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\image_picker_android-0.8.13+13\
+[   +2 ms] Found plugin flutter_plugin_android_lifecycle at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_plugin_android_lifecycle-2.0.33\
+[   +3 ms] Found plugin google_sign_in at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in-6.3.0\
+[   +2 ms] Found plugin google_sign_in_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_web-0.12.4+4\
+[   +4 ms] Found plugin google_sign_in_ios at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_ios-5.9.0\
+[   +1 ms] Found plugin google_sign_in_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\google_sign_in_android-6.2.1\
+[  +13 ms] Found plugin flutter_local_notifications at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications-18.0.1\
+[   +6 ms] Found plugin flutter_local_notifications_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications_linux-5.0.0\
+[  +10 ms] Found plugin firebase_storage at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage-12.4.10\
+[   +2 ms] Found plugin firebase_storage_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_storage_web-3.10.17\
+[   +3 ms] Found plugin firebase_core at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.15.2\
+[   +2 ms] Found plugin firebase_core_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core_web-2.24.1\
+[   +4 ms] Found plugin firebase_messaging at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging-15.2.10\
+[   +2 ms] Found plugin firebase_messaging_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_messaging_web-3.10.10\
+[   +4 ms] Found plugin firebase_auth at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.7.0\
+[   +3 ms] Found plugin firebase_auth_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth_web-5.15.3\
+[   +9 ms] Found plugin connectivity_plus at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\connectivity_plus-6.1.5\
+[   +6 ms] Found plugin cloud_firestore at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\
+[   +2 ms] Found plugin cloud_firestore_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore_web-4.4.12\
+[   +8 ms] Found plugin sqflite at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite-2.4.2\
+[   +7 ms] Found plugin sqflite_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_darwin-2.4.2\
+[   +3 ms] Found plugin sqflite_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\sqflite_android-2.4.2+2\
+[   +6 ms] Found plugin audioplayers at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers-6.6.0\
+[   +2 ms] Found plugin audioplayers_windows at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_windows-4.3.0\
+[   +3 ms] Found plugin audioplayers_web at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_web-5.2.0\
+[   +1 ms] Found plugin audioplayers_linux at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_linux-4.2.1\
+[   +2 ms] Found plugin audioplayers_darwin at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_darwin-6.4.0\
+[   +2 ms] Found plugin audioplayers_android at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-5.2.1\
+[   +8 ms] Found plugin agora_rtc_engine at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\agora_rtc_engine-6.5.3\
+[   +3 ms] Found plugin iris_method_channel at C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\iris_method_channel-2.2.4\
+[  +85 ms] Skipping generating dart_plugin_registrant.dart because it is up-to-date.
+[        ] gen_dart_plugin_registrant: Complete
+[   +4 ms] Skipping target: _composite
+[   +2 ms] complete
+[  +10 ms] Launching lib\main.dart on 22101316UP in debug mode...
+[  +11 ms] C:\src\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\src\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\src\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk/ --incremental --target=flutter --experimental-emit-debug-metadata -DFLUTTER_VERSION=3.38.9 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=67323de285 -DFLUTTER_ENGINE_REVISION=587c18f873 -DFLUTTER_DART_VERSION=3.10.8 --output-dill C:\Users\SUBHASH\AppData\Local\Temp\flutter_tools.f4827b55\flutter_tool.b985387\app.dill --packages C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\.dart_tool\package_config.json -Ddart.vm.profile=false -Ddart.vm.product=false --enable-asserts --track-widget-creation --filesystem-scheme org-dartlang-root --initialize-from-dill build\f537d389bd7fe17e116f8b847863fcdd.cache.dill.track.dill --source file:///C:/Users/SUBHASH/Desktop/ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///C:/Users/SUBHASH/Desktop/ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error --enable-experiment=alternative-invalidation-strategy
+[  +60 ms] executing: C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe -s q88dzhmrs4fa69g6 shell -x logcat -v time -t 1
+[  +23 ms] <- compile package:doctro/main.dart
+[ +312 ms] --------- beginning of main
+           07-06 22:28:52.690 I/bluetooth( 6806): handle_enqueue_next_fragment: acl_packet_credits_: 6, le_acl_packet_credits_: 8, fragments_to_send_: 0
+[  +13 ms] executing: C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe version
+[  +85 ms] Android Debug Bridge version 1.0.41
+           Version 34.0.4-10411341
+           Installed as C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe
+           Running on Windows 10.0.19045
+[   +2 ms] executing: C:\Users\SUBHASH\AppData\Local\Android\sdk\platform-tools\adb.exe start-server
+[+7248 ms] Building APK
+[  +60 ms] executing: C:\Program Files\Android\Android Studio2\jbr\bin\java -version
+[+1935 ms] Exit code 0 from: C:\Program Files\Android\Android Studio2\jbr\bin\java -version
+[        ] openjdk version "17.0.6" 2023-01-17
+           OpenJDK Runtime Environment (build 17.0.6+0-b2043.56-10027231)
+           OpenJDK 64-Bit Server VM (build 17.0.6+0-b2043.56-10027231, mixed mode)
+[  +48 ms] executing: C:\Program Files\Android\Android Studio2\jbr\bin\java --version
+[ +404 ms] Exit code 0 from: C:\Program Files\Android\Android Studio2\jbr\bin\java --version
+[        ] openjdk 17.0.6 2023-01-17
+           OpenJDK Runtime Environment (build 17.0.6+0-b2043.56-10027231)
+           OpenJDK 64-Bit Server VM (build 17.0.6+0-b2043.56-10027231, mixed mode)
+[  +67 ms] CMake project not found, skipping support Android 15 16k page size migration.
+[  +11 ms] Using gradle from C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\gradlew.bat.
+[ +106 ms] LocalFile: 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\build.gradle' doesn't provide an AGP version. Checking settings.
+[   +4 ms] LocalFile: 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\settings.gradle' provides AGP version: 9.1.0
+[   +8 ms] Running Gradle task 'assembleDebug'...
+[   +1 ms] executing: [C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android/] C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\gradlew.bat --full-stacktrace --info -Pverbose=true -Ptarget-platform=android-arm64 -Ptarget=C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\lib\main.dart -Pbase-application-name=android.app.Application -Pdart-defines=RkxVVFRFUl9WRVJTSU9OPTMuMzguOQ==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049NjczMjNkZTI4NQ==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NTg3YzE4Zjg3Mw==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMC44 -Pdart-obfuscation=false -Ptrack-widget-creation=true -Ptree-shake-icons=false -Pfilesystem-scheme=org-dartlang-root assembleDebug
+[+4513 ms] Initialized native services in: C:\Users\SUBHASH\.gradle\native
+[   +4 ms] Initialized jansi services in: C:\Users\SUBHASH\.gradle\native
+[+1253 ms] Removing 0 daemon stop events from registry
+[        ] Starting a Gradle Daemon, 8 busy Daemons could not be reused, use --status for details
+[ +401 ms] Starting process 'Gradle build daemon'. Working directory: C:\Users\SUBHASH\.gradle\daemon\9.3.1 Command: C:\Program Files\Android\Android Studio2\jbr\bin\java.exe --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED -XX:MaxMetaspaceSize=1g -XX:+HeapDumpOnOutOfMemoryError -Xmx5g -Dfile.encoding=UTF-8 -Duser.country=IN -Duser.language=en -Duser.variant -cp C:\Users\SUBHASH\.gradle\wrapper\dists\gradle-9.3.1-all\9ot9r568e8zfvvd4mn8rbu1j0\gradle-9.3.1\lib\gradle-daemon-main-9.3.1.jar -javaagent:C:\Users\SUBHASH\.gradle\wrapper\dists\gradle-9.3.1-all\9ot9r568e8zfvvd4mn8rbu1j0\gradle-9.3.1\lib\agents\gradle-instrumentation-agent-9.3.1.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.3.1
+[        ] Successfully started process 'Gradle build daemon'
+[+13799 ms] An attempt to start the daemon took 13.984 secs.
+[+2302 ms] The client will now receive all logging from the daemon (pid: 8916). The daemon log file: C:\Users\SUBHASH\.gradle\daemon\9.3.1\daemon-8916.out.log
+[        ] Starting build in new daemon [memory: 5 GiB]
+[+4403 ms] Using 2 worker leases.
+[ +198 ms] Operational build model parameters: {requiresToolingModels=false, parallelProjectExecution=true, configureOnDemand=true, configurationCache=false, configurationCacheParallelStore=false, configurationCacheParallelLoad=true, isolatedProjects=false, parallelProjectConfiguration=false, intermediateModelCache=false, parallelToolingApiActions=true, invalidateCoupledProjects=false, modelAsProjectDependency=false, resilientModelBuilding=false}
+[        ] Configuration on demand is an incubating feature.
+[+3691 ms] Received JVM installation metadata from 'C:\Program Files\Android\Android Studio2\jbr': {JAVA_HOME=C:\Program Files\Android\Android Studio2\jbr, JAVA_VERSION=17.0.6, JAVA_VENDOR=JetBrains s.r.o., RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=17.0.6+0-b2043.56-10027231, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=17.0.6+0-b2043.56-10027231, VM_VENDOR=JetBrains s.r.o., OS_ARCH=amd64}
+[+2201 ms] Watching the file system is configured to be enabled if available
+[ +209 ms] Now considering [C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android] as hierarchies to watch
+[  +91 ms] File system watching is active
+[+6812 ms] Starting Build
+[ +186 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +107 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3408 ms] Now considering [C:\src\flutter\packages\flutter_tools\gradle, C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android] as hierarchies to watch
+[+1889 ms] Using local directory build cache for build ':gradle' (location = C:\Users\SUBHASH\.gradle\caches\build-cache-1, remove unused entries = after 7 days).
+[+2605 ms] > Configure project :gradle
+[        ] Evaluating project ':gradle' using build file 'C:\src\flutter\packages\flutter_tools\gradle\build.gradle.kts'.
+[ +396 ms] Resolved plugin [id: 'org.gradle.java-gradle-plugin']
+[ +101 ms] Resolved plugin [id: 'org.gradle.groovy']
+[+1596 ms] Resolved plugin [id: 'org.gradle.kotlin.kotlin-dsl', version: '6.4.2']
+[   +1 ms] Resolved plugin [id: 'org.jetbrains.kotlin.jvm', version: '1.9.20']
+[+13590 ms] Build f6aab4ef-bed5-43f2-8a8c-9061419f2cf0 is started
+[+2613 ms] Using Kotlin Gradle Plugin gradle813 variant
+[+11986 ms] kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+[        ] kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+[+1510 ms] file or directory 'C:\src\flutter\packages\flutter_tools\gradle\src\main\java', not found
+[ +599 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2788 ms] Resolved plugin [id: 'dev.flutter.flutter-plugin-loader', version: '1.0.0']
+[ +214 ms] Resolved plugin [id: 'com.android.application', version: '9.1.0', apply: false]
+[   +1 ms] Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '2.3.20', apply: false]
+[  +85 ms] Resolved plugin [id: 'com.google.gms.google-services', version: '4.4.2', apply: false]
+[        ] Resolved plugin [id: 'dev.flutter.flutter-gradle-plugin', version: '1.0.0', apply: false]
+[+28306 ms] Resolve mutations for :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[included builds,5,main]) started.
+[ +210 ms] :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[Execution worker,5,main]) started.
+[ +382 ms] > Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[        ] Skipping task ':gradle:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+[        ] Resolve mutations for :gradle:compileKotlin (Thread[Execution worker,5,main]) started.
+[        ] :gradle:compileKotlin (Thread[Execution worker,5,main]) started.
+[+2002 ms] > Task :gradle:compileKotlin
+[        ] Invalidating in-memory cache of C:\src\flutter\packages\flutter_tools\gradle\.gradle\buildOutputCleanup\outputFiles.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\.gradle\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\.gradle\9.3.1\fileHashes\resourceHashesCache.bin
+[ +397 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +305 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[   +1 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[   +1 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +697 ms] Build cache key for task ':gradle:compileKotlin' is 49509197e28339c49384d8b7872f17b6
+[        ] Skipping task ':gradle:compileKotlin' as it is up-to-date.
+[        ] > Task :gradle:compileKotlin UP-TO-DATE
+[   +1 ms] Resolve mutations for :gradle:compileJava (Thread[Execution worker,5,main]) started.
+[        ] :gradle:compileJava (Thread[Execution worker,5,main]) started.
+[   +1 ms] > Task :gradle:compileJava NO-SOURCE
+[   +1 ms] Skipping task ':gradle:compileJava' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:compileGroovy (Thread[Execution worker,5,main]) started.
+[        ] :gradle:compileGroovy (Thread[Execution worker,5,main]) started.
+[        ] > Task :gradle:compileGroovy NO-SOURCE
+[        ] Skipping task ':gradle:compileGroovy' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:pluginDescriptors (Thread[Execution worker,5,main]) started.
+[        ] :gradle:pluginDescriptors (Thread[Execution worker,5,main]) started.
+[  +86 ms] > Task :gradle:pluginDescriptors UP-TO-DATE
+[        ] Caching disabled for task ':gradle:pluginDescriptors' because:
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:pluginDescriptors' as it is up-to-date.
+[        ] Resolve mutations for :gradle:processResources (Thread[Execution worker,5,main]) started.
+[        ] :gradle:processResources (Thread[Execution worker,5,main]) started.
+[ +201 ms] > Task :gradle:processResources UP-TO-DATE
+[        ] Caching disabled for task ':gradle:processResources' because:
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:processResources' as it is up-to-date.
+[        ] Resolve mutations for :gradle:classes (Thread[included builds,5,main]) started.
+[        ] :gradle:classes (Thread[Execution worker,5,main]) started.
+[        ] > Task :gradle:classes UP-TO-DATE
+[        ] Skipping task ':gradle:classes' as it has no actions.
+[        ] Resolve mutations for :gradle:jar (Thread[included builds,5,main]) started.
+[        ] :gradle:jar (Thread[Execution worker,5,main]) started.
+[        ] > Task :gradle:jar UP-TO-DATE
+[        ] Caching disabled for task ':gradle:jar' because:
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:jar' as it is up-to-date.
+[+5842 ms] E/flutter (24259): [ERROR:flutter/runtime/dart_vm_data.cc(20)] VM snapshot invalid and could not be inferred from settings.
+[   +2 ms] E/flutter (24259): [ERROR:flutter/runtime/dart_vm.cc(253)] Could not set up VM data to bootstrap the VM from.
+[        ] E/flutter (24259): [ERROR:flutter/runtime/dart_vm_lifecycle.cc(85)] Could not create Dart VM instance.
+[+1985 ms] E/flutter (24353): [ERROR:flutter/runtime/dart_vm_data.cc(20)] VM snapshot invalid and could not be inferred from settings.
+[        ] E/flutter (24353): [ERROR:flutter/runtime/dart_vm.cc(253)] Could not set up VM data to bootstrap the VM from.
+[        ] E/flutter (24353): [ERROR:flutter/runtime/dart_vm_lifecycle.cc(85)] Could not create Dart VM instance.
+[+4663 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1507 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[   +1 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +87 ms] Settings evaluated using settings file 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\settings.gradle'.
+[   +1 ms] Using local directory build cache for the root build (location = C:\Users\SUBHASH\.gradle\caches\build-cache-1, remove unused entries = after 7 days).
+[+4800 ms] Projects loaded. Root project using build file 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\build.gradle'.
+[        ] Included projects: [root project 'android', project ':agora_rtc_engine', project ':app', project ':audioplayers_android', project ':cloud_firestore', project ':connectivity_plus', project ':device_info_plus', project ':firebase_auth', project ':firebase_core', project ':firebase_messaging', project ':firebase_storage', project ':flutter_local_notifications', project ':flutter_native_splash', project ':flutter_plugin_android_lifecycle', project ':fluttertoast', project ':google_sign_in_android', project ':image_picker_android', project ':iris_method_channel', project ':onesignal_flutter', project ':path_provider_android', project ':permission_handler_android', project ':razorpay_flutter', project ':record_android', project ':shared_preferences_android', project ':sqflite_android', project ':syncfusion_flutter_pdfviewer', project ':url_launcher_android', project ':webview_flutter_android']
+[+1198 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +699 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +204 ms] > Configure project :
+[        ] Evaluating root project 'android' using build file 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\build.gradle'.
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+31589 ms] > Configure project :app
+[        ] Evaluating project ':app' using build file 'C:\Users\SUBHASH\Desktop\ayureze-doctor-app-8e6bd855b5e7644b11703f075bcac76d3d2989fc\android\app\build.gradle'.
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Resolved plugin [id: 'com.android.application']
+[        ] Resolved plugin [id: 'org.jetbrains.kotlin.android']
+[        ] Resolved plugin [id: 'dev.flutter.flutter-gradle-plugin']
+[        ] Resolved plugin [id: 'com.google.gms.google-services']
+[+2702 ms] WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+[        ] The current default is 'false'.
+[        ] WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+[        ] The current default is 'true'.
+[        ] It will be removed in version 10.0 of the Android Gradle plugin.
+[        ] WARNING: The option setting 'android.newDsl=false' is deprecated.
+[        ] The current default is 'true'.
+[        ] It will be removed in version 10.0 of the Android Gradle plugin.
+[        ] WARNING: The option setting 'android.nonFinalResIds=false' is deprecated.
+[        ] The current default is 'true'.
+[        ] It will be removed in version 10.0 of the Android Gradle plugin.
+[+34403 ms] Using default execution profile
+[+21090 ms] Build 8e6c9695-4fdb-4c76-9bb5-41c69e6ed6cd is started
+[+3906 ms] Using Kotlin Gradle Plugin gradle813 variant
+[+12799 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +292 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1399 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1802 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +408 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +300 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+32392 ms] > Configure project :app
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[+2594 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[+4205 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[+2304 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[   +6 ms] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[ +120 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[   +1 ms] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[   +1 ms] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[   +1 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[   +2 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[  +38 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[ +117 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[   +3 ms] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[  +82 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[ +187 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[+12785 ms] w: Deprecated 'org.jetbrains.kotlin.android' plugin usage
+[        ] The 'org.jetbrains.kotlin.android' plugin in project ':app' is no longer required for Kotlin support since AGP 9.0.
+[        ] Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+[        ] See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+[+2994 ms] > Configure project :agora_rtc_engine
+[        ] Evaluating project ':agora_rtc_engine' using build file 'C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\agora_rtc_engine-6.5.3\android\build.gradle'.
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +204 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1597 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +204 ms] > Configure project :agora_rtc_engine
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +930 ms] Using default execution profile
+[+3660 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[ +205 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[ +123 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[  +69 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[   +9 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[  +78 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[  +20 ms] C/C++: android.ndkPath from module build.gradle is not set
+[  +20 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[  +54 ms] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [28.2.13676358]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\SUBHASH\AppData\Local\Android\sdk
+[+2102 ms] > Configure project :audioplayers_android
+[        ] Evaluating project ':audioplayers_android' using build file 'C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-5.2.1\android\build.gradle'.
+[  +54 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +635 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+43808 ms] > Configure project :audioplayers_android
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1798 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1891 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5263 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2031 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5017 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1088 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1594 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1812 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2389 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1303 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1215 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1378 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2509 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1192 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +914 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1054 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1526 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1705 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+14900 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1203 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1803 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1195 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1096 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1606 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5194 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2593 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3166 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1832 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1503 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1604 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +792 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1704 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1109 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2795 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1300 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2892 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3001 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2200 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2803 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1195 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1389 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+6573 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1538 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1199 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1294 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +609 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1002 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3222 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +776 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1498 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+6796 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[ +203 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +94 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +908 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+4387 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3000 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3107 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +990 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3305 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5897 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+2806 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2727 ms] I/flutter (26973): NtLifecycle->scheduledWakeUp tag:KeepAlive,length:Instance of 'BluetoothHelper',Instance of 'NtWatchWorker'
+[+4163 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +106 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[ +278 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2098 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +254 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +873 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +887 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +104 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3497 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +504 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +397 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +607 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +94 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1892 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +196 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2409 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3524 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2880 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1697 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +297 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +794 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1709 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2087 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +500 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +704 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1712 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +110 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +377 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+5704 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1388 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1011 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1790 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1107 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1393 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1195 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +798 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +903 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +607 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3000 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +98 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[ +145 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2349 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +195 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +806 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1392 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +119 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1688 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +94 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +605 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +594 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +906 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +99 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1090 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1498 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +608 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1190 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +197 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1953 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1756 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +168 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1723 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +102 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +998 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1408 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +200 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1795 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1003 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1409 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +698 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +500 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1699 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +98 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +901 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1705 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +190 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +398 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +799 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +403 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +295 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +204 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +607 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +409 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +892 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +792 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +395 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +810 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1697 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +795 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2705 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +89 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +595 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +311 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1495 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +190 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +303 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +108 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +687 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1105 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +106 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +688 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +108 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +692 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +201 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2814 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +180 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3906 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +703 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +191 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3395 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +205 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +505 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +891 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +97 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1495 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +100 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +798 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +109 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +604 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +294 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +401 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +77 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[  +52 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +248 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +213 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +704 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +592 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +904 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +95 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +608 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +795 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1391 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[   +6 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +191 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +605 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +699 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +503 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +603 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +86 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +808 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +696 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +204 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +399 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +297 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +204 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +893 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +103 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3998 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +190 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1012 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3995 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +300 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +498 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[  +95 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +107 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +792 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +100 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1097 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +102 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +804 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +397 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +598 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +188 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +805 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1911 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +83 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +912 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +597 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +88 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1000 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +496 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1309 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1094 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +897 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +106 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1295 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2616 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +494 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +385 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +200 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3104 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +100 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1002 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1103 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +499 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +188 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +801 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +109 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1697 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +93 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1998 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +896 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1605 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[   +1 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+7498 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +702 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +495 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[ +202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +302 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +399 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +998 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +189 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +200 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +597 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +903 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[  +98 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +702 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +196 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1298 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1206 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +166 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2721 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +111 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +992 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5099 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2306 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3311 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1187 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +92 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1005 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1510 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +690 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +393 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5496 ms] > Configure project :audioplayers_android
+[        ] Using default execution profile
+[ +701 ms] Using Kotlin Gradle Plugin gradle813 variant
+[+93906 ms] w: Deprecated 'org.jetbrains.kotlin.android' plugin usage
+[        ] The 'org.jetbrains.kotlin.android' plugin in project ':audioplayers_android' is no longer required for Kotlin support since AGP 9.0.
+[        ] Solution: Remove both `android.builtInKotlin=true` and `android.newDsl=false` from `gradle.properties`, then migrate to built-in Kotlin.
+[        ] See https://kotl.in/gradle/agp-built-in-kotlin for more details.
+[+3897 ms] > Configure project :cloud_firestore
+[        ] Evaluating project ':cloud_firestore' using build file 'C:\Users\SUBHASH\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\android\build.gradle'.
+[+125000 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+10093 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +812 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1398 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1998 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1795 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3003 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +590 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +408 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+2700 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +989 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2901 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +10 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[  +12 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +273 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +611 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +499 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[   +5 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +83 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1406 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +111 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1095 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +484 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +109 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +711 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +181 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +402 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2399 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +100 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1201 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +123 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +369 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1116 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+6985 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1205 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +801 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1593 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+4099 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2908 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +901 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1787 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +209 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +798 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1430 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1065 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +77 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +629 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +89 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1706 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +347 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +241 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +101 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2106 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[   +9 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +688 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[  +94 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +718 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +693 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +492 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +701 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+3093 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +146 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1055 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3094 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2203 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +201 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+6594 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2003 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1789 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +64 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +941 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +697 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+14213 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5987 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +502 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2997 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +691 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+5108 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[ +796 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +294 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1208 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3801 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2687 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +40 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[ +135 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +323 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+6410 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+12592 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3000 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+4267 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[  +28 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+5202 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+4110 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +295 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2391 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+8999 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +163 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+1741 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2906 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +295 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1499 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+4390 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[ +406 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[+3498 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+1001 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +592 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+2108 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +298 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
+[+4528 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\kotlinDslCompileAvoidanceClasspathHashCache.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\fileHashes.bin
+[        ] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\9.3.1\fileHashes\resourceHashesCache.bin
+[ +267 ms] Invalidating in-memory cache of C:\Users\SUBHASH\.gradle\caches\journal-1\file-access.bin
