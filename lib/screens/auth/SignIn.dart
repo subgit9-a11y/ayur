@@ -118,7 +118,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
           GestureDetector(
-            behavior: HitTestBehavior.opaque,
+            behavior: HitTestBehavior.translucent,
         onTap: () {
           FocusScope.of(context).unfocus();
         },
@@ -454,6 +454,7 @@ class _SignInState extends State<SignIn> {
       }
     } catch (error, stacktrace) {
       CommonFunction.hideDialog(context);
+      OslerToast.error(context, "API Error: ${error.toString()}");
       if (error is DioException) {
         print("Login Error Response: ${error.response?.data}");
       }
