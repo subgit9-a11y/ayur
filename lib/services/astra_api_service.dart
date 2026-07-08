@@ -214,6 +214,30 @@ class AstraApiService {
   }
 
   // ============================================================
+  // WALLET & KYC ENDPOINTS
+  // ============================================================
+
+  /// Get doctor wallet balance and transactions
+  Future<Map<String, dynamic>> getWallet(String doctorId) async {
+    try {
+      final response = await _dio.get('/api/v1/api/doctors/$doctorId/wallet');
+      return response.data;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  /// Submit KYC / Bank Details
+  Future<Map<String, dynamic>> submitKyc(String doctorId, Map<String, dynamic> data) async {
+    try {
+      final response = await _dio.post('/api/v1/api/doctors/$doctorId/kyc', data: data);
+      return response.data;
+    } catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  // ============================================================
   // PATIENT MANAGEMENT ENDPOINTS
   // ============================================================
 

@@ -7,6 +7,14 @@ import 'package:doctro/constant/prefConstatnt.dart';
 import 'package:doctro/constant/preferences.dart';
 import 'package:doctro/localization/localization_constant.dart';
 import 'package:doctro/theme/ayureze_theme.dart';
+import 'package:doctro/screens/setting/ChangePassword.dart';
+import 'package:doctro/screens/setting/changeLanguage.dart';
+import 'package:doctro/screens/subscription/SubscriptionHistory.dart';
+import 'package:doctro/services/astra_api_service.dart';
+import 'package:doctro/theme/ayureze_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:doctro/screens/wallet/payout_setup_screen.dart';
+import 'package:doctro/screens/wallet/earnings_dashboard.dart';
 import 'package:doctro/widgets/osler_modal.dart';
 import 'package:doctro/widgets/osler_alert.dart';
 import 'package:doctro/widgets/osler_card.dart';
@@ -168,6 +176,25 @@ class _SettingScreenState extends State<SettingScreen> {
                   onChanged: (val) {
                     setState(() => isCallEnable = val);
                     updateVCall(val ? 1 : 0);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            _buildSection(
+              title: "Finance & Wallet",
+              items: [
+                _buildNavigationItem(
+                  icon: Icons.account_balance_wallet_outlined,
+                  title: "Earnings & Payouts",
+                  color: const Color(0xFFF2A900),
+                  onTap: () async {
+                    bool isKycDone = SharedPreferenceHelper.getBoolean("is_kyc_done");
+                    if (isKycDone) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const PayoutSetupScreen()));
+                    }
                   },
                 ),
               ],
