@@ -34,19 +34,7 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
       final res = await _astraApiService.getWallet(doctorId);
       _walletResponse = WalletResponse.fromJson(res);
     } catch (e) {
-      // Fallback for demonstration since Astra backend is not ready
-      _walletResponse = WalletResponse(
-        success: true,
-        data: WalletData(
-          availableBalance: "1400",
-          totalEarned: "4500",
-          transactions: [
-            WalletTransaction(id: 1, type: "CREDIT_CONSULTATION", amount: "700", description: "Consultation #1012 (70% Share)", createdAt: "2026-07-06 10:30"),
-            WalletTransaction(id: 2, type: "CREDIT_CONSULTATION", amount: "700", description: "Consultation #1013 (70% Share)", createdAt: "2026-07-07 14:15"),
-            WalletTransaction(id: 3, type: "DEBIT_PAYOUT", amount: "3100", description: "Automated Payout to Bank ending in 4321", createdAt: "2026-07-03 08:00"),
-          ]
-        )
-      );
+      _walletResponse = null;
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

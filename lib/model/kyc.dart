@@ -1,18 +1,24 @@
 class KycResponse {
-  bool? success;
-  String? msg;
+  String? status;
+  String? message;
+  bool? isVerified;
+  String? beneficiaryId;
 
-  KycResponse({this.success, this.msg});
+  KycResponse({this.status, this.message, this.isVerified, this.beneficiaryId});
 
   KycResponse.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    msg = json['msg'];
+    status = json['status'];
+    message = json['message'];
+    isVerified = json['is_verified'];
+    beneficiaryId = json['beneficiary_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['success'] = success;
-    data['msg'] = msg;
+    data['status'] = status;
+    data['message'] = message;
+    data['is_verified'] = isVerified;
+    data['beneficiary_id'] = beneficiaryId;
     return data;
   }
 }

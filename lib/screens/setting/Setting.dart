@@ -189,11 +189,20 @@ class _SettingScreenState extends State<SettingScreen> {
                   title: "Earnings & Payouts",
                   color: const Color(0xFFF2A900),
                   onTap: () async {
-                    bool isKycDone = SharedPreferenceHelper.getBoolean("is_kyc_done");
-                    if (isKycDone) {
+                    String doctorId = SharedPreferenceHelper.getString(Preferences.uniqueId);
+                    if (doctorId == 'N_A' || doctorId.isEmpty) {
+                      doctorId = SharedPreferenceHelper.getString(Preferences.doctorId);
+                    }
+                    try {
+                      final statusRes = await AstraApiService().getKycStatus(doctorId);
+                      if (statusRes['status'] == 'not_submitted') {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const PayoutSetupScreen()));
+                      } else {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
+                      }
+                    } catch (e) {
+                      // Fallback in case of error
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
-                    } else {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const PayoutSetupScreen()));
                     }
                   },
                 ),

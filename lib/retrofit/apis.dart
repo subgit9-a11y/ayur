@@ -59,8 +59,9 @@ class Apis {
   static const String astra_nearby_doctors = "api/v1/api/doctors/nearby/search";
   static const String astra_doctor_stats = "api/v1/api/doctors/{id}/dashboard-stats";
   static const String astra_doctor_withdraw = "api/v1/api/doctors/{id}/withdraw";
-  static const String astra_doctor_wallet = "api/v1/api/doctors/{id}/wallet";
-  static const String astra_doctor_kyc = "api/v1/api/doctors/{id}/kyc";
+  static const String astra_doctor_wallet = "api/v1/finance/wallet/{id}";
+  static const String astra_doctor_kyc_status = "api/v1/finance/kyc/{id}";
+  static const String astra_doctor_kyc_submit = "api/v1/finance/kyc/submit";
 
   // Patient Management
   static const String astra_register_patient = "api/v1/patients/register";

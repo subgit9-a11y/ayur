@@ -44,29 +44,25 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
       }
 
       Map<String, dynamic> data = {
+        "doctor_id": doctorId,
         "account_name": _accNameController.text.trim(),
         "account_number": _accNumberController.text.trim(),
         "ifsc_code": _ifscController.text.trim().toUpperCase(),
         "pan_number": _panController.text.trim().toUpperCase(),
-        "address": _addressController.text.trim(),
-        "upi_id": _upiController.text.trim(),
+        "phone": SharedPreferenceHelper.getString(Preferences.phone_no),
+        "email": SharedPreferenceHelper.getString(Preferences.email),
       };
 
-      // Since endpoint may not exist yet, we catch error and show success for demo
-      try {
-        final res = await _astraApiService.submitKyc(doctorId, data);
-        if (res['success'] == true) {
-          SharedPreferenceHelper.setBoolean("is_kyc_done", true);
-          OslerToast.success(context, "Payout details saved successfully");
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
-        } else {
-          OslerToast.error(context, res['msg'] ?? "Failed to save details");
-        }
-      } catch (e) {
-        // Fallback for demonstration since Astra backend is not ready
-        SharedPreferenceHelper.setBoolean("is_kyc_done", true);
-        OslerToast.success(context, "Payout details saved successfully (Demo Mode)");
+      if (_upiController.text.trim().isNotEmpty) {
+        data["vpa"] = _upiController.text.trim();
+      }
+
+      final res = await _astraApiService.submitKyc(data);
+      if (res['status'] == 'success') {
+        OslerToast.success(context, "Payout details saved successfully");
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
+      } else {
+        OslerToast.error(context, res['message'] ?? "Failed to save details");
       }
     } catch (e) {
       OslerToast.error(context, "An error occurred");
