@@ -7,8 +7,8 @@ class Apis {
   static const String baseUrl = 'https://astra.ayureze.in/api/v1/';
   static const String astraBaseUrl = 'https://astra.ayureze.in/';
 
-  static const String login = "doctor_login";
-  static const String register = "doctor_register";
+  static const String login = "auth/doctor_login";
+  static const String register = "auth/doctor_register";
   static const String appointment = "doctor_appointment";
   static const String appointment_details = "appointment_details/{id}";
   static const String appointment_history = "appointment_history";
