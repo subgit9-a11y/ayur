@@ -10,8 +10,13 @@ class SupabaseService {
   late String _supabaseAnonKey;
 
   SupabaseService() {
-    _supabaseUrl = dotenv.maybeGet('SUPABASE_URL') ?? const String.fromEnvironment('SUPABASE_URL');
-    _supabaseAnonKey = dotenv.maybeGet('SUPABASE_ANON_KEY') ?? const String.fromEnvironment('SUPABASE_ANON_KEY');
+    try {
+      _supabaseUrl = dotenv.maybeGet('SUPABASE_URL') ?? const String.fromEnvironment('SUPABASE_URL');
+      _supabaseAnonKey = dotenv.maybeGet('SUPABASE_ANON_KEY') ?? const String.fromEnvironment('SUPABASE_ANON_KEY');
+    } catch (_) {
+      _supabaseUrl = const String.fromEnvironment('SUPABASE_URL');
+      _supabaseAnonKey = const String.fromEnvironment('SUPABASE_ANON_KEY');
+    }
 
     if (_supabaseUrl.isEmpty || _supabaseAnonKey.isEmpty) {
       throw Exception("Supabase is not initialized. Configure SUPABASE_URL and SUPABASE_ANON_KEY.");

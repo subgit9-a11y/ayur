@@ -272,11 +272,15 @@ class _SignInState extends State<SignIn> {
     if (user != null) {
       try {
         CommonFunction.onLoading(context);
+        String dToken = SharedPreferenceHelper.getString(Preferences.messageToken);
+        if (dToken == 'N_A' || dToken.isEmpty) {
+          dToken = "temporary_device_token_until_fcm_is_ready_for_user";
+        }
+
         final loginBody = {
           "email": user.email,
           "password": "GOOGLE_USER_AUTH",
-          "device_token":
-              SharedPreferenceHelper.getString(Preferences.messageToken)
+          "device_token": dToken
         };
 
         final response =
@@ -399,10 +403,15 @@ class _SignInState extends State<SignIn> {
   }
 
   Future<BaseModel<LoginResponse>> callApiForLogin() async {
+    String dToken = SharedPreferenceHelper.getString(Preferences.messageToken);
+    if (dToken == 'N_A' || dToken.isEmpty) {
+      dToken = "temporary_device_token_until_fcm_is_ready_for_user";
+    }
+
     Map<String, dynamic> body = {
       "email": email.text,
       "password": password.text,
-      "device_token": SharedPreferenceHelper.getString(Preferences.messageToken)
+      "device_token": dToken
     };
 
     SharedPreferenceHelper.setString(Preferences.user_email, email.text);
@@ -454,7 +463,6 @@ class _SignInState extends State<SignIn> {
       }
     } catch (error, stacktrace) {
       CommonFunction.hideDialog(context);
-      OslerToast.error(context, "API Error: ${error.toString()}");
       if (error is DioException) {
         print("Login Error Response: ${error.response?.data}");
       }
