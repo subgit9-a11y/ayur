@@ -17,64 +17,55 @@ class ServerError implements Exception {
     return _errorMessage;
   }
 
-  _handleError(DioException error) {
+  _handleError(dynamic error) {
+    if (error is! DioException) {
+      _errorMessage = error.toString();
+      return CommonFunction.toastMessage("An unexpected error occurred.");
+    }
+    
+    var data = error.response?.data;
+    if (data is! Map) {
+      return CommonFunction.toastMessage("Server returned an invalid response.");
+    }
+
     if (error.response?.statusCode == 401) {
-      String msg = error.response?.data['msg']?.toString() ?? error.response?.data['message']?.toString() ?? "Unauthorized";
+      String msg = data['msg']?.toString() ?? data['message']?.toString() ?? "Unauthorized";
       if (msg.toLowerCase().contains("unauthorized")) {
         msg = "Session expired. Please log in again.";
       }
       return CommonFunction.toastMessage(msg);
-    } else if (error.response?.data['error'] != null) {
-      return CommonFunction.toastMessage('${error.response!.data['error']}');
+    } else if (data['error'] != null) {
+      return CommonFunction.toastMessage('${data['error']}');
     } else if (error.type == DioExceptionType.badResponse) {
-      if (error.response?.data['msg'] != null) {
-        // print(error.response!.data['msg'].toString());
-        return CommonFunction.toastMessage('${error.response!.data['msg'].toString()}');
-      } else if (error.response?.data['message'] != null) {
-        // print(error.response!.data['message'].toString());
-        return CommonFunction.toastMessage('${error.response!.data['message'].toString()}');
+      if (data['errors']?['email'] != null) {
+        return CommonFunction.toastMessage(data['errors']['email'][0]);
+      } else if (data['errors']?['password'] != null) {
+        return CommonFunction.toastMessage(data['errors']['password'][0]);
+      } else if (data['msg'] != null) {
+        return CommonFunction.toastMessage('${data['msg']}');
+      } else if (data['message'] != null) {
+        return CommonFunction.toastMessage('${data['message']}');
       }
     } else if (error.type == DioExceptionType.unknown) {
-      // print(error.response!.data['msg'].toString());
-      return CommonFunction.toastMessage('${error.response!.data['msg'].toString()}');
+      return CommonFunction.toastMessage('${data['msg'] ?? "Unknown error"}');
     } else if (error.type == DioExceptionType.cancel) {
-      // print(error.response!.data['msg'].toString());
       return CommonFunction.toastMessage('Request was cancelled');
     } else if (error.type == DioExceptionType.connectionError) {
-      // print(error.response!.data['msg'].toString());
       return CommonFunction.toastMessage('Connection failed. Please check internet connection');
     } else if (error.type == DioExceptionType.connectionTimeout) {
-      // print(error.response!.data['msg'].toString());
       return CommonFunction.toastMessage('Connection timeout');
     } else if (error.type == DioExceptionType.badCertificate) {
-      // print(error.response!.data['msg'].toString());
-      return CommonFunction.toastMessage('${error.response!.data['msg']}');
+      return CommonFunction.toastMessage('${data['msg'] ?? "Bad Certificate"}');
     } else if (error.type == DioExceptionType.receiveTimeout) {
-      // print(error.response!.data['msg'].toString());
       return CommonFunction.toastMessage('Receive timeout in connection');
     } else if (error.type == DioExceptionType.sendTimeout) {
-      // print(error.response!.data['msg'].toString());
       return CommonFunction.toastMessage('Receive timeout in send request');
-    } else if (error.response?.data['errors']?['name'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['name'][0]);
-    } else if (error.response?.data['errors']?['phone'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['phone'][0]);
-    } else if (error.response?.data['errors']?['phone_code'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['phone_code'][0]);
-    } else if (error.response?.data['errors']?['password'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['password'][0]);
-    } else if (error.response?.data['errors']?['email'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['email'][0]);
-    } else if (error.response?.data['errors']?['description'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['description'][0]);
-    } else if (error.response?.data['errors']?['old_password'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['old_password'][0]);
-    } else if (error.response?.data['errors']?['password'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['password'][0]);
-    } else if (error.response?.data['errors']?['password_confirmation'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['password_confirmation'][0]);
-    } else if (error.response?.data['errors']?['password_confirmation'] != null) {
-      return CommonFunction.toastMessage(error.response!.data['errors']['password_confirmation'][0]);
+    } else if (data['errors'] != null) {
+      // General fallback for any other validation errors
+      var firstError = data['errors'].values.first;
+      if (firstError is List && firstError.isNotEmpty) {
+        return CommonFunction.toastMessage(firstError[0]);
+      }
     }
     return _errorMessage;
   }
