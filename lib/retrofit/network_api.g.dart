@@ -58,7 +58,7 @@ class _RestClient implements RestClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1/api/doctors/register',
+            'auth/doctor_register',
             queryParameters: queryParameters,
             data: _data,
           )

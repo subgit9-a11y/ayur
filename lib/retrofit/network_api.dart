@@ -45,7 +45,7 @@ abstract class RestClient {
   @POST(Apis.login)
   Future<LoginResponse> loginRequest(@Body() body);
 
-  @POST(Apis.astra_register_doctor)
+  @POST(Apis.register)
   Future<Register> registerRequest(@Body() body);
 
   @GET(Apis.appointment)

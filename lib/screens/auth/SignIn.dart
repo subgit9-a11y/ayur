@@ -298,17 +298,21 @@ class _SignInState extends State<SignIn> {
             (route) => false,
           );
         } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CreateAccount(
-                prefillData: {
-                  "name": user.displayName,
-                  "email": user.email,
-                },
+          if (response.msg == "Invalid credentials") {
+             OslerToast.error(context, "Account already exists. Please login with your password.");
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CreateAccount(
+                  prefillData: {
+                    "name": user.displayName,
+                    "email": user.email,
+                  },
+                ),
               ),
-            ),
-          );
+            );
+          }
         }
       } catch (e) {
         CommonFunction.hideDialog(context);
