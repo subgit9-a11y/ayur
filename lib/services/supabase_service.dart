@@ -8,6 +8,7 @@ class SupabaseService {
   late Dio _dio;
   late String _supabaseUrl;
   late String _supabaseAnonKey;
+  bool _isDummy = false;
 
   SupabaseService() {
     try {
@@ -22,6 +23,7 @@ class SupabaseService {
       print("WARNING: Supabase is not initialized. Configure SUPABASE_URL and SUPABASE_ANON_KEY.");
       _supabaseUrl = "https://dummy.supabase.co";
       _supabaseAnonKey = "dummy_key";
+      _isDummy = true;
     }
 
     _dio = Dio(BaseOptions(
@@ -52,6 +54,10 @@ class SupabaseService {
     required String? photoUrl,
     required bool isFaceVerified,
   }) async {
+    if (_isDummy) {
+      print("Bypassing saveDoctorProfile due to dummy Supabase configuration");
+      return;
+    }
     try {
       await _dio.post(
         '/rest/v1/doctors',
@@ -82,8 +88,12 @@ class SupabaseService {
 
   /// Upload captured live photo to Supabase Storage
   Future<String?> uploadProfilePhoto(File photoFile, String doctorId) async {
+    final fileName = '$doctorId/profile_${DateTime.now().millisecondsSinceEpoch}.jpg';
+    if (_isDummy) {
+      print("Bypassing uploadProfilePhoto due to dummy Supabase configuration");
+      return '$_supabaseUrl/storage/v1/object/public/doctor-profiles/$fileName';
+    }
     try {
-      final fileName = '$doctorId/profile_${DateTime.now().millisecondsSinceEpoch}.jpg';
       final fileBytes = await photoFile.readAsBytes();
       
       await _dio.post(
@@ -104,9 +114,12 @@ class SupabaseService {
 
   /// Upload cleaned signature PNG to Supabase Storage
   Future<String?> uploadSignature(Uint8List signatureBytes, String doctorId) async {
+    final fileName = '$doctorId/signature_${DateTime.now().millisecondsSinceEpoch}.png';
+    if (_isDummy) {
+      print("Bypassing uploadSignature due to dummy Supabase configuration");
+      return '$_supabaseUrl/storage/v1/object/public/doctor-profiles/$fileName';
+    }
     try {
-      final fileName = '$doctorId/signature_${DateTime.now().millisecondsSinceEpoch}.png';
-      
       await _dio.post(
         '/storage/v1/object/doctor-profiles/$fileName',
         data: Stream.fromIterable([signatureBytes]),

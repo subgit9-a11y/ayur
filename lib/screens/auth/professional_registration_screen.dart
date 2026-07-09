@@ -442,9 +442,6 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
                         Expanded(child: _buildTextField("Video call fee (₹)", _videoFeesController, Icons.videocam_outlined, isNumber: true)),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    _buildLabel("Revenue Model"),
-                    _buildGenericDropdown(_revenueModels, (val) => setState(() => _selectedRevenueModel = val), _selectedRevenueModel),
 
                   const SizedBox(height: 35),
                   _buildSectionHeader("Practice Details", Icons.description_outlined),
