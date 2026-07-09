@@ -163,6 +163,7 @@ flutter:
     - assets/icons/
     - assets/sounds/
     - lib/localization/language/
+    - .env
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
