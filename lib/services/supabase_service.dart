@@ -19,7 +19,9 @@ class SupabaseService {
     }
 
     if (_supabaseUrl.isEmpty || _supabaseAnonKey.isEmpty) {
-      throw Exception("Supabase is not initialized. Configure SUPABASE_URL and SUPABASE_ANON_KEY.");
+      print("WARNING: Supabase is not initialized. Configure SUPABASE_URL and SUPABASE_ANON_KEY.");
+      _supabaseUrl = "https://dummy.supabase.co";
+      _supabaseAnonKey = "dummy_key";
     }
 
     _dio = Dio(BaseOptions(
