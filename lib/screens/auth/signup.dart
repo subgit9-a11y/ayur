@@ -376,31 +376,35 @@ class _CreateAccountState extends State<CreateAccount> {
       );
 
       response = await RestClient(await RetroApi().dioData(context)).registerRequest(body);
-
       CommonFunction.hideDialog(context);
-      final data = OtpData(
-        otp: response.data!.otp, 
-        id: response.data!.id,
-        phoneForFirebase: _phoneCode.text + _phone.text,
-      );
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => RegistrationSuccessScreen(
-            doctorName: _name.text,
-            doctorId: doctorId,
-            email: _email.text,
-            subtitle: "Step 1 complete! Now verify your phone number to activate your account.",
-            onContinue: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => PhoneVerificationScreen(data: data)),
-              );
-            },
+      if (response.success == true && response.data != null) {
+        final data = OtpData(
+          otp: response.data!.otp, 
+          id: response.data!.id,
+          phoneForFirebase: _phoneCode.text + _phone.text,
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RegistrationSuccessScreen(
+              doctorName: _name.text,
+              doctorId: doctorId,
+              email: _email.text,
+              subtitle: "Step 1 complete! Now verify your phone number to activate your account.",
+              onContinue: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => PhoneVerificationScreen(data: data)),
+                );
+              },
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        OslerToast.error(context, response.msg ?? "Registration failed");
+      }
     } catch (error, stacktrace) {
       CommonFunction.hideDialog(context);
       return BaseModel()..setException(ServerError.withError(error: error));
