@@ -49,7 +49,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       // Use the already-authenticated Firebase user from the sign-in flow
       User? user = _auth.currentUser;
-      
+
       // If no current user, attempt sign-in with email (without stored password)
       if (user == null) {
         _status = Status.authenticateError;
@@ -82,8 +82,7 @@ class AuthProvider extends ChangeNotifier {
         await prefs.setString(FirestoreConstants.id, user.uid);
         await prefs.setString(
             FirestoreConstants.nickname, user.displayName ?? "");
-        await prefs.setString(
-            FirestoreConstants.photoUrl, user.photoURL ?? "");
+        await prefs.setString(FirestoreConstants.photoUrl, user.photoURL ?? "");
       } else {
         DocumentSnapshot documentSnapshot = documents[0];
         UserChat userChat = UserChat.fromDocument(documentSnapshot);
@@ -110,18 +109,24 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId: Platform.isIOS ? '298839588168-up4rcmclffgne2hnlemg7n4e29qtovn2.apps.googleusercontent.com' : '298839588168-6ut75u7g4rqc8grmujtcl4m7obnq3oml.apps.googleusercontent.com',
-        serverClientId: '298839588168-6ut75u7g4rqc8grmujtcl4m7obnq3oml.apps.googleusercontent.com',
+      final GoogleSignIn googleSignIn = GoogleSignIn(
+        clientId: Platform.isIOS
+            ? '298839588168-up4rcmclffgne2hnlemg7n4e29qtovn2.apps.googleusercontent.com'
+            : null,
+        serverClientId:
+            '298839588168-6ut75u7g4rqc8grmujtcl4m7obnq3oml.apps.googleusercontent.com',
         scopes: <String>[
           'email',
-          'https://www.googleapis.com/auth/userinfo.profile',
         ],
       );
-      
+
       // Sign out first to ensure clean state
-      await googleSignIn.signOut();
-      
+      try {
+        await googleSignIn.signOut();
+      } catch (e) {
+        log("Google pre sign-out skipped: $e");
+      }
+
       GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser != null) {
         GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -149,31 +154,33 @@ class AuthProvider extends ChangeNotifier {
               FirestoreConstants.chattingWith: null,
               FirestoreConstants.userType: "doctor", // Defaulting to doctor
 
-              FirestoreConstants.doctorId: "0" 
+              FirestoreConstants.doctorId: "0"
             });
 
             await prefs.setString(FirestoreConstants.id, user.uid);
-            await prefs.setString(FirestoreConstants.nickname, user.displayName ?? "");
-            await prefs.setString(FirestoreConstants.photoUrl, user.photoURL ?? "");
+            await prefs.setString(
+                FirestoreConstants.nickname, user.displayName ?? "");
+            await prefs.setString(
+                FirestoreConstants.photoUrl, user.photoURL ?? "");
             await prefs.setString(Preferences.image, user.photoURL ?? "");
             await prefs.setString(Preferences.name, user.displayName ?? "");
             await prefs.setString(Preferences.email, user.email ?? "");
-            
           } else {
             DocumentSnapshot documentSnapshot = documents[0];
             UserChat userChat = UserChat.fromDocument(documentSnapshot);
             await prefs.setString(FirestoreConstants.id, userChat.id);
-            await prefs.setString(FirestoreConstants.nickname, userChat.nickname);
-            await prefs.setString(FirestoreConstants.photoUrl, userChat.photoUrl);
+            await prefs.setString(
+                FirestoreConstants.nickname, userChat.nickname);
+            await prefs.setString(
+                FirestoreConstants.photoUrl, userChat.photoUrl);
             await prefs.setString(FirestoreConstants.shopId, userChat.shopId);
-            await prefs.setString(FirestoreConstants.userType, userChat.userType);
+            await prefs.setString(
+                FirestoreConstants.userType, userChat.userType);
             await prefs.setString(Preferences.doctorId, userChat.doctorId);
-             
 
-             await prefs.setString(Preferences.image, userChat.photoUrl);
-             await prefs.setString(Preferences.name, userChat.nickname);
+            await prefs.setString(Preferences.image, userChat.photoUrl);
+            await prefs.setString(Preferences.name, userChat.nickname);
           }
-          SharedPreferenceHelper.setBoolean(Preferences.is_logged_in, true);
           _status = Status.authenticated;
           notifyListeners();
           return user;
@@ -193,7 +200,8 @@ class AuthProvider extends ChangeNotifier {
       if (e is Exception && e.toString().contains("PlatformException")) {
         log("PlatformException detected: Check if SHA-1 is correctly added to Firebase and if the package name matches.");
       }
-      if (e.toString().contains("sign_in_canceled") || e.toString().contains("cancel")) {
+      if (e.toString().contains("sign_in_canceled") ||
+          e.toString().contains("cancel")) {
         _status = Status.authenticateCanceled;
       } else {
         _status = Status.authenticateError;
@@ -206,6 +214,11 @@ class AuthProvider extends ChangeNotifier {
   Future<void> handleSignOut() async {
     _status = Status.uninitialized;
     await firebaseAuth.signOut();
-    await GoogleSignIn().disconnect();
+    try {
+      await GoogleSignIn().disconnect();
+    } catch (e) {
+      log("Google disconnect skipped: $e");
+      await GoogleSignIn().signOut();
+    }
   }
 }
