@@ -405,7 +405,7 @@ class _ProfessionalRegistrationScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AyurezeTheme.canvas,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text("Clinical Profile",
             style: TextStyle(

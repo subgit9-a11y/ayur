@@ -9,7 +9,7 @@ class ProfileCompleteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AyurezeTheme.canvas,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -49,7 +49,8 @@ class ProfileCompleteScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginHomeScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => LoginHomeScreen()),
                       (route) => false,
                     );
                   },

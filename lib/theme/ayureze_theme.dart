@@ -8,8 +8,8 @@ class AyurezeTheme {
   static const Color oslerGray10 = Color(0xFFF5F5F5);
 
   static const Color healingGreen100 = Color(0xFF1A2E05); // Primary Dark
-  static const Color healingGreen50 = Color(0xFF84CC16);  // Primary Brand Color
-  static const Color healingGreen10 = Color(0xFFECFCCB);  // Primary Light
+  static const Color healingGreen50 = Color(0xFF84CC16); // Primary Brand Color
+  static const Color healingGreen10 = Color(0xFFECFCCB); // Primary Light
 
   static const Color remoteRed100 = Color(0xFF4C050B);
   static const Color remoteRed50 = Color(0xFFF43F5E);
@@ -37,7 +37,7 @@ class AyurezeTheme {
   static const Color lightSurfaceMuted = Color(0xFFEFF3EA);
   static const Color lightBorder = Color(0xFFD4DDCC);
   static const Color lightTextPrimary = Color(0xFF203126);
-  static const Color lightTextSecondary = Color(0xFF607063);
+  static const Color lightTextSecondary = Color(0xFF435244);
 
   // Semantic Colors - Dark Definitions
   static const Color darkCanvas = Color(0xFF1A1A1A);
@@ -50,11 +50,13 @@ class AyurezeTheme {
   // Dynamic Getters
   static Color get canvas => _isDark ? darkCanvas : lightCanvas;
   static Color get surface => _isDark ? darkSurface : lightSurface;
-  static Color get surfaceMuted => _isDark ? darkSurfaceMuted : lightSurfaceMuted;
+  static Color get surfaceMuted =>
+      _isDark ? darkSurfaceMuted : lightSurfaceMuted;
   static Color get border => _isDark ? darkBorder : lightBorder;
   static Color get textPrimary => _isDark ? darkTextPrimary : lightTextPrimary;
-  static Color get textSecondary => _isDark ? darkTextSecondary : lightTextSecondary;
-  
+  static Color get textSecondary =>
+      _isDark ? darkTextSecondary : lightTextSecondary;
+
   // Aliases for backwards compatibility
   static const Color forestDeep = healingGreen100;
   static const Color forest = healingGreen50;
@@ -64,23 +66,26 @@ class AyurezeTheme {
   static const Color danger = remoteRed50;
   static const Color warning = sunshineYellow50;
   static const Color purple = caringViolet50;
-  
+
   // Additional semantic getters
   static Color get surfaceDark => darkSurface;
   static Color get textMuted => darkTextSecondary;
   static Color get borderMuted => border;
-  static Color get shadow => _isDark ? const Color(0x66000000) : const Color(0x26000000);
-  
+  static Color get shadow =>
+      _isDark ? const Color(0x66000000) : const Color(0x26000000);
+
   // Dynamic Icon/SVG Colors - ensures visibility in both modes
   static Color get iconPrimary => _isDark ? Colors.white : healingGreen100;
   static Color get iconSecondary => _isDark ? darkTextSecondary : oslerGray50;
   static Color get iconOnDark => _isDark ? Colors.white : Colors.white;
   static Color get iconOnLight => _isDark ? Colors.white : Colors.white;
   static Color get logoColor => _isDark ? Colors.white : Colors.white;
-  
+
   // Action button colors for dark/light mode
-  static Color get actionButtonPrimary => _isDark ? healingGreen50 : healingGreen100;
-  static Color get actionButtonSecondary => _isDark ? oslerGray50 : healingGreen50;
+  static Color get actionButtonPrimary =>
+      _isDark ? healingGreen50 : healingGreen100;
+  static Color get actionButtonSecondary =>
+      _isDark ? oslerGray50 : healingGreen50;
 
   static const EdgeInsets screenPadding = EdgeInsets.symmetric(
     horizontal: 20,
@@ -268,8 +273,8 @@ class AyurezeTheme {
       ),
       boxShadow: const [
         BoxShadow(
-          color: Color(0x22000000),
-          blurRadius: 24,
+          color: Color(0x26000000),
+          blurRadius: 28,
           offset: Offset(0, 16),
         ),
       ],
@@ -278,14 +283,16 @@ class AyurezeTheme {
 
   static BoxDecoration panelDecoration() {
     return BoxDecoration(
-      color: surface,
+      color: surface.withOpacity(_isDark ? 0.86 : 0.78),
       borderRadius: BorderRadius.circular(28),
-      border: Border.all(color: border),
-      boxShadow: const [
+      border: Border.all(
+        color: _isDark ? darkBorder : Colors.white.withOpacity(0.66),
+      ),
+      boxShadow: [
         BoxShadow(
-          color: Color(0x10000000),
+          color: shadow.withOpacity(0.34),
           blurRadius: 18,
-          offset: Offset(0, 10),
+          offset: const Offset(0, 10),
         ),
       ],
     );
@@ -293,9 +300,10 @@ class AyurezeTheme {
 
   static BoxDecoration mutedPanelDecoration() {
     return BoxDecoration(
-      color: surfaceMuted,
+      color: surfaceMuted.withOpacity(_isDark ? 0.9 : 0.72),
       borderRadius: BorderRadius.circular(24),
-      border: Border.all(color: border),
+      border: Border.all(
+          color: _isDark ? darkBorder : Colors.white.withOpacity(0.58)),
     );
   }
 
@@ -379,7 +387,8 @@ class AyurezeTheme {
           foregroundColor: Colors.white,
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
         ),
       ),
@@ -388,13 +397,15 @@ class AyurezeTheme {
           foregroundColor: healingGreen50,
           side: const BorderSide(color: healingGreen50, width: 1.5),
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: darkSurfaceMuted,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
@@ -416,7 +427,9 @@ class AyurezeTheme {
       cardTheme: CardThemeData(
         color: darkSurface,
         elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: const BorderSide(color: darkBorder)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(color: darkBorder)),
       ),
       iconTheme: const IconThemeData(color: darkTextPrimary),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -425,10 +438,17 @@ class AyurezeTheme {
         unselectedItemColor: darkTextSecondary,
       ),
       drawerTheme: const DrawerThemeData(backgroundColor: darkSurface),
-      dialogTheme: DialogThemeData(backgroundColor: darkSurface, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24))),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: healingGreen50, foregroundColor: Colors.white),
-      chipTheme: ChipThemeData(backgroundColor: darkSurfaceMuted, labelStyle: const TextStyle(color: darkTextPrimary)),
-      tabBarTheme: TabBarThemeData(labelColor: healingGreen50, unselectedLabelColor: darkTextSecondary),
+      dialogTheme: DialogThemeData(
+          backgroundColor: darkSurface,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24))),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: healingGreen50, foregroundColor: Colors.white),
+      chipTheme: ChipThemeData(
+          backgroundColor: darkSurfaceMuted,
+          labelStyle: const TextStyle(color: darkTextPrimary)),
+      tabBarTheme: TabBarThemeData(
+          labelColor: healingGreen50, unselectedLabelColor: darkTextSecondary),
     );
   }
 
@@ -446,11 +466,17 @@ class AyurezeTheme {
       ],
     );
   }
-  static InputDecoration textFieldDecoration({String? labelText, String? hintText}) {
+
+  static InputDecoration textFieldDecoration(
+      {String? labelText, String? hintText}) {
     return InputDecoration(
       labelText: labelText,
       hintText: hintText,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      filled: true,
+      fillColor: _isDark ? darkSurfaceMuted : Colors.white.withOpacity(0.74),
+      labelStyle: TextStyle(color: textSecondary, fontWeight: FontWeight.w600),
+      hintStyle: TextStyle(color: textSecondary),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(color: border),
@@ -458,7 +484,8 @@ class AyurezeTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(color: border),
-      ),      focusedBorder: OutlineInputBorder(
+      ),
+      focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(color: healingGreen100, width: 2),
       ),
@@ -468,5 +495,4 @@ class AyurezeTheme {
       hintStyle: TextStyle(color: textSecondary.withOpacity(0.6), fontSize: 14),
     );
   }
-
 }

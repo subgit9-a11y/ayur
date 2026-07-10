@@ -30,6 +30,7 @@ import 'package:doctro/screens/astra/astra_ai_chat_screen.dart';
 import 'package:doctro/screens/auth/professional_registration_screen.dart';
 import 'package:doctro/theme/ayureze_theme.dart';
 import 'package:doctro/core/theme/glass_theme.dart';
+import 'package:doctro/shared/glass_background.dart';
 import 'package:doctro/shared/glass_card.dart';
 import 'package:doctro/widgets/modern_drawer.dart';
 import 'package:doctro/widgets/osler_button.dart';
@@ -218,99 +219,88 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: _handlePopInvoked,
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  GlassTheme.bgLight,
-                  GlassTheme.lightGreen.withOpacity(0.3),
-                  GlassTheme.accentTeal.withOpacity(0.1),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
-          Scaffold(
-            key: _scaffoldKey,
-            backgroundColor: Colors.transparent,
-            drawer: const ModernDrawer(),
-            appBar: AppBar(
+  child: GlassBackground(
+        child: Stack(
+          children: [
+            Scaffold(
+              key: _scaffoldKey,
               backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: IconButton(
-                icon: SvgPicture.asset("assets/icons/dMenuBar.svg", height: 18, color: GlassTheme.primaryGreen),
-                onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-              ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, "profile"),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: (dFullImage != null && dFullImage!.isNotEmpty)
-                          ? NetworkImage(dFullImage!)
-                          : const AssetImage("assets/images/no_image.jpg")
-                              as ImageProvider,
-                      fit: BoxFit.cover,
+              drawer: const ModernDrawer(),
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: IconButton(
+                  icon: SvgPicture.asset("assets/icons/dMenuBar.svg", height: 18, color: GlassTheme.primaryGreen),
+                  onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+                ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, "profile"),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: (dFullImage != null && dFullImage!.isNotEmpty)
+                                ? NetworkImage(dFullImage!)
+                                : const AssetImage("assets/images/no_image.jpg")
+                                    as ImageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
+                ],
+              ),
+              body: RefreshIndicator(
+                onRefresh: todayAppointmentsFunction,
+                color: AyurezeTheme.healingGreen100,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: AyurezeTheme.screenPadding,
+                  child: FutureBuilder(
+                    future: todayAppointment,
+                    builder: (context, snapshot) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildWelcomeHeader(),
+                          const SizedBox(height: 25),
+                          _buildStatsGrid(),
+                          const SizedBox(height: 25),
+                          _buildQuickActions(),
+                          const SizedBox(height: 25),
+                          _buildSectionTitle(getTranslated(context, AppString.home_title).toString(), todayAppointments.length),
+                          const SizedBox(height: 15),
+                          _buildAppointmentList(snapshot.connectionState == ConnectionState.waiting),
+                          const SizedBox(height: 30),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
+              floatingActionButton: ScaleTransition(
+                scale: _pulseAnimation,
+                child: FloatingActionButton.extended(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AstraAIChatScreen()),
+                    );
+                  },
+                  label: const Text("Astra AI", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                  icon: Icon(AppIcons.analytics, color: Colors.white),
+                  backgroundColor: AyurezeTheme.healingGreen100,
                 ),
               ),
             ),
           ],
         ),
-        body: RefreshIndicator(
-          onRefresh: todayAppointmentsFunction,
-          color: AyurezeTheme.healingGreen100,
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            padding: AyurezeTheme.screenPadding,
-            child: FutureBuilder(
-              future: todayAppointment,
-              builder: (context, snapshot) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildWelcomeHeader(),
-                    const SizedBox(height: 25),
-                    _buildStatsGrid(),
-                    const SizedBox(height: 25),
-                    _buildQuickActions(),
-                    const SizedBox(height: 25),
-                    _buildSectionTitle(getTranslated(context, AppString.home_title).toString(), todayAppointments.length),
-                    const SizedBox(height: 15),
-                    _buildAppointmentList(snapshot.connectionState == ConnectionState.waiting),
-                    const SizedBox(height: 30),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
-        floatingActionButton: ScaleTransition(
-          scale: _pulseAnimation,
-          child: FloatingActionButton.extended(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AstraAIChatScreen()),
-              );
-            },
-            label: const Text("Astra AI", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-            icon: Icon(AppIcons.analytics, color: Colors.white),
-            backgroundColor: AyurezeTheme.healingGreen100,
-          ),
-        ),
-      ),
-      ],
       ),
     );
   }
@@ -367,7 +357,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
             ),
             child: Icon(AppIcons.medical, color: GlassTheme.primaryGreen, size: 30),
           ),
-        ],
+          ],
+        ),
       ),
     );
   }

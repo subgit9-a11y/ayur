@@ -29,6 +29,7 @@ import 'package:doctro/widgets/osler_alert.dart';
 import 'package:doctro/widgets/osler_tooltip.dart';
 import 'package:doctro/widgets/osler_toast.dart';
 import 'package:doctro/shared/glass_card.dart';
+import 'package:doctro/shared/glass_background.dart';
 import 'package:doctro/shared/glass_button.dart';
 import 'package:doctro/core/theme/glass_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -101,231 +102,221 @@ class _SignInState extends State<SignIn> {
     height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          // Dynamic Gradient Background
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  GlassTheme.bgLight,
-                  GlassTheme.lightGreen.withOpacity(0.3),
-                  GlassTheme.accentTeal.withOpacity(0.1),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 24, 20, 28),
-              child: Form(
-                key: _formkey,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: height - 52),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 18),
-                      GlassCard(
-                        padding: const EdgeInsets.fromLTRB(20, 22, 20, 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              getTranslated(
-                                      context, AppString.login_to_your_account)
-                                  .toString(),
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: GlassTheme.textPrimaryLight),
-                            ),
-                            const SizedBox(height: 18),
-                            OslerInput(
-                              label: getTranslated(
-                                      context, AppString.login_email_hint)
-                                  .toString(),
-                              hint: "example@email.com",
-                              controller: email,
-                              keyboardType: TextInputType.emailAddress,
-                              prefixIcon: Icon(Icons.alternate_email_rounded,
-                                  size: 20,
-                                  color: AyurezeTheme.healingGreen100),
-                              validator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return getTranslated(context,
-                                          AppString.login_email_validator)
-                                      .toString();
-                                }
-                                if (!RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(value)) {
-                                  return getTranslated(context,
-                                          AppString.login_email_validator2)
-                                      .toString();
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 14),
-                            OslerInput(
-                              label: getTranslated(
-                                      context, AppString.login_password_hint)
-                                  .toString(),
-                              hint: "••••••••",
-                              controller: password,
-                              isPassword: _isHidden,
-                              prefixIcon: Icon(Icons.lock_outline_rounded,
-                                  size: 20,
-                                  color: AyurezeTheme.healingGreen100),
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                    _isHidden
-                                        ? Icons.visibility_off_rounded
-                                        : Icons.visibility_rounded,
+      backgroundColor: Colors.transparent,
+      body: GlassBackground(
+        child: Stack(
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 24, 20, 28),
+                child: Form(
+                  key: _formkey,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: height - 52),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 18),
+                        GlassCard(
+                          padding: const EdgeInsets.fromLTRB(20, 22, 20, 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                getTranslated(context,
+                                        AppString.login_to_your_account)
+                                    .toString(),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: GlassTheme.textPrimaryLight),
+                              ),
+                              const SizedBox(height: 18),
+                              OslerInput(
+                                label: getTranslated(
+                                        context, AppString.login_email_hint)
+                                    .toString(),
+                                hint: "example@email.com",
+                                controller: email,
+                                keyboardType: TextInputType.emailAddress,
+                                prefixIcon: Icon(Icons.alternate_email_rounded,
                                     size: 20,
                                     color: AyurezeTheme.healingGreen100),
-                                onPressed: () =>
-                                    setState(() => _isHidden = !_isHidden),
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    return getTranslated(context,
+                                            AppString.login_email_validator)
+                                        .toString();
+                                  }
+                                  if (!RegExp(
+                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      .hasMatch(value)) {
+                                    return getTranslated(context,
+                                            AppString.login_email_validator2)
+                                        .toString();
+                                  }
+                                  return null;
+                                },
                               ),
-                              validator: (String? value) {
-                                if (value!.isEmpty) {
-                                  return getTranslated(context,
-                                          AppString.login_password_validator)
-                                      .toString();
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 8),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: TextButton(
-                                onPressed: () => Navigator.pushNamed(
-                                    context, 'ForgotPasswordScreen'),
-                                child: Text(
-                                  getTranslated(context,
-                                          AppString.login_forgot_password)
-                                      .toString(),
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                              const SizedBox(height: 14),
+                              OslerInput(
+                                label: getTranslated(
+                                        context, AppString.login_password_hint)
+                                    .toString(),
+                                hint: "••••••••",
+                                controller: password,
+                                isPassword: _isHidden,
+                                prefixIcon: Icon(Icons.lock_outline_rounded,
+                                    size: 20,
+                                    color: AyurezeTheme.healingGreen100),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                      _isHidden
+                                          ? Icons.visibility_off_rounded
+                                          : Icons.visibility_rounded,
+                                      size: 20,
                                       color: AyurezeTheme.healingGreen100),
+                                  onPressed: () =>
+                                      setState(() => _isHidden = !_isHidden),
                                 ),
+                                validator: (String? value) {
+                                  if (value!.isEmpty) {
+                                    return getTranslated(context,
+                                            AppString.login_password_validator)
+                                        .toString();
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                            const SizedBox(height: 24),
-                            GlassButton(
-                              text:
-                                  getTranslated(context, AppString.login_button)
-                                      .toString(),
-                              onPressed: () {
-                                if (_formkey.currentState!.validate()) {
-                                  callApiForLogin();
-                                }
-                              },
-                            ),
-                            const SizedBox(height: 24),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Divider(
-                                        color: AyurezeTheme.textSecondary
-                                            .withOpacity(0.1))),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
+                              const SizedBox(height: 8),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, 'ForgotPasswordScreen'),
                                   child: Text(
-                                    "Or continue with",
+                                    getTranslated(context,
+                                            AppString.login_forgot_password)
+                                        .toString(),
                                     style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        color: AyurezeTheme.textSecondary
-                                            .withOpacity(0.5)),
+                                        color: AyurezeTheme.healingGreen100),
                                   ),
                                 ),
-                                Expanded(
-                                    child: Divider(
-                                        color: AyurezeTheme.textSecondary
-                                            .withOpacity(0.1))),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            OutlinedButton(
-                              style: OutlinedButton.styleFrom(
-                                minimumSize: const Size(double.infinity, 56),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16)),
-                                side: BorderSide(
-                                    color: AyurezeTheme.textSecondary
-                                        .withOpacity(0.1)),
                               ),
-                              onPressed: _handleGoogleSignIn,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              const SizedBox(height: 24),
+                              GlassButton(
+                                text: getTranslated(
+                                        context, AppString.login_button)
+                                    .toString(),
+                                onPressed: () {
+                                  if (_formkey.currentState!.validate()) {
+                                    callApiForLogin();
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: 24),
+                              Row(
                                 children: [
-                                  SvgPicture.string(
-                                    '<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>',
-                                    height: 24,
-                                    width: 24,
+                                  Expanded(
+                                      child: Divider(
+                                          color: AyurezeTheme.textSecondary
+                                              .withOpacity(0.1))),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16),
+                                    child: Text(
+                                      "Or continue with",
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: AyurezeTheme.textSecondary
+                                              .withOpacity(0.5)),
+                                    ),
                                   ),
-                                  const SizedBox(width: 12),
-                                  Text(
-                                    "Sign in with Google",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: AyurezeTheme.textPrimary),
-                                  ),
+                                  Expanded(
+                                      child: Divider(
+                                          color: AyurezeTheme.textSecondary
+                                              .withOpacity(0.1))),
                                 ],
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 20),
+                              OutlinedButton(
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: const Size(double.infinity, 56),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)),
+                                  side: BorderSide(
+                                      color: AyurezeTheme.textSecondary
+                                          .withOpacity(0.1)),
+                                ),
+                                onPressed: _handleGoogleSignIn,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.string(
+                                      '<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/><path fill="none" d="M0 0h48v48H0z"/></svg>',
+                                      height: 24,
+                                      width: 24,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      "Sign in with Google",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: AyurezeTheme.textPrimary),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 18),
-                      GlassCard(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              getTranslated(context,
-                                      AppString.login_dont_have_account)
-                                  .toString(),
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: GlassTheme.textSecondaryLight),
-                            ),
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pushNamed(context, 'signup'),
-                              child: Text(
-                                getTranslated(context, AppString.login_sign_up)
+                        const SizedBox(height: 18),
+                        GlassCard(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                getTranslated(context,
+                                        AppString.login_dont_have_account)
                                     .toString(),
                                 style: TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w800,
-                                    color: GlassTheme.primaryGreen),
+                                    fontWeight: FontWeight.w500,
+                                    color: GlassTheme.textSecondaryLight),
                               ),
-                            ),
-                          ],
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, 'signup'),
+                                child: Text(
+                                  getTranslated(
+                                          context, AppString.login_sign_up)
+                                      .toString(),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w800,
+                                      color: GlassTheme.primaryGreen),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

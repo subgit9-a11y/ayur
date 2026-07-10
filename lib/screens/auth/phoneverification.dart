@@ -50,7 +50,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
   }
 
   Future<void> _triggerFirebaseOtp() async {
-    if (widget.data?.phoneForFirebase == null || widget.data!.phoneForFirebase!.isEmpty) return;
+    if (widget.data?.phoneForFirebase == null ||
+        widget.data!.phoneForFirebase!.isEmpty) return;
 
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
@@ -83,7 +84,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AyurezeTheme.canvas,
+      backgroundColor: Colors.transparent,
       appBar: PreferredSize(
         preferredSize: Size(width * 0.05, height * 0.05),
         child: SafeArea(
@@ -91,7 +92,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
               alignment: AlignmentDirectional.topStart,
               margin: EdgeInsets.only(top: height * 0.025, left: width * 0.05),
               child: GestureDetector(
-                child: Icon(Icons.arrow_back_ios, color: AyurezeTheme.forestDeep),
+                child:
+                    Icon(Icons.arrow_back_ios, color: AyurezeTheme.forestDeep),
                 onTap: () {
                   Navigator.pushNamed(context, 'SignIn');
                 },
@@ -118,7 +120,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
               child: Text(
                 getTranslated(context, AppString.phone_enter_your_otp_code)
                     .toString(),
-                style: TextStyle(fontSize: width * 0.040, color: AyurezeTheme.textSecondary),
+                style: TextStyle(
+                    fontSize: width * 0.040, color: AyurezeTheme.textSecondary),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -180,7 +183,9 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                   Text(
                     getTranslated(context, AppString.phone_otp_not_received)
                         .toString(),
-                    style: TextStyle(fontSize: width * 0.04, color: AyurezeTheme.textSecondary),
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        color: AyurezeTheme.textSecondary),
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(vertical: width * 0.02),
@@ -206,11 +211,13 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
                   Container(
                     margin: EdgeInsets.only(top: height * 0.02),
                     child: _isVerifying
-                        ? const CircularProgressIndicator(color: AyurezeTheme.forestDeep)
+                        ? const CircularProgressIndicator(
+                            color: AyurezeTheme.forestDeep)
                         : OslerButton(
-                            text: getTranslated(context, AppString.phone_verify_otp).toString(),
-                            onPressed: () => _verifyEnteredOtp()
-                        ),
+                            text: getTranslated(
+                                    context, AppString.phone_verify_otp)
+                                .toString(),
+                            onPressed: () => _verifyEnteredOtp()),
                   ),
                 ],
               ),
@@ -278,7 +285,7 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
           .otpVerifyRequest(body);
       if (response.success == true) {
         _saveUserData(response);
-        
+
         if (response.data?.isFilled == 0) {
           // New doctor or incomplete profile: Go to Professional Registration
           Navigator.pushReplacement(
@@ -319,7 +326,8 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
   Future<BaseModel<ResentOtp>> resentOtpVerify() async {
     ResentOtp? response;
     try {
-      if (widget.data?.phoneForFirebase != null && widget.data!.phoneForFirebase!.isNotEmpty) {
+      if (widget.data?.phoneForFirebase != null &&
+          widget.data!.phoneForFirebase!.isNotEmpty) {
         await _triggerFirebaseOtp();
       } else {
         response = await RestClient(await RetroApi().dioData(context))
@@ -335,21 +343,23 @@ class _PhoneVerificationScreenState extends State<PhoneVerificationScreen> {
 
   void _saveUserData(OtpVerify response) {
     if (response.data == null) return;
-    
+
     final data = response.data!;
     SharedPreferenceHelper.setBoolean(Preferences.is_logged_in, true);
     SharedPreferenceHelper.setString(Preferences.name, data.name ?? "");
     SharedPreferenceHelper.setString(Preferences.phone_no, data.phone ?? "");
     SharedPreferenceHelper.setString(Preferences.email, data.email ?? "");
     SharedPreferenceHelper.setString(Preferences.image, data.image ?? "");
-    SharedPreferenceHelper.setString(Preferences.doctorId, data.id?.toString() ?? "");
+    SharedPreferenceHelper.setString(
+        Preferences.doctorId, data.id?.toString() ?? "");
     SharedPreferenceHelper.setInt(Preferences.is_filled, data.isFilled ?? 0);
-    SharedPreferenceHelper.setInt(Preferences.subscription_status, data.subscriptionStatus ?? -1);
-    
+    SharedPreferenceHelper.setInt(
+        Preferences.subscription_status, data.subscriptionStatus ?? -1);
+
     if (data.token != null && data.token!.isNotEmpty) {
       SharedPreferenceHelper.setString(Preferences.auth_token, data.token!);
     }
-    
+
     // Notify auth provider for chat
     try {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);

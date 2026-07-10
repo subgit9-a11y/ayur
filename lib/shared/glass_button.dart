@@ -27,8 +27,8 @@ class GlassButton extends StatelessWidget {
           borderRadius: GlassTheme.defaultRadius,
           gradient: LinearGradient(
             colors: [
-              GlassTheme.primaryGreen.withOpacity(0.8),
-              GlassTheme.accentTeal.withOpacity(0.8),
+              GlassTheme.primaryGreen,
+              GlassTheme.accentTeal,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -75,6 +75,8 @@ class GlassButton extends StatelessWidget {
                 ),
         ),
       ),
-    ).animate(target: isLoading ? 0 : 1).scaleXY(end: 1.0, begin: 0.95, duration: 150.ms);
+    )
+        .animate(target: isLoading ? 0 : 1)
+        .scaleXY(end: 1.0, begin: 0.95, duration: 150.ms);
   }
 }

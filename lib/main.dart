@@ -16,6 +16,7 @@ import 'package:doctro/retrofit/network_api.dart';
 import 'package:doctro/retrofit/server_error.dart';
 import 'package:doctro/screens/auth/SignIn.dart';
 import 'package:doctro/screens/auth/forgotpassword.dart';
+import 'package:doctro/shared/glass_background.dart';
 import 'package:doctro/screens/notification/ViewAllNotification.dart';
 import 'package:doctro/screens/paymentScreen/PaymentGateway.dart';
 import 'package:doctro/screens/schedule/ScheduleTimings.dart';
@@ -80,15 +81,16 @@ Future<void> main() async {
   }
 
   // Supabase URL and Anon Key will be used by SupabaseService via REST API
-  final String supabaseUrl =
-      getEnvSafe('SUPABASE_URL') ?? const String.fromEnvironment('SUPABASE_URL');
-  final String supabaseAnonKey =
-      getEnvSafe('SUPABASE_ANON_KEY') ?? const String.fromEnvironment('SUPABASE_ANON_KEY');
-  
+  final String supabaseUrl = getEnvSafe('SUPABASE_URL') ??
+      const String.fromEnvironment('SUPABASE_URL');
+  final String supabaseAnonKey = getEnvSafe('SUPABASE_ANON_KEY') ??
+      const String.fromEnvironment('SUPABASE_ANON_KEY');
+
   if (supabaseUrl.isEmpty || supabaseAnonKey.isEmpty) {
-    debugPrint("Supabase credentials missing: check SUPABASE_URL or SUPABASE_ANON_KEY.");
+    debugPrint(
+        "Supabase credentials missing: check SUPABASE_URL or SUPABASE_ANON_KEY.");
   }
-  
+
   // Use a safer initialization sequence
   SharedPreferences? _prefs;
   try {
@@ -100,8 +102,9 @@ Future<void> main() async {
 
   // Initialize Firebase but don't let it hang the whole app
   try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+
     // Subscribe to topic in background, don't await it
     FirebaseMessaging.instance.subscribeToTopic("all").catchError((e) {
       debugPrint("Failed to subscribe to topic: $e");
@@ -113,15 +116,16 @@ Future<void> main() async {
   if (kDebugMode) {
     HttpOverrides.global = new MyHttpOverrides();
   }
-  
+
   if (Platform.isAndroid) {
     SharedPreferenceHelper.setString(Preferences.device_platform, "Android");
   }
 
   if (_prefs == null) {
-    debugPrint("CRITICAL: SharedPreferences failed to initialize. Starting with empty prefs.");
+    debugPrint(
+        "CRITICAL: SharedPreferences failed to initialize. Starting with empty prefs.");
     // Ideally we should show an error screen, but for now we'll try to continue
-    _prefs = await SharedPreferences.getInstance(); 
+    _prefs = await SharedPreferences.getInstance();
   }
 
   runApp(MyApp(prefs: _prefs!));
@@ -161,7 +165,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-
 
   Locale? _locale = const Locale('en', 'US');
   String messageImage = '';
@@ -633,65 +636,70 @@ class _MyAppState extends State<MyApp> {
               ),
             ],
             child: Consumer<ThemeProvider>(
-                builder: (context, themeProvider, child) {
-                  return MaterialApp(
-                    navigatorKey: navigatorKey,
-                    title: "Ayureze",
-                    debugShowCheckedModeBanner: false,
-                    theme: themeProvider.theme,
-                    home: SharedPreferenceHelper.getBoolean(Preferences.is_logged_in)
-                        ? LoginHomeScreen(chat: "")
-                        : SignIn(),
-                    locale: _locale,
-              supportedLocales: [
-                Locale(ENGLISH, 'US'),
-                // Locale(ARABIC, 'AE'),
-              ],
-              localizationsDelegates: [
-                LanguageLocalization.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              localeResolutionCallback: (deviceLocal, supportedLocales) {
-                for (var local in supportedLocales) {
-                  if (local.languageCode == deviceLocal!.languageCode &&
-                      local.countryCode == deviceLocal.countryCode) {
-                    return deviceLocal;
-                  }
-                }
-                return supportedLocales.first;
+              builder: (context, themeProvider, child) {
+                return MaterialApp(
+                  navigatorKey: navigatorKey,
+                  title: "Ayureze",
+                  debugShowCheckedModeBanner: false,
+                  theme: themeProvider.theme,
+                  builder: (context, child) => GlassBackground(
+                    child: child ?? const SizedBox.shrink(),
+                  ),
+                  home: SharedPreferenceHelper.getBoolean(
+                          Preferences.is_logged_in)
+                      ? LoginHomeScreen(chat: "")
+                      : SignIn(),
+                  locale: _locale,
+                  supportedLocales: [
+                    Locale(ENGLISH, 'US'),
+                    // Locale(ARABIC, 'AE'),
+                  ],
+                  localizationsDelegates: [
+                    LanguageLocalization.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  localeResolutionCallback: (deviceLocal, supportedLocales) {
+                    for (var local in supportedLocales) {
+                      if (local.languageCode == deviceLocal!.languageCode &&
+                          local.countryCode == deviceLocal.countryCode) {
+                        return deviceLocal;
+                      }
+                    }
+                    return supportedLocales.first;
+                  },
+                  routes: {
+                    // '/': (context) => SignIn(),
+                    'SignIn': (context) => SignIn(),
+                    'signup': (context) => CreateAccount(),
+                    'ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
+                    'phoneverification': (context) => PhoneVerificationScreen(),
+                    'loginHome': (context) => LoginHomeScreen(chat: ""),
+                    'patientInformation': (context) => patientDetailsScreen(),
+                    'cancelAppoitmentRoutes': (context) =>
+                        CancelAppointmentScreen(),
+                    'AppointmentHistoryScreen': (context) =>
+                        AppointmentHistoryScreen(),
+                    'rateAndReviewRoutes': (context) =>
+                        RateAndReviewRoutesScreen(),
+                    'notifications': (context) => NotificationsScreen(),
+                    'profile': (context) => ProfileScreen(),
+                    'payment': (context) => PaymentScreen(),
+                    'subscription': (context) => SubSubscription(),
+                    'paymentGatewayRoutes': (context) => PaymentGatewayScreen(),
+                    'Subscription History': (context) => SubscriptionHistory(),
+                    'Schedule Timings': (context) => ScheduleTimings(),
+                    'Change Password': (context) => ChangePassword(),
+                    'Change Language': (context) => ChangeLanguage(),
+                    'ViewAllNotification': (context) => ViewAllNotification(),
+                    // 'Stripe': (context) => Stripe(),
+                    'VideoCallHistory': (context) => VideoCallHistory(),
+                    'Settings': (context) => SettingScreen(),
+                    'ChatHome': (context) => HomePage(),
+                  },
+                );
               },
-              routes: {
-                // '/': (context) => SignIn(),
-                'SignIn': (context) => SignIn(),
-                'signup': (context) => CreateAccount(),
-                'ForgotPasswordScreen': (context) => ForgotPasswordScreen(),
-                'phoneverification': (context) => PhoneVerificationScreen(),
-                'loginHome': (context) => LoginHomeScreen(chat: ""),
-                'patientInformation': (context) => patientDetailsScreen(),
-                'cancelAppoitmentRoutes': (context) =>
-                    CancelAppointmentScreen(),
-                'AppointmentHistoryScreen': (context) =>
-                    AppointmentHistoryScreen(),
-                'rateAndReviewRoutes': (context) => RateAndReviewRoutesScreen(),
-                'notifications': (context) => NotificationsScreen(),
-                'profile': (context) => ProfileScreen(),
-                'payment': (context) => PaymentScreen(),
-                'subscription': (context) => SubSubscription(),
-                'paymentGatewayRoutes': (context) => PaymentGatewayScreen(),
-                'Subscription History': (context) => SubscriptionHistory(),
-                'Schedule Timings': (context) => ScheduleTimings(),
-                'Change Password': (context) => ChangePassword(),
-                'Change Language': (context) => ChangeLanguage(),
-                'ViewAllNotification': (context) => ViewAllNotification(),
-                // 'Stripe': (context) => Stripe(),
-                'VideoCallHistory': (context) => VideoCallHistory(),
-                'Settings': (context) => SettingScreen(),
-                'ChatHome': (context) => HomePage(),
-              },
-              );
-            },
             ),
           ),
         ),

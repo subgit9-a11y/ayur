@@ -6,14 +6,15 @@ class GlassTheme {
   static const Color lightGreen = Color(0xFF81C784); // Soft herbal green
   static const Color accentTeal = Color(0xFF00695C); // Deep teal
   static const Color frostedWhite = Color(0xFFFFFFFF);
-  
+
   // Backgrounds
   static const Color bgDark = Color(0xFF1B231E); // Very dark earth/green tint
   static const Color bgLight = Color(0xFFF1F8E9); // Light moss tint
 
   // Text Colors
-  static const Color textPrimaryLight = Color(0xFF1B5E20); // Dark green text for light mode
-  static const Color textSecondaryLight = Color(0xFF558B2F);
+  static const Color textPrimaryLight =
+      Color(0xFF102318); // High-contrast text for light mode
+  static const Color textSecondaryLight = Color(0xFF415443);
   static const Color textPrimaryDark = Color(0xFFFFFFFF);
   static const Color textSecondaryDark = Color(0xFFC8E6C9);
 
@@ -29,7 +30,8 @@ class GlassTheme {
         primary: primaryGreen,
         secondary: accentTeal,
       ),
-      fontFamily: 'SF Pro Display', // Defaulting to system fonts or custom if added
+      fontFamily:
+          'SF Pro Display', // Defaulting to system fonts or custom if added
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,

@@ -40,7 +40,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AyurezeTheme.canvas,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

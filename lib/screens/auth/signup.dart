@@ -27,6 +27,7 @@ import 'package:doctro/widgets/osler_input.dart';
 import 'package:doctro/widgets/osler_dropdown.dart';
 import 'package:doctro/widgets/osler_alert.dart';
 import 'package:doctro/widgets/osler_toast.dart';
+import 'package:doctro/shared/glass_background.dart';
 import 'package:doctro/shared/glass_card.dart';
 import 'package:doctro/shared/glass_button.dart';
 import 'package:doctro/core/theme/glass_theme.dart';
@@ -99,235 +100,341 @@ class _CreateAccountState extends State<CreateAccount> {
     height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  GlassTheme.bgLight,
-                  GlassTheme.lightGreen.withOpacity(0.3),
-                  GlassTheme.accentTeal.withOpacity(0.1),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
-          SafeArea(
-            child: Column(
-              children: [
-                AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back_ios_new_rounded, color: GlassTheme.primaryGreen, size: 20),
-                    onPressed: () => Navigator.pop(context),
+      backgroundColor: Colors.transparent,
+      body: GlassBackground(
+        child: Stack(
+          children: [
+            SafeArea(
+              child: Column(
+                children: [
+                  AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    leading: IconButton(
+                      icon: Icon(Icons.arrow_back_ios_new_rounded,
+                          color: GlassTheme.primaryGreen, size: 20),
+                      onPressed: () => Navigator.pop(context),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(22),
-                  decoration: AyurezeTheme.heroDecoration(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        getTranslated(context, AppString.register_heading).toString(),
-                        style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: -0.5),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        "Join the world's most advanced Ayurveda platform",
-                        style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.8)),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                GlassCard(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      OslerInput(
-                        label: getTranslated(context, AppString.register_full_name).toString(),
-                        hint: "Enter your full name",
-                        controller: _name,
-                        keyboardType: TextInputType.name,
-                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))],
-                        textCapitalization: TextCapitalization.words,
-                        prefixIcon: Icon(Icons.person_outline_rounded, size: 20, color: GlassTheme.primaryGreen),
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return getTranslated(context, AppString.please_enter_full_name).toString();
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      OslerInput(
-                        label: getTranslated(context, AppString.register_email_hint).toString(),
-                        hint: "Enter your email",
-                        controller: _email,
-                        keyboardType: TextInputType.emailAddress,
-                        prefixIcon: Icon(Icons.alternate_email_rounded, size: 20, color: GlassTheme.primaryGreen),
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return getTranslated(context, AppString.please_enter_email).toString();
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: OslerInput(
-                              label: "Code",
-                              hint: "+91",
-                              controller: _phoneCode,
-                              readOnly: true,
-                              onTap: () {
-                                showCountryPicker(
-                                  context: context,
-                                  showPhoneCode: true,
-                                  onSelect: (Country country) => setState(() => _phoneCode.text = "+${country.phoneCode}"),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            flex: 5,
-                            child: OslerInput(
-                              label: getTranslated(context, AppString.register_phone_no).toString(),
-                              hint: "Enter phone number",
-                              controller: _phone,
-                              keyboardType: TextInputType.phone,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(10)],
-                              prefixIcon: Icon(Icons.phone_iphone_rounded, size: 20, color: GlassTheme.primaryGreen),
-                              validator: (String? value) {
-                                if (value!.isEmpty) return getTranslated(context, AppString.please_enter_phone_no).toString();
-                                if (value.length != 10) return getTranslated(context, AppString.please_enter_valid_number).toString();
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 14),
-                      OslerInput(
-                        label: getTranslated(context, AppString.register_birth_date_hint).toString(),
-                        hint: "Select your DOB",
-                        controller: _dob,
-                        readOnly: true,
-                        onTap: () => _selectDate(context),
-                        prefixIcon: Icon(Icons.calendar_month_rounded, size: 20, color: GlassTheme.primaryGreen),
-                        validator: (String? value) {
-                          if (value!.isEmpty) return getTranslated(context, AppString.please_select_birth_date).toString();
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      OslerDropdown(
-                        label: '',
-                        hint: getTranslated(context, AppString.register_select_gender_hint).toString(),
-                        value: _genderSelect,
-                        items: gender,
-                        prefixIcon: Icons.people_alt_rounded,
-                        onChanged: (newValue) => setState(() => _genderSelect = newValue),
-                        validator: (value) => value == null ? getTranslated(context, AppString.please_select_gender).toString() : null,
-                      ),
-                      const SizedBox(height: 14),
-                      OslerInput(
-                        label: getTranslated(context, AppString.register_password_hint).toString(),
-                        hint: "••••••••",
-                        controller: _password,
-                        isPassword: _isHidden,
-                        prefixIcon: Icon(Icons.lock_outline_rounded, size: 20, color: GlassTheme.primaryGreen),
-                        suffixIcon: IconButton(
-                          icon: Icon(_isHidden ? Icons.visibility_off_rounded : Icons.visibility_rounded, size: 20, color: GlassTheme.primaryGreen),
-                          onPressed: () => setState(() => _isHidden = !_isHidden),
-                        ),
-                        validator: (String? value) {
-                          if (value!.isEmpty) return getTranslated(context, AppString.please_enter_password).toString();
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      GlassButton(
-                        text: getTranslated(context, AppString.register_button).toString(),
-                        onPressed: () {
-                          if (_formkey.currentState!.validate()) {
-                            Map<String, dynamic> personalData = {
-                              "name": _name.text,
-                              "email": _email.text,
-                              "dob": _dob.text,
-                              "gender": _genderSelect,
-                              "phone": _phone.text,
-                              "password": _password.text,
-                              "phone_code": _phoneCode.text,
-                            };
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProfessionalRegistrationScreen(personalData: personalData),
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () =>
+                          FocusScope.of(context).requestFocus(FocusNode()),
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
+                        child: Form(
+                          key: _formkey,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(22),
+                                decoration: AyurezeTheme.heroDecoration(),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      getTranslated(context,
+                                              AppString.register_heading)
+                                          .toString(),
+                                      style: const TextStyle(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.white,
+                                          letterSpacing: -0.5),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      "Join the world's most advanced Ayurveda platform",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white.withOpacity(0.8)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 24),
-                GlassCard(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        getTranslated(context, AppString.register_all_ready_account).toString(),
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: GlassTheme.textSecondaryLight),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pushNamed(context, 'SignIn'),
-                        child: Text(
-                          getTranslated(context, AppString.register_sign_in).toString(),
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: GlassTheme.primaryGreen),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  getTranslated(context, AppString.register_description).toString(),
-                  style: TextStyle(fontSize: 11, color: GlassTheme.textSecondaryLight),
-                  textAlign: TextAlign.center,
-                ),
-                          ],
+                              const SizedBox(height: 20),
+                              GlassCard(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    OslerInput(
+                                      label: getTranslated(context,
+                                              AppString.register_full_name)
+                                          .toString(),
+                                      hint: "Enter your full name",
+                                      controller: _name,
+                                      keyboardType: TextInputType.name,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp("[a-zA-Z ]"))
+                                      ],
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      prefixIcon: Icon(
+                                          Icons.person_outline_rounded,
+                                          size: 20,
+                                          color: GlassTheme.primaryGreen),
+                                      validator: (String? value) {
+                                        if (value!.isEmpty) {
+                                          return getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .please_enter_full_name)
+                                              .toString();
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 14),
+                                    OslerInput(
+                                      label: getTranslated(context,
+                                              AppString.register_email_hint)
+                                          .toString(),
+                                      hint: "Enter your email",
+                                      controller: _email,
+                                      keyboardType: TextInputType.emailAddress,
+                                      prefixIcon: Icon(
+                                          Icons.alternate_email_rounded,
+                                          size: 20,
+                                          color: GlassTheme.primaryGreen),
+                                      validator: (String? value) {
+                                        if (value!.isEmpty) {
+                                          return getTranslated(context,
+                                                  AppString.please_enter_email)
+                                              .toString();
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 14),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          child: OslerInput(
+                                            label: "Code",
+                                            hint: "+91",
+                                            controller: _phoneCode,
+                                            readOnly: true,
+                                            onTap: () {
+                                              showCountryPicker(
+                                                context: context,
+                                                showPhoneCode: true,
+                                                onSelect: (Country country) =>
+                                                    setState(() => _phoneCode
+                                                            .text =
+                                                        "+${country.phoneCode}"),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          flex: 5,
+                                          child: OslerInput(
+                                            label: getTranslated(context,
+                                                    AppString.register_phone_no)
+                                                .toString(),
+                                            hint: "Enter phone number",
+                                            controller: _phone,
+                                            keyboardType: TextInputType.phone,
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly,
+                                              LengthLimitingTextInputFormatter(
+                                                  10)
+                                            ],
+                                            prefixIcon: Icon(
+                                                Icons.phone_iphone_rounded,
+                                                size: 20,
+                                                color: GlassTheme.primaryGreen),
+                                            validator: (String? value) {
+                                              if (value!.isEmpty)
+                                                return getTranslated(
+                                                        context,
+                                                        AppString
+                                                            .please_enter_phone_no)
+                                                    .toString();
+                                              if (value.length != 10)
+                                                return getTranslated(
+                                                        context,
+                                                        AppString
+                                                            .please_enter_valid_number)
+                                                    .toString();
+                                              return null;
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 14),
+                                    OslerInput(
+                                      label: getTranslated(
+                                              context,
+                                              AppString
+                                                  .register_birth_date_hint)
+                                          .toString(),
+                                      hint: "Select your DOB",
+                                      controller: _dob,
+                                      readOnly: true,
+                                      onTap: () => _selectDate(context),
+                                      prefixIcon: Icon(
+                                          Icons.calendar_month_rounded,
+                                          size: 20,
+                                          color: GlassTheme.primaryGreen),
+                                      validator: (String? value) {
+                                        if (value!.isEmpty)
+                                          return getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .please_select_birth_date)
+                                              .toString();
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 14),
+                                    OslerDropdown(
+                                      label: '',
+                                      hint: getTranslated(
+                                              context,
+                                              AppString
+                                                  .register_select_gender_hint)
+                                          .toString(),
+                                      value: _genderSelect,
+                                      items: gender,
+                                      prefixIcon: Icons.people_alt_rounded,
+                                      onChanged: (newValue) => setState(
+                                          () => _genderSelect = newValue),
+                                      validator: (value) => value == null
+                                          ? getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .please_select_gender)
+                                              .toString()
+                                          : null,
+                                    ),
+                                    const SizedBox(height: 14),
+                                    OslerInput(
+                                      label: getTranslated(context,
+                                              AppString.register_password_hint)
+                                          .toString(),
+                                      hint: "••••••••",
+                                      controller: _password,
+                                      isPassword: _isHidden,
+                                      prefixIcon: Icon(
+                                          Icons.lock_outline_rounded,
+                                          size: 20,
+                                          color: GlassTheme.primaryGreen),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                            _isHidden
+                                                ? Icons.visibility_off_rounded
+                                                : Icons.visibility_rounded,
+                                            size: 20,
+                                            color: GlassTheme.primaryGreen),
+                                        onPressed: () => setState(
+                                            () => _isHidden = !_isHidden),
+                                      ),
+                                      validator: (String? value) {
+                                        if (value!.isEmpty)
+                                          return getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .please_enter_password)
+                                              .toString();
+                                        return null;
+                                      },
+                                    ),
+                                    const SizedBox(height: 24),
+                                    GlassButton(
+                                      text: getTranslated(context,
+                                              AppString.register_button)
+                                          .toString(),
+                                      onPressed: () {
+                                        if (_formkey.currentState!.validate()) {
+                                          Map<String, dynamic> personalData = {
+                                            "name": _name.text,
+                                            "email": _email.text,
+                                            "dob": _dob.text,
+                                            "gender": _genderSelect,
+                                            "phone": _phone.text,
+                                            "password": _password.text,
+                                            "phone_code": _phoneCode.text,
+                                          };
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ProfessionalRegistrationScreen(
+                                                      personalData:
+                                                          personalData),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+                              GlassCard(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      getTranslated(
+                                              context,
+                                              AppString
+                                                  .register_all_ready_account)
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: GlassTheme.textSecondaryLight),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, 'SignIn'),
+                                      child: Text(
+                                        getTranslated(context,
+                                                AppString.register_sign_in)
+                                            .toString(),
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w800,
+                                            color: GlassTheme.primaryGreen),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                getTranslated(
+                                        context, AppString.register_description)
+                                    .toString(),
+                                style: TextStyle(
+                                    fontSize: 11,
+                                    color: GlassTheme.textSecondaryLight),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -335,7 +442,8 @@ class _CreateAccountState extends State<CreateAccount> {
   Future<BaseModel<Register>> callApiForRegister() async {
     if (_selectedDate == null) {
       OslerToast.warning(context, "Please select your birth date");
-      return BaseModel()..setException(ServerError.withError(error: "Date not selected"));
+      return BaseModel()
+        ..setException(ServerError.withError(error: "Date not selected"));
     }
 
     newDateApiPass = DateUtilForPass().formattedDate(_selectedDate!);
@@ -348,7 +456,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
       String? photoUrl;
       if (_capturedImagePath != null) {
-        photoUrl = await _supabaseService.uploadProfilePhoto(File(_capturedImagePath!), doctorId);
+        photoUrl = await _supabaseService.uploadProfilePhoto(
+            File(_capturedImagePath!), doctorId);
       }
 
       Map<String, dynamic> body = {
@@ -375,12 +484,13 @@ class _CreateAccountState extends State<CreateAccount> {
         isFaceVerified: _isFaceVerified,
       );
 
-      response = await RestClient(await RetroApi().dioData(context)).registerRequest(body);
+      response = await RestClient(await RetroApi().dioData(context))
+          .registerRequest(body);
       CommonFunction.hideDialog(context);
 
       if (response.success == true && response.data != null) {
         final data = OtpData(
-          otp: response.data!.otp, 
+          otp: response.data!.otp,
           id: response.data!.id,
           phoneForFirebase: _phoneCode.text + _phone.text,
         );
@@ -392,11 +502,14 @@ class _CreateAccountState extends State<CreateAccount> {
               doctorName: _name.text,
               doctorId: doctorId,
               email: _email.text,
-              subtitle: "Step 1 complete! Now verify your phone number to activate your account.",
+              subtitle:
+                  "Step 1 complete! Now verify your phone number to activate your account.",
               onContinue: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => PhoneVerificationScreen(data: data)),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PhoneVerificationScreen(data: data)),
                 );
               },
             ),
@@ -415,7 +528,9 @@ class _CreateAccountState extends State<CreateAccount> {
   _selectDate(BuildContext context) async {
     DateTime? newSelectedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate != null ? _selectedDate! : DateTime.now().subtract(const Duration(days: 365 * 25)),
+      initialDate: _selectedDate != null
+          ? _selectedDate!
+          : DateTime.now().subtract(const Duration(days: 365 * 25)),
       firstDate: DateTime(1950, 1),
       lastDate: DateTime.now(),
       builder: (context, child) {
@@ -442,7 +557,8 @@ class _CreateAccountState extends State<CreateAccount> {
       _dob
         ..text = DateFormat('dd-MM-yyyy').format(_selectedDate!)
         ..selection = TextSelection.fromPosition(
-          TextPosition(offset: _dob.text.length, affinity: TextAffinity.upstream),
+          TextPosition(
+              offset: _dob.text.length, affinity: TextAffinity.upstream),
         );
     }
   }

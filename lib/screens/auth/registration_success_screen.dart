@@ -22,7 +22,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AyurezeTheme.canvas,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -43,7 +43,8 @@ class RegistrationSuccessScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                subtitle ?? "Your professional account has been successfully created and secured.",
+                subtitle ??
+                    "Your professional account has been successfully created and secured.",
                 style: TextStyle(
                   fontSize: 16,
                   color: AyurezeTheme.textSecondary,
@@ -122,7 +123,8 @@ class RegistrationSuccessScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailRow(String label, String value, {bool isPrimary = false, bool isStatus = false}) {
+  Widget _buildDetailRow(String label, String value,
+      {bool isPrimary = false, bool isStatus = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -131,7 +133,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w800,
-              color: AyurezeTheme.textSecondary,
+            color: AyurezeTheme.textSecondary,
             letterSpacing: 0.5,
           ),
         ),
@@ -141,10 +143,13 @@ class RegistrationSuccessScreen extends StatelessWidget {
             value,
             style: TextStyle(
               fontSize: isPrimary ? 18 : 14,
-              fontWeight: isPrimary || isStatus ? FontWeight.bold : FontWeight.w600,
-          color: isStatus 
-                ? Colors.orange[800] 
-                : (isPrimary ? AyurezeTheme.healingGreen100 : AyurezeTheme.textPrimary),
+              fontWeight:
+                  isPrimary || isStatus ? FontWeight.bold : FontWeight.w600,
+              color: isStatus
+                  ? Colors.orange[800]
+                  : (isPrimary
+                      ? AyurezeTheme.healingGreen100
+                      : AyurezeTheme.textPrimary),
             ),
             textAlign: TextAlign.right,
             overflow: TextOverflow.ellipsis,
@@ -161,13 +166,14 @@ class RegistrationSuccessScreen extends StatelessWidget {
       child: OslerButton(
         text: "Continue",
         customColor: AyurezeTheme.healingGreen100,
-        onPressed: onContinue ?? () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => LoginHomeScreen()),
-            (route) => false,
-          );
-        },
+        onPressed: onContinue ??
+            () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => LoginHomeScreen()),
+                (route) => false,
+              );
+            },
       ),
     );
   }

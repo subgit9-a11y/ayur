@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:doctro/theme/ayureze_theme.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class OslerCard extends StatelessWidget {
   final Widget child;
@@ -21,10 +22,10 @@ class OslerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final card = Container(
       margin: margin,
       child: Material(
-        color: backgroundColor ?? AyurezeTheme.surface,
+        color: backgroundColor ?? AyurezeTheme.surface.withOpacity(0.82),
         borderRadius: BorderRadius.circular(24),
         child: InkWell(
           onTap: onTap,
@@ -33,12 +34,14 @@ class OslerCard extends StatelessWidget {
             padding: padding ?? const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              border: showBorder ? Border.all(color: AyurezeTheme.border) : null,
-              boxShadow: const [
+              border: showBorder
+                  ? Border.all(color: Colors.white.withOpacity(0.55))
+                  : null,
+              boxShadow: [
                 BoxShadow(
-                  color: Color(0x0F000000),
-                  blurRadius: 18,
-                  offset: Offset(0, 10),
+                  color: AyurezeTheme.shadow.withOpacity(0.28),
+                  blurRadius: 24,
+                  offset: const Offset(0, 12),
                 ),
               ],
             ),
@@ -47,5 +50,11 @@ class OslerCard extends StatelessWidget {
         ),
       ),
     );
+
+    return card
+        .animate()
+        .fadeIn(duration: 220.ms, curve: Curves.easeOut)
+        .slideY(
+            begin: 0.018, end: 0, duration: 220.ms, curve: Curves.easeOutCubic);
   }
 }
