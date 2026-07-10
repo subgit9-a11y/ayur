@@ -44,7 +44,13 @@ class CommonFunction {
   }
 
   static hideDialog(BuildContext context) {
-    Navigator.pop(context);
+    final route = ModalRoute.of(context);
+    if (route?.isCurrent == true) return;
+
+    final navigator = Navigator.of(context, rootNavigator: true);
+    if (navigator.canPop()) {
+      navigator.pop();
+    }
   }
 
   //Check Internet Connection Data

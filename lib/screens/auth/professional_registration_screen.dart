@@ -20,15 +20,18 @@ import 'package:intl/intl.dart';
 class ProfessionalRegistrationScreen extends StatefulWidget {
   final Map<String, dynamic>? personalData;
 
-  const ProfessionalRegistrationScreen({Key? key, this.personalData}) : super(key: key);
+  const ProfessionalRegistrationScreen({Key? key, this.personalData})
+      : super(key: key);
 
   @override
-  _ProfessionalRegistrationScreenState createState() => _ProfessionalRegistrationScreenState();
+  _ProfessionalRegistrationScreenState createState() =>
+      _ProfessionalRegistrationScreenState();
 }
 
-class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistrationScreen> {
+class _ProfessionalRegistrationScreenState
+    extends State<ProfessionalRegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
-  
+
   // Controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -40,13 +43,13 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   final TextEditingController _feesController = TextEditingController();
   final TextEditingController _videoFeesController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
-   final TextEditingController _languageController = TextEditingController();
-   
+  final TextEditingController _languageController = TextEditingController();
+
   String? _genderSelect;
   String? _selectedRevenueModel;
   List<String> _revenueModels = ["Commission", "Subscription"];
   List<String> _genders = ["Male", "Female", "Other"];
-  
+
   File? _certificateImage;
   String? _existingCertificateUrl;
   File? _idProofImage;
@@ -65,17 +68,17 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   void initState() {
     super.initState();
     _fetchTreatments();
-    
+
     if (widget.personalData != null) {
       String rawDob = widget.personalData!['dob'] ?? "";
       if (rawDob.isNotEmpty) {
         try {
           // If signup passes yyyy-MM-dd reformat it
           if (rawDob.contains("-") && rawDob.indexOf("-") == 4) {
-             DateTime d = DateFormat('yyyy-MM-dd').parse(rawDob);
-             _dobController.text = DateFormat('dd-MM-yyyy').format(d);
+            DateTime d = DateFormat('yyyy-MM-dd').parse(rawDob);
+            _dobController.text = DateFormat('dd-MM-yyyy').format(d);
           } else {
-             _dobController.text = rawDob;
+            _dobController.text = rawDob;
           }
         } catch (e) {
           _dobController.text = rawDob;
@@ -95,20 +98,22 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   Future<void> _fetchProfileDetails() async {
     setState(() => _isLoading = true);
     try {
-      final response = await RestClient(await RetroApi().dioData(context)).doctorProfile();
+      final response =
+          await RestClient(await RetroApi().dioData(context)).doctorProfile();
       if (response.success == true && response.data != null) {
         final data = response.data!;
         setState(() {
           _nameController.text = data.name ?? "";
           _emailController.text = data.email ?? "";
           _phoneController.text = data.phone ?? "";
-          
+
           if (data.dob != null && data.dob!.contains("-")) {
             try {
               if (data.dob!.indexOf("-") == 4) {
-                 _dobController.text = DateFormat('dd-MM-yyyy').format(DateFormat('yyyy-MM-dd').parse(data.dob!));
+                _dobController.text = DateFormat('dd-MM-yyyy')
+                    .format(DateFormat('yyyy-MM-dd').parse(data.dob!));
               } else {
-                 _dobController.text = data.dob!;
+                _dobController.text = data.dob!;
               }
             } catch (e) {
               _dobController.text = data.dob!;
@@ -117,7 +122,7 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
             _dobController.text = data.dob ?? "";
           }
           _genderSelect = data.gender;
-          
+
           _licenseController.text = data.hospitalId ?? "";
           _educationController.text = data.education ?? "";
           _experienceController.text = data.experience ?? "";
@@ -129,7 +134,7 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
           _selectedCategoryId = data.categoryId?.toString();
           _existingCertificateUrl = data.certificate;
         });
-        
+
         if (_selectedTreatmentId != null) {
           _fetchCategories(_selectedTreatmentId!);
         }
@@ -174,12 +179,14 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
 
     if ((_certificateImage == null && _existingCertificateUrl == null) ||
         (_idProofImage == null && _existingIdProofUrl == null)) {
-      OslerToast.warning(context, "Both Medical Certificate and ID Proof are required");
+      OslerToast.warning(
+          context, "Both Medical Certificate and ID Proof are required");
       return;
     }
 
-    Map<String, dynamic> combinedData = widget.personalData != null ? Map.from(widget.personalData!) : {};
-    
+    Map<String, dynamic> combinedData =
+        widget.personalData != null ? Map.from(widget.personalData!) : {};
+
     final int safeTreatmentId = int.tryParse(_selectedTreatmentId ?? "") ?? 1;
     final int safeCategoryId = int.tryParse(_selectedCategoryId ?? "") ?? 1;
     final String safeLanguage = _languageController.text.trim().isEmpty
@@ -190,7 +197,10 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       "name": _nameController.text,
       "email": _emailController.text,
       "phone": _phoneController.text,
-      "dob": _dobController.text.isNotEmpty ? DateFormat('yyyy-MM-dd').format(DateFormat('dd-MM-yyyy').parse(_dobController.text)) : "",
+      "dob": _dobController.text.isNotEmpty
+          ? DateFormat('yyyy-MM-dd')
+              .format(DateFormat('dd-MM-yyyy').parse(_dobController.text))
+          : "",
       "gender": _genderSelect,
       "treatment_id": safeTreatmentId,
       "category_id": safeCategoryId,
@@ -210,14 +220,16 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       "certificate": _existingCertificateUrl ?? "",
       "id_proof": _existingIdProofUrl ?? "",
     });
-    
-    if (_certificateImage != null) combinedData["certificate_path"] = _certificateImage!.path;
-    if (_idProofImage != null) combinedData["id_proof_path"] = _idProofImage!.path;
+
+    if (_certificateImage != null)
+      combinedData["certificate_path"] = _certificateImage!.path;
+    if (_idProofImage != null)
+      combinedData["id_proof_path"] = _idProofImage!.path;
 
     if (widget.personalData != null) {
-      _finalizeRegistration(combinedData);
+      await _finalizeRegistration(combinedData);
     } else {
-      _updateProfile(combinedData);
+      await _updateProfile(combinedData);
     }
   }
 
@@ -226,16 +238,22 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
     try {
       // 1. Generate Unique ID
       String uniqueId = _supabaseService.generateDoctorID();
-      
-      // 2. Upload Documents to Supabase
+
+      // 2. Upload documents to Supabase when available, but do not fail registration
+      // if storage/database sync is unavailable.
       String? certUrl;
       String? idUrl;
-      
-      if (combinedData['certificate_path'] != null) {
-        certUrl = await _supabaseService.uploadProfilePhoto(File(combinedData['certificate_path']), "${uniqueId}_cert");
-      }
-      if (combinedData['id_proof_path'] != null) {
-        idUrl = await _supabaseService.uploadProfilePhoto(File(combinedData['id_proof_path']), "${uniqueId}_idproof");
+      try {
+        if (combinedData['certificate_path'] != null) {
+          certUrl = await _supabaseService.uploadProfilePhoto(
+              File(combinedData['certificate_path']), "${uniqueId}_cert");
+        }
+        if (combinedData['id_proof_path'] != null) {
+          idUrl = await _supabaseService.uploadProfilePhoto(
+              File(combinedData['id_proof_path']), "${uniqueId}_idproof");
+        }
+      } catch (e) {
+        debugPrint("Supabase document upload skipped: $e");
       }
 
       // 3. Prepare Final Data
@@ -248,11 +266,12 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
         "is_filled": 1,
       });
 
-      // 4. Register in Legacy MySQL Backend
-      final response = await RestClient(await RetroApi().dioData(context)).registerRequest(finalData);
+      // 4. Register in backend
+      final response = await RestClient(await RetroApi().dioData(context))
+          .registerRequest(finalData);
 
       if (response.success == true) {
-        // 5. Sync to Supabase
+        // 5. Sync to Supabase, but keep backend signup as the source of truth.
         try {
           await _supabaseService.saveDoctorProfile(
             doctorId: uniqueId,
@@ -268,8 +287,6 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
           debugPrint("Supabase Sync Error: $e");
         }
 
-        // 6. Save Preferences & Navigate
-      if (response.success == true) {
         _savePreferences(response);
         Navigator.pushAndRemoveUntil(
           context,
@@ -282,7 +299,6 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
           ),
           (route) => false,
         );
-      }
       } else {
         OslerToast.error(context, response.msg ?? "Registration failed");
       }
@@ -294,7 +310,9 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
 
         String errorMsg = "Registration failed";
         if (e.response?.data is Map) {
-          errorMsg = e.response?.data['msg'] ?? e.response?.data['message'] ?? errorMsg;
+          errorMsg = e.response?.data['msg'] ??
+              e.response?.data['message'] ??
+              errorMsg;
         }
         OslerToast.error(context, errorMsg);
       } else {
@@ -310,10 +328,12 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   void _savePreferences(Register response) {
     if (response.data == null) return;
     final data = response.data!;
-    
+
     SharedPreferenceHelper.setBoolean(Preferences.is_logged_in, true);
-    SharedPreferenceHelper.setString(Preferences.auth_token, response.token ?? "");
-    SharedPreferenceHelper.setString(Preferences.refresh_token, response.refreshToken ?? "");
+    SharedPreferenceHelper.setString(
+        Preferences.auth_token, response.token ?? "");
+    SharedPreferenceHelper.setString(
+        Preferences.refresh_token, response.refreshToken ?? "");
     SharedPreferenceHelper.setString(Preferences.name, data.name ?? "");
     SharedPreferenceHelper.setString(Preferences.email, data.email ?? "");
     SharedPreferenceHelper.setString(Preferences.phone_no, data.phone ?? "");
@@ -321,7 +341,8 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
     SharedPreferenceHelper.setString(Preferences.dob, data.dob ?? "");
     SharedPreferenceHelper.setString(Preferences.uniqueId, data.uniqueId ?? "");
     SharedPreferenceHelper.setString(Preferences.image, data.image ?? "");
-    SharedPreferenceHelper.setString(Preferences.doctorId, data.id?.toString() ?? "");
+    SharedPreferenceHelper.setString(
+        Preferences.doctorId, data.id?.toString() ?? "");
   }
 
   Future<void> _updateProfile(Map<String, dynamic> profileData) async {
@@ -331,23 +352,26 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       if (doctorId == 'N_A' || doctorId.isEmpty) {
         doctorId = SharedPreferenceHelper.getString(Preferences.doctorId);
       }
-      
+
       String? certUrl = _existingCertificateUrl;
       String? idProofUrl = _existingIdProofUrl;
-      
+
       if (_certificateImage != null) {
-        certUrl = await _supabaseService.uploadProfilePhoto(_certificateImage!, "${doctorId}_cert");
+        certUrl = await _supabaseService.uploadProfilePhoto(
+            _certificateImage!, "${doctorId}_cert");
       }
       if (_idProofImage != null) {
-        idProofUrl = await _supabaseService.uploadProfilePhoto(_idProofImage!, "${doctorId}_idproof");
+        idProofUrl = await _supabaseService.uploadProfilePhoto(
+            _idProofImage!, "${doctorId}_idproof");
       }
-      
+
       Map<String, dynamic> body = Map.from(profileData);
       body["certificate"] = certUrl ?? "";
       body["id_proof"] = idProofUrl ?? "";
       body["is_filled"] = 1;
 
-      final response = await RestClient(await RetroApi().dioData(context)).updateProfile(body);
+      final response = await RestClient(await RetroApi().dioData(context))
+          .updateProfile(body);
 
       if (response.success == true) {
         OslerToast.success(context, "Clinical Profile Updated");
@@ -363,7 +387,9 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
 
         String errorMsg = "Profile update failed";
         if (e.response?.data is Map) {
-          errorMsg = e.response?.data['msg'] ?? e.response?.data['message'] ?? errorMsg;
+          errorMsg = e.response?.data['msg'] ??
+              e.response?.data['message'] ??
+              errorMsg;
         }
         OslerToast.error(context, errorMsg);
       } else {
@@ -381,114 +407,151 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
     return Scaffold(
       backgroundColor: AyurezeTheme.canvas,
       appBar: AppBar(
-        title: Text("Clinical Profile", style: TextStyle(color: AyurezeTheme.textPrimary, fontWeight: FontWeight.w800, fontSize: 22)),
+        title: Text("Clinical Profile",
+            style: TextStyle(
+                color: AyurezeTheme.textPrimary,
+                fontWeight: FontWeight.w800,
+                fontSize: 22)),
         backgroundColor: AyurezeTheme.surface,
         elevation: 0.5,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios_new, color: AyurezeTheme.textPrimary, size: 20), onPressed: () => Navigator.pop(context)),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new,
+                color: AyurezeTheme.textPrimary, size: 20),
+            onPressed: () => Navigator.pop(context)),
       ),
-      body: _isLoading 
-        ? Center(child: CircularProgressIndicator(color: AyurezeTheme.healingGreen100))
-        : SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildSectionHeader("Personal Information", Icons.person_outline),
-                  const SizedBox(height: 15),
-                  widget.personalData != null 
-                    ? _buildPersonalSummaryCard()
-                    : Column(
-                        children: [
-                          _buildTextField("Full Name", _nameController, Icons.badge_outlined),
-                          _buildTextField("Email Address", _emailController, Icons.email_outlined),
-                          _buildTextField("Phone Number", _phoneController, AppIcons.phone, isNumber: true),
-                          Row(
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                  color: AyurezeTheme.healingGreen100))
+          : SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionHeader(
+                        "Personal Information", Icons.person_outline),
+                    const SizedBox(height: 15),
+                    widget.personalData != null
+                        ? _buildPersonalSummaryCard()
+                        : Column(
                             children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    _buildLabel("Gender"),
-                                    _buildGenericDropdown(_genders, (val) => setState(() => _genderSelect = val), _genderSelect),
-                                  ],
-                                ),
+                              _buildTextField("Full Name", _nameController,
+                                  Icons.badge_outlined),
+                              _buildTextField("Email Address", _emailController,
+                                  Icons.email_outlined),
+                              _buildTextField("Phone Number", _phoneController,
+                                  AppIcons.phone,
+                                  isNumber: true),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        _buildLabel("Gender"),
+                                        _buildGenericDropdown(
+                                            _genders,
+                                            (val) => setState(
+                                                () => _genderSelect = val),
+                                            _genderSelect),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Expanded(
+                                      child: _buildTextField("Date of Birth",
+                                          _dobController, Icons.cake_outlined,
+                                          isReadOnly: true,
+                                          onTap: () => _selectDate(context))),
+                                ],
                               ),
-                              const SizedBox(width: 15),
-                              Expanded(child: _buildTextField("Date of Birth", _dobController, Icons.cake_outlined, isReadOnly: true, onTap: () => _selectDate(context))),
                             ],
                           ),
-                        ],
-                      ),
-
-                  const SizedBox(height: 10),
-                  
-                  const SizedBox(height: 35),
-                  _buildSectionHeader("Professional Credentials", Icons.badge_outlined),
-                  const SizedBox(height: 15),
-                  _buildTextField("Medical Registration / License Number", _licenseController, Icons.verified_user_outlined),
-                  _buildTextField("Medical Education (e.g. BAMS, MD)", _educationController, Icons.school_outlined),
-                  _buildTextField("Years of Experience", _experienceController, Icons.history, isNumber: true),
-                  
-                  const SizedBox(height: 35),
-                  _buildSectionHeader("Consultation Rates", Icons.account_balance_wallet_outlined),
-                  const SizedBox(height: 15),
+                    const SizedBox(height: 10),
+                    const SizedBox(height: 35),
+                    _buildSectionHeader(
+                        "Professional Credentials", Icons.badge_outlined),
+                    const SizedBox(height: 15),
+                    _buildTextField("Medical Registration / License Number",
+                        _licenseController, Icons.verified_user_outlined),
+                    _buildTextField("Medical Education (e.g. BAMS, MD)",
+                        _educationController, Icons.school_outlined),
+                    _buildTextField("Years of Experience",
+                        _experienceController, Icons.history,
+                        isNumber: true),
+                    const SizedBox(height: 35),
+                    _buildSectionHeader("Consultation Rates",
+                        Icons.account_balance_wallet_outlined),
+                    const SizedBox(height: 15),
                     Row(
                       children: [
-                        Expanded(child: _buildTextField("Audio call fee (₹)", _feesController, Icons.phone_android_outlined, isNumber: true)),
+                        Expanded(
+                            child: _buildTextField("Audio call fee (₹)",
+                                _feesController, Icons.phone_android_outlined,
+                                isNumber: true)),
                         const SizedBox(width: 15),
-                        Expanded(child: _buildTextField("Video call fee (₹)", _videoFeesController, Icons.videocam_outlined, isNumber: true)),
+                        Expanded(
+                            child: _buildTextField("Video call fee (₹)",
+                                _videoFeesController, Icons.videocam_outlined,
+                                isNumber: true)),
                       ],
                     ),
-
-                  const SizedBox(height: 35),
-                  _buildSectionHeader("Practice Details", Icons.description_outlined),
-                  const SizedBox(height: 15),
-                  _buildTextField("Languages Spoken (e.g. English, Hindi)", _languageController, Icons.translate),
-                  _buildTextField("Professional Bio / Description", _descController, Icons.article_outlined, maxLines: 3),
-                  
-                  const SizedBox(height: 35),
-                  _buildSectionHeader("Verification Documents", Icons.cloud_upload_outlined),
-                  const SizedBox(height: 15),
-                  
-                  _buildLabel("Medical Degree / Certificate"),
-                  _buildUploadBox(
-                    onTap: () => _pickImage(true),
-                    file: _certificateImage,
-                    url: _existingCertificateUrl,
-                    placeholder: "Upload Medical Certificate",
-                  ),
-                  
-                  const SizedBox(height: 25),
-                  
-                  _buildLabel("Identification Proof (Aadhar / PAN / DL)"),
-                  _buildUploadBox(
-                    onTap: () => _pickImage(false),
-                    file: _idProofImage,
-                    url: _existingIdProofUrl,
-                    placeholder: "Upload ID Proof",
-                  ),
-                  
-                  const SizedBox(height: 45),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 58,
-                    child: OslerButton(
-                      text: widget.personalData != null ? "Complete Registration" : "Save Profile Details",
-                      onPressed: _submitData,
+                    const SizedBox(height: 35),
+                    _buildSectionHeader(
+                        "Practice Details", Icons.description_outlined),
+                    const SizedBox(height: 15),
+                    _buildTextField("Languages Spoken (e.g. English, Hindi)",
+                        _languageController, Icons.translate),
+                    _buildTextField("Professional Bio / Description",
+                        _descController, Icons.article_outlined,
+                        maxLines: 3),
+                    const SizedBox(height: 35),
+                    _buildSectionHeader(
+                        "Verification Documents", Icons.cloud_upload_outlined),
+                    const SizedBox(height: 15),
+                    _buildLabel("Medical Degree / Certificate"),
+                    _buildUploadBox(
+                      onTap: () => _pickImage(true),
+                      file: _certificateImage,
+                      url: _existingCertificateUrl,
+                      placeholder: "Upload Medical Certificate",
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                ],
+                    const SizedBox(height: 25),
+                    _buildLabel("Identification Proof (Aadhar / PAN / DL)"),
+                    _buildUploadBox(
+                      onTap: () => _pickImage(false),
+                      file: _idProofImage,
+                      url: _existingIdProofUrl,
+                      placeholder: "Upload ID Proof",
+                    ),
+                    const SizedBox(height: 45),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 58,
+                      child: OslerButton(
+                        text: widget.personalData != null
+                            ? "Complete Registration"
+                            : "Save Profile Details",
+                        onPressed: _submitData,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                ),
               ),
             ),
-          ),
     );
   }
 
-  Widget _buildUploadBox({required VoidCallback onTap, File? file, String? url, required String placeholder}) {
+  Widget _buildUploadBox(
+      {required VoidCallback onTap,
+      File? file,
+      String? url,
+      required String placeholder}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -497,29 +560,43 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
         decoration: BoxDecoration(
           color: AyurezeTheme.surface,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AyurezeTheme.healingGreen50.withOpacity(0.35), width: 2),
-          boxShadow: [BoxShadow(color: AyurezeTheme.shadow.withOpacity(0.08), blurRadius: 10, spreadRadius: 0)],
+          border: Border.all(
+              color: AyurezeTheme.healingGreen50.withOpacity(0.35), width: 2),
+          boxShadow: [
+            BoxShadow(
+                color: AyurezeTheme.shadow.withOpacity(0.08),
+                blurRadius: 10,
+                spreadRadius: 0)
+          ],
         ),
         child: file != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: Image.file(file, fit: BoxFit.cover),
-            )
-          : url != null && url.isNotEmpty
             ? ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-                child: Image.network(url, fit: BoxFit.cover),
+                child: Image.file(file, fit: BoxFit.cover),
               )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.add_a_photo_outlined, size: 40, color: AyurezeTheme.healingGreen50.withOpacity(0.65)),
-                  const SizedBox(height: 10),
-                  Text(placeholder, style: TextStyle(color: AyurezeTheme.textPrimary, fontWeight: FontWeight.w600, fontSize: 13)),
-                  const SizedBox(height: 4),
-                  Text("Tap to select image/PDF", style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 10)),
-                ],
-              ),
+            : url != null && url.isNotEmpty
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                    child: Image.network(url, fit: BoxFit.cover),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add_a_photo_outlined,
+                          size: 40,
+                          color: AyurezeTheme.healingGreen50.withOpacity(0.65)),
+                      const SizedBox(height: 10),
+                      Text(placeholder,
+                          style: TextStyle(
+                              color: AyurezeTheme.textPrimary,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 13)),
+                      const SizedBox(height: 4),
+                      Text("Tap to select image/PDF",
+                          style: TextStyle(
+                              color: AyurezeTheme.textSecondary, fontSize: 10)),
+                    ],
+                  ),
       ),
     );
   }
@@ -529,7 +606,11 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       children: [
         Icon(icon, color: AyurezeTheme.healingGreen100, size: 22),
         const SizedBox(width: 10),
-        Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
+        Text(title,
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: AyurezeTheme.textPrimary)),
       ],
     );
   }
@@ -537,11 +618,16 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   Widget _buildLabel(String label) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, left: 4),
-      child: Text(label, style: TextStyle(fontWeight: FontWeight.w700, color: AyurezeTheme.textSecondary, fontSize: 13)),
+      child: Text(label,
+          style: TextStyle(
+              fontWeight: FontWeight.w700,
+              color: AyurezeTheme.textSecondary,
+              fontSize: 13)),
     );
   }
 
-  Widget _buildGenericDropdown(List<String> items, Function(String?) onChanged, String? value) {
+  Widget _buildGenericDropdown(
+      List<String> items, Function(String?) onChanged, String? value) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
       margin: const EdgeInsets.only(bottom: 20),
@@ -549,18 +635,28 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
         color: AyurezeTheme.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AyurezeTheme.border.withOpacity(0.6)),
-        boxShadow: [BoxShadow(color: AyurezeTheme.shadow.withOpacity(0.06), blurRadius: 5, spreadRadius: 0)],
+        boxShadow: [
+          BoxShadow(
+              color: AyurezeTheme.shadow.withOpacity(0.06),
+              blurRadius: 5,
+              spreadRadius: 0)
+        ],
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: value,
           isExpanded: true,
-          icon: Icon(Icons.keyboard_arrow_down, color: AyurezeTheme.textSecondary),
-          hint: Text("Select", style: TextStyle(fontSize: 14, color: AyurezeTheme.textSecondary)),
+          icon: Icon(Icons.keyboard_arrow_down,
+              color: AyurezeTheme.textSecondary),
+          hint: Text("Select",
+              style:
+                  TextStyle(fontSize: 14, color: AyurezeTheme.textSecondary)),
           items: items.map((item) {
             return DropdownMenuItem<String>(
               value: item,
-              child: Text(item, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+              child: Text(item,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500)),
             );
           }).toList(),
           onChanged: onChanged,
@@ -569,7 +665,12 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, IconData icon, {bool isNumber = false, int maxLines = 1, bool isReadOnly = false, VoidCallback? onTap}) {
+  Widget _buildTextField(
+      String label, TextEditingController controller, IconData icon,
+      {bool isNumber = false,
+      int maxLines = 1,
+      bool isReadOnly = false,
+      VoidCallback? onTap}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -582,18 +683,33 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
             readOnly: isReadOnly,
             onTap: onTap,
             keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15, color: AyurezeTheme.textPrimary),
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+                color: AyurezeTheme.textPrimary),
             decoration: InputDecoration(
-              prefixIcon: Icon(icon, color: AyurezeTheme.textSecondary, size: 20),
+              prefixIcon:
+                  Icon(icon, color: AyurezeTheme.textSecondary, size: 20),
               filled: true,
               fillColor: AyurezeTheme.surface,
-              contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AyurezeTheme.border.withOpacity(0.6))),
-              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AyurezeTheme.healingGreen100, width: 1.5)),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: const BorderSide(color: Colors.redAccent)),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide:
+                      BorderSide(color: AyurezeTheme.border.withOpacity(0.6))),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                      color: AyurezeTheme.healingGreen100, width: 1.5)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(color: Colors.redAccent)),
             ),
-            validator: (value) => value == null || value.isEmpty ? "Required" : null,
+            validator: (value) =>
+                value == null || value.isEmpty ? "Required" : null,
           ),
         ],
       ),
@@ -603,7 +719,7 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
   Future<void> _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _dobController.text.isNotEmpty 
+      initialDate: _dobController.text.isNotEmpty
           ? DateFormat('dd-MM-yyyy').parse(_dobController.text)
           : DateTime.now().subtract(const Duration(days: 365 * 25)),
       firstDate: DateTime(1900),
@@ -640,7 +756,8 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       decoration: BoxDecoration(
         color: AyurezeTheme.healingGreen10,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: AyurezeTheme.healingGreen50.withOpacity(0.35)),
+        border:
+            Border.all(color: AyurezeTheme.healingGreen50.withOpacity(0.35)),
       ),
       child: Column(
         children: [
@@ -661,8 +778,10 @@ class _ProfessionalRegistrationScreenState extends State<ProfessionalRegistratio
       children: [
         Icon(icon, size: 18, color: AyurezeTheme.healingGreen100),
         const SizedBox(width: 12),
-        Text("$label: ", style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 13)),
-        Text(value, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+        Text("$label: ",
+            style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 13)),
+        Text(value,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
       ],
     );
   }

@@ -10,6 +10,7 @@ import 'package:doctro/retrofit/server_error.dart';
 import 'package:doctro/theme/ayureze_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:doctro/widgets/osler_toast.dart';
+import 'package:doctro/constant/common_function.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -28,6 +29,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   TextEditingController _email = TextEditingController();
 
   @override
+  void dispose() {
+    _email.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
@@ -38,7 +45,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: AyurezeTheme.textPrimary, size: 20),
+          icon: Icon(Icons.arrow_back_ios_new_rounded,
+              color: AyurezeTheme.textPrimary, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -59,13 +67,23 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        getTranslated(context, AppString.forgot_password_title).toString(),
-                        style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: -0.5),
+                        getTranslated(context, AppString.forgot_password_title)
+                            .toString(),
+                        style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                            letterSpacing: -0.5),
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        getTranslated(context, AppString.forgot_password_description).toString(),
-                        style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.8), height: 1.4),
+                        getTranslated(
+                                context, AppString.forgot_password_description)
+                            .toString(),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white.withOpacity(0.8),
+                            height: 1.4),
                       ),
                     ],
                   ),
@@ -79,20 +97,31 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       TextFormField(
                         controller: _email,
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AyurezeTheme.textPrimary),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AyurezeTheme.textPrimary),
                         decoration: AyurezeTheme.textFieldDecoration(
-                          labelText: getTranslated(context, AppString.forgot_email_hint).toString(),
-                        ).copyWith(prefixIcon: Icon(Icons.alternate_email_rounded, size: 20, color: AyurezeTheme.forestDeep)),
+                          labelText: getTranslated(
+                                  context, AppString.forgot_email_hint)
+                              .toString(),
+                        ).copyWith(
+                            prefixIcon: Icon(Icons.alternate_email_rounded,
+                                size: 20, color: AyurezeTheme.forestDeep)),
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return getTranslated(context, AppString.please_enter_email).toString();
+                            return getTranslated(
+                                    context, AppString.please_enter_email)
+                                .toString();
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 24),
                       OslerButton(
-                        text: getTranslated(context, AppString.forgot_reset_button).toString(),
+                        text: getTranslated(
+                                context, AppString.forgot_reset_button)
+                            .toString(),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             forgotPasswordScreenRequest();
@@ -114,18 +143,22 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     ForgotPassword response;
     try {
       Map<String, dynamic> body = {"email": _email.text};
-      response = (await RestClient(await RetroApi().dioData(context))
-          .forgotPasswordScreen(body));
-      setState(() {
-        if (response.success == true) {
-          Navigator.pushReplacementNamed(context, "SignIn");
-          OslerToast.success(context, response.msg!);
-        } else {
-          OslerToast.error(context, response.msg!);
-        }
-      });
+      CommonFunction.onLoading(context);
+      response = await RestClient(await RetroApi().dioData(context))
+          .forgotPasswordScreen(body);
+      CommonFunction.hideDialog(context);
+
+      if (!mounted) return BaseModel()..data = response;
+
+      if (response.success == true) {
+        OslerToast.success(
+            context, response.msg ?? "Password reset email sent");
+        Navigator.pushReplacementNamed(context, "SignIn");
+      } else {
+        OslerToast.error(context, response.msg ?? "Reset password failed");
+      }
     } catch (error, stacktrace) {
-      // print("Exception occur: $error stackTrace: $stacktrace");
+      CommonFunction.hideDialog(context);
       return BaseModel()..setException(ServerError.withError(error: error));
     }
     return BaseModel()..data = response;

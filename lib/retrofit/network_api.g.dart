@@ -709,7 +709,7 @@ class _RestClient implements RestClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'forgot_password',
+            'auth/forgot_password',
             queryParameters: queryParameters,
             data: _data,
           )

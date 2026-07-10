@@ -15,7 +15,8 @@ class RetroApi {
     //     " " +
     //     SharedPreferenceHelper.getString(
     //         Preferences.auth_token); // config your dio headers globally
-    dio.options.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    // Auth endpoints in this app expect JSON bodies.
+    dio.options.headers["Content-Type"] = "application/json";
     dio.options.followRedirects = false;
     dio.options.connectTimeout = Duration(seconds: 30);
     dio.options.receiveTimeout = Duration(seconds: 30);
@@ -25,9 +26,11 @@ class RetroApi {
         SharedPreferenceHelper.getString(Preferences.refresh_token);
     final expiresIn = SharedPreferenceHelper.getInt(Preferences.expiresIn);
     final savedAt = SharedPreferenceHelper.getInt('token_saved_at');
-    logger.w('token: $token, refreshToken: $refreshToken, expiresIn: $expiresIn, savedAt: $savedAt');
-    
-    final isLoggedIn = SharedPreferenceHelper.getBoolean(Preferences.is_logged_in);
+    logger.w(
+        'token: $token, refreshToken: $refreshToken, expiresIn: $expiresIn, savedAt: $savedAt');
+
+    final isLoggedIn =
+        SharedPreferenceHelper.getBoolean(Preferences.is_logged_in);
 
     if (token != 'N_A' && token.isNotEmpty) {
       dio.options.headers["Authorization"] = "Bearer $token";
