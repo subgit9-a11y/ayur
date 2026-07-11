@@ -489,10 +489,6 @@ class AyurezeTheme {
         borderRadius: BorderRadius.circular(20),
         borderSide: BorderSide(color: healingGreen100, width: 2),
       ),
-      filled: true,
-      fillColor: surface,
-      labelStyle: TextStyle(color: textSecondary, fontSize: 14),
-      hintStyle: TextStyle(color: textSecondary.withOpacity(0.6), fontSize: 14),
     );
   }
 }

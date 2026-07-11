@@ -56,7 +56,8 @@ class LoginHomeScreen extends StatefulWidget {
   _LoginHomeScreenState createState() => _LoginHomeScreenState();
 }
 
-class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProviderStateMixin {
+class _LoginHomeScreenState extends State<LoginHomeScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
   var appointment;
@@ -90,7 +91,6 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
   List<Tomorrow> _tomorrowSearchResult = [];
   List<Upcoming> _upcomingSearchResult = [];
 
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -99,12 +99,12 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    
+
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     )..repeat(reverse: true);
-    
+
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.15).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
@@ -115,33 +115,38 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
   void _initializeData() {
     _initializeAuthAndMessage();
   }
-  
+
   void _initializeAuthAndMessage() {
     Future.delayed(Duration.zero, () async {
-      final isLoggedIn = SharedPreferenceHelper.getBoolean(Preferences.is_logged_in);
-      
+      final isLoggedIn =
+          SharedPreferenceHelper.getBoolean(Preferences.is_logged_in);
+
       if (isLoggedIn) {
         settingRequest();
         todayAppointment = todayAppointmentsFunction();
       }
-      
+
       dName = SharedPreferenceHelper.getString(Preferences.name);
       dFullImage = SharedPreferenceHelper.getString(Preferences.image);
       isFilled = SharedPreferenceHelper.getInt(Preferences.is_filled);
-      subscription = SharedPreferenceHelper.getInt(Preferences.subscription_status);
+      subscription =
+          SharedPreferenceHelper.getInt(Preferences.subscription_status);
       phone = SharedPreferenceHelper.getString(Preferences.phone_no);
     });
-    
+
     Future.delayed(const Duration(seconds: 5), () {
       if (FirebaseAuth.instance.currentUser != null) {
         homeProvider.updateDataFirestore(FirestoreConstants.pathUserCollection,
             FirebaseAuth.instance.currentUser!.uid, {
-          'pushToken': SharedPreferenceHelper.getString(Preferences.messageToken)
+          'pushToken':
+              SharedPreferenceHelper.getString(Preferences.messageToken)
         });
       }
     });
 
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) {
       if (!mounted) return;
       if (message != null) {
         Map<String, dynamic> dataValue = message.data;
@@ -161,7 +166,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
                       isNavigate: '',
                     )));
           } else {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignIn()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => SignIn()));
           }
         }
       }
@@ -189,7 +195,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
       currentBackPressTime = now;
-      OslerToast.info(context, getTranslated(context, AppString.tap_again_to_exit_app).toString());
+      OslerToast.info(context,
+          getTranslated(context, AppString.tap_again_to_exit_app).toString());
     } else {
       Navigator.of(context).pop();
     }
@@ -219,87 +226,91 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: _handlePopInvoked,
-  child: GlassBackground(
-        child: Stack(
-          children: [
-            Scaffold(
-              key: _scaffoldKey,
-              backgroundColor: Colors.transparent,
-              drawer: const ModernDrawer(),
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                leading: IconButton(
-                  icon: SvgPicture.asset("assets/icons/dMenuBar.svg", height: 18, color: GlassTheme.primaryGreen),
-                  onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-                ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, "profile"),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: (dFullImage != null && dFullImage!.isNotEmpty)
-                                ? NetworkImage(dFullImage!)
-                                : const AssetImage("assets/images/no_image.jpg")
-                                    as ImageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+      child: GlassBackground(
+        child: Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: Colors.transparent,
+          drawer: const ModernDrawer(),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: SvgPicture.asset("assets/icons/dMenuBar.svg",
+                  height: 18, color: GlassTheme.primaryGreen),
+              onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, "profile"),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: (dFullImage != null && dFullImage!.isNotEmpty)
+                            ? NetworkImage(dFullImage!)
+                            : const AssetImage("assets/images/no_image.jpg")
+                                as ImageProvider,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ],
-              ),
-              body: RefreshIndicator(
-                onRefresh: todayAppointmentsFunction,
-                color: AyurezeTheme.healingGreen100,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  padding: AyurezeTheme.screenPadding,
-                  child: FutureBuilder(
-                    future: todayAppointment,
-                    builder: (context, snapshot) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildWelcomeHeader(),
-                          const SizedBox(height: 25),
-                          _buildStatsGrid(),
-                          const SizedBox(height: 25),
-                          _buildQuickActions(),
-                          const SizedBox(height: 25),
-                          _buildSectionTitle(getTranslated(context, AppString.home_title).toString(), todayAppointments.length),
-                          const SizedBox(height: 15),
-                          _buildAppointmentList(snapshot.connectionState == ConnectionState.waiting),
-                          const SizedBox(height: 30),
-                        ],
-                      );
-                    },
-                  ),
                 ),
               ),
-              floatingActionButton: ScaleTransition(
-                scale: _pulseAnimation,
-                child: FloatingActionButton.extended(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AstraAIChatScreen()),
-                    );
-                  },
-                  label: const Text("Astra AI", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-                  icon: Icon(AppIcons.analytics, color: Colors.white),
-                  backgroundColor: AyurezeTheme.healingGreen100,
-                ),
+            ],
+          ),
+          body: RefreshIndicator(
+            onRefresh: todayAppointmentsFunction,
+            color: AyurezeTheme.healingGreen100,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: AyurezeTheme.screenPadding,
+              child: FutureBuilder(
+                future: todayAppointment,
+                builder: (context, snapshot) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildWelcomeHeader(),
+                      const SizedBox(height: 25),
+                      _buildStatsGrid(),
+                      const SizedBox(height: 25),
+                      _buildQuickActions(),
+                      const SizedBox(height: 25),
+                      _buildSectionTitle(
+                          getTranslated(context, AppString.home_title)
+                              .toString(),
+                          todayAppointments.length),
+                      const SizedBox(height: 15),
+                      _buildAppointmentList(
+                          snapshot.connectionState == ConnectionState.waiting),
+                      const SizedBox(height: 30),
+                    ],
+                  );
+                },
               ),
             ),
-          ],
+          ),
+          floatingActionButton: ScaleTransition(
+            scale: _pulseAnimation,
+            child: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AstraAIChatScreen()),
+                );
+              },
+              label: const Text("Astra AI",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
+              icon: Icon(AppIcons.analytics, color: Colors.white),
+              backgroundColor: AyurezeTheme.healingGreen100,
+            ),
+          ),
         ),
       ),
     );
@@ -315,7 +326,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   decoration: BoxDecoration(
                     color: GlassTheme.primaryGreen.withOpacity(0.14),
                     borderRadius: BorderRadius.circular(999),
@@ -342,7 +354,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
                 const SizedBox(height: 8),
                 Text(
                   "You have ${todayAppointments.length} appointments scheduled for today.",
-                  style: TextStyle(color: GlassTheme.textSecondaryLight, fontSize: 14),
+                  style: TextStyle(
+                      color: GlassTheme.textSecondaryLight, fontSize: 14),
                 ),
               ],
             ),
@@ -355,10 +368,10 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
               color: GlassTheme.primaryGreen.withOpacity(0.1),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Icon(AppIcons.medical, color: GlassTheme.primaryGreen, size: 30),
+            child: Icon(AppIcons.medical,
+                color: GlassTheme.primaryGreen, size: 30),
           ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -367,7 +380,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     return Column(
       children: [
         _buildStatCard(
-          getTranslated(context, AppString.dashboard_today_appointments).toString(),
+          getTranslated(context, AppString.dashboard_today_appointments)
+              .toString(),
           todayAppointments.length.toString(),
           AppIcons.calendar,
           GlassTheme.primaryGreen,
@@ -377,7 +391,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
           children: [
             Expanded(
               child: _buildStatCard(
-                getTranslated(context, AppString.dashboard_active_patients).toString(),
+                getTranslated(context, AppString.dashboard_active_patients)
+                    .toString(),
                 patientCount.toString(),
                 AppIcons.patient,
                 GlassTheme.accentTeal,
@@ -386,7 +401,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
             const SizedBox(width: 15),
             Expanded(
               child: _buildStatCard(
-                getTranslated(context, AppString.dashboard_feedbacks).toString(),
+                getTranslated(context, AppString.dashboard_feedbacks)
+                    .toString(),
                 reviewCount.toString(),
                 AppIcons.star,
                 GlassTheme.primaryGreen,
@@ -398,7 +414,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     );
   }
 
-  Widget _buildStatCard(String title, String value, IconData icon, Color color) {
+  Widget _buildStatCard(
+      String title, String value, IconData icon, Color color) {
     return GlassCard(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -410,19 +427,29 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(color: color.withOpacity(0.18), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: color.withOpacity(0.18),
+                    borderRadius: BorderRadius.circular(12)),
                 child: Icon(icon, size: 18, color: color),
               ),
-              Icon(Icons.arrow_forward_ios, size: 12, color: GlassTheme.textSecondaryLight.withOpacity(0.5)),
+              Icon(Icons.arrow_forward_ios,
+                  size: 12,
+                  color: GlassTheme.textSecondaryLight.withOpacity(0.5)),
             ],
           ),
           const SizedBox(height: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(value, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, color: GlassTheme.textPrimaryLight)),
+              Text(value,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: GlassTheme.textPrimaryLight)),
               const SizedBox(height: 2),
-              Text(title, style: TextStyle(fontSize: 12, color: GlassTheme.textSecondaryLight)),
+              Text(title,
+                  style: TextStyle(
+                      fontSize: 12, color: GlassTheme.textSecondaryLight)),
             ],
           ),
         ],
@@ -434,21 +461,42 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(getTranslated(context, AppString.dashboard_quick_actions).toString(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: GlassTheme.textPrimaryLight)),
+        Text(
+            getTranslated(context, AppString.dashboard_quick_actions)
+                .toString(),
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: GlassTheme.textPrimaryLight)),
         SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildActionButton(getTranslated(context, AppString.drawer_schedule_timing).toString(), AppIcons.clock, GlassTheme.primaryGreen, () => Navigator.pushNamed(context, 'Schedule Timings')),
-            _buildActionButton(getTranslated(context, AppString.profile_personal_information).toString(), AppIcons.profile, GlassTheme.accentTeal, () => Navigator.pushNamed(context, 'profile')),
-            _buildActionButton(getTranslated(context, AppString.drawer_setting).toString(), AppIcons.settings, GlassTheme.primaryGreen, () => Navigator.pushNamed(context, 'Settings')),
+            _buildActionButton(
+                getTranslated(context, AppString.drawer_schedule_timing)
+                    .toString(),
+                AppIcons.clock,
+                GlassTheme.primaryGreen,
+                () => Navigator.pushNamed(context, 'Schedule Timings')),
+            _buildActionButton(
+                getTranslated(context, AppString.profile_personal_information)
+                    .toString(),
+                AppIcons.profile,
+                GlassTheme.accentTeal,
+                () => Navigator.pushNamed(context, 'profile')),
+            _buildActionButton(
+                getTranslated(context, AppString.drawer_setting).toString(),
+                AppIcons.settings,
+                GlassTheme.primaryGreen,
+                () => Navigator.pushNamed(context, 'Settings')),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildActionButton(String label, IconData icon, Color color, VoidCallback onTap) {
+  Widget _buildActionButton(
+      String label, IconData icon, Color color, VoidCallback onTap) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -470,7 +518,10 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
                 SizedBox(height: 10),
                 Text(
                   label,
-                  style: TextStyle(fontSize: 11, color: GlassTheme.textPrimaryLight, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontSize: 11,
+                      color: GlassTheme.textPrimaryLight,
+                      fontWeight: FontWeight.w700),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -487,7 +538,11 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
+        Text(title,
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+                color: AyurezeTheme.textPrimary)),
         if (count > 0)
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -495,7 +550,11 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
               color: AyurezeTheme.healingGreen10,
               borderRadius: BorderRadius.circular(999),
             ),
-            child: Text("$count Active", style: TextStyle(fontSize: 12, color: AyurezeTheme.healingGreen100, fontWeight: FontWeight.w700)),
+            child: Text("$count Active",
+                style: TextStyle(
+                    fontSize: 12,
+                    color: AyurezeTheme.healingGreen100,
+                    fontWeight: FontWeight.w700)),
           ),
       ],
     );
@@ -503,29 +562,42 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
 
   Widget _buildAppointmentList(bool isLoading) {
     if (isLoading) {
-      return Center(child: CircularProgressIndicator(color: AyurezeTheme.healingGreen50));
+      return Center(
+          child: CircularProgressIndicator(color: AyurezeTheme.healingGreen50));
     }
-    
+
     List<Widget> sections = [];
-    
+
     // Today Section
     if (todayAppointments.isNotEmpty) {
-      sections.add(_buildSectionHeader(getTranslated(context, AppString.today_appointment_heading).toString(), todayAppointments.length));
-      sections.addAll(todayAppointments.take(5).map((app) => _buildAppointmentCard(app)));
+      sections.add(_buildSectionHeader(
+          getTranslated(context, AppString.today_appointment_heading)
+              .toString(),
+          todayAppointments.length));
+      sections.addAll(
+          todayAppointments.take(5).map((app) => _buildAppointmentCard(app)));
     }
-    
+
     // Tomorrow Section
     if (tomorrowAppointments.isNotEmpty) {
       sections.add(SizedBox(height: 20));
-      sections.add(_buildSectionHeader(getTranslated(context, AppString.tomorrow_appointment).toString(), tomorrowAppointments.length));
-      sections.addAll(tomorrowAppointments.take(3).map((app) => _buildAppointmentCard(app)));
+      sections.add(_buildSectionHeader(
+          getTranslated(context, AppString.tomorrow_appointment).toString(),
+          tomorrowAppointments.length));
+      sections.addAll(tomorrowAppointments
+          .take(3)
+          .map((app) => _buildAppointmentCard(app)));
     }
-    
+
     // Upcoming Section
     if (upcomingAppointments.isNotEmpty) {
       sections.add(SizedBox(height: 20));
-      sections.add(_buildSectionHeader(getTranslated(context, AppString.up_coming_appointment).toString(), upcomingAppointments.length));
-      sections.addAll(upcomingAppointments.take(3).map((app) => _buildAppointmentCard(app)));
+      sections.add(_buildSectionHeader(
+          getTranslated(context, AppString.up_coming_appointment).toString(),
+          upcomingAppointments.length));
+      sections.addAll(upcomingAppointments
+          .take(3)
+          .map((app) => _buildAppointmentCard(app)));
     }
 
     if (sections.isEmpty) {
@@ -538,12 +610,13 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
           children: [
             Image.asset("assets/images/no-data.png", height: 80),
             SizedBox(height: 10),
-            Text(getTranslated(context, AppString.no_user).toString(), style: TextStyle(color: AyurezeTheme.textSecondary)),
+            Text(getTranslated(context, AppString.no_user).toString(),
+                style: TextStyle(color: AyurezeTheme.textSecondary)),
           ],
         ),
       );
     }
-    
+
     return Column(children: sections);
   }
 
@@ -553,14 +626,21 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> with SingleTickerProv
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: AyurezeTheme. textPrimary)),
-          Text("${getTranslated(context, AppString.view_more).toString()} ($count)", style: TextStyle(fontSize: 12, color: AyurezeTheme.healingGreen100)),
+          Text(title,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: AyurezeTheme.textPrimary)),
+          Text(
+              "${getTranslated(context, AppString.view_more).toString()} ($count)",
+              style:
+                  TextStyle(fontSize: 12, color: AyurezeTheme.healingGreen100)),
         ],
       ),
     );
   }
 
-Widget _buildAppointmentCard(dynamic app) {
+  Widget _buildAppointmentCard(dynamic app) {
     final statusMap = {
       'pending': AppointmentStatus.pending,
       'approved': AppointmentStatus.approved,
@@ -568,11 +648,15 @@ Widget _buildAppointmentCard(dynamic app) {
       'cancelled': AppointmentStatus.cancel,
       'waiting': AppointmentStatus.waiting,
     };
-    final status = statusMap[app.appointmentStatus?.toLowerCase()] ?? AppointmentStatus.pending;
+    final status = statusMap[app.appointmentStatus?.toLowerCase()] ??
+        AppointmentStatus.pending;
 
     return OslerCard(
       margin: EdgeInsets.only(bottom: 12),
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => patientDetailsScreen(id: app.id))),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => patientDetailsScreen(id: app.id))),
       child: Row(
         children: [
           ClipRRect(
@@ -582,7 +666,9 @@ Widget _buildAppointmentCard(dynamic app) {
               width: 50,
               height: 50,
               fit: BoxFit.cover,
-              errorWidget: (context, url, error) => Container(color: AyurezeTheme.surfaceMuted, child: Icon(Icons.person, color: AyurezeTheme.textSecondary)),
+              errorWidget: (context, url, error) => Container(
+                  color: AyurezeTheme.surfaceMuted,
+                  child: Icon(Icons.person, color: AyurezeTheme.textSecondary)),
             ),
           ),
           SizedBox(width: 15),
@@ -593,12 +679,19 @@ Widget _buildAppointmentCard(dynamic app) {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: Text(app.patientName ?? "Patient", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16, color: AyurezeTheme.textPrimary))),
+                    Expanded(
+                        child: Text(app.patientName ?? "Patient",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                                color: AyurezeTheme.textPrimary))),
                     OslerStatusBadge(status: status),
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(app.time ?? "", style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 13)),
+                Text(app.time ?? "",
+                    style: TextStyle(
+                        color: AyurezeTheme.textSecondary, fontSize: 13)),
               ],
             ),
           ),
@@ -606,7 +699,6 @@ Widget _buildAppointmentCard(dynamic app) {
       ),
     );
   }
-
 
   Future<BaseModel<TodayAppointment>> todayAppointmentsFunction() async {
     TodayAppointment response;
@@ -618,11 +710,15 @@ Widget _buildAppointmentCard(dynamic app) {
       totalEarnings = 0;
 
       final client = RestClient(await RetroApi().dioData(context));
-      
+
       final futures = await Future.wait([
         client.todayAppointments(),
-        client.paymentRequest().catchError((_) => Payment(success: false, paymentData: [])),
-        client.reviewRequest().catchError((_) => Review(success: false, data: [])),
+        client
+            .paymentRequest()
+            .catchError((_) => Payment(success: false, paymentData: [])),
+        client
+            .reviewRequest()
+            .catchError((_) => Review(success: false, data: [])),
       ]);
 
       response = futures[0] as TodayAppointment;
@@ -653,34 +749,42 @@ Widget _buildAppointmentCard(dynamic app) {
         }
 
         if (response.data!.tomorrow!.isNotEmpty) {
-          response.data!.tomorrow!.sort((a, b) => DateFormat("yyyy-MM-dd h:mm a")
-              .parse(DateTime.now().toString().split(" ")[0] +
-                  " " +
-                  (a.time ?? "00:00 AM").toUpperCase())
-              .compareTo(DateFormat("yyyy-MM-dd h:mm a").parse(
-                  DateTime.now().toString().split(" ")[0] +
+          response.data!.tomorrow!.sort((a, b) =>
+              DateFormat("yyyy-MM-dd h:mm a")
+                  .parse(DateTime.now().toString().split(" ")[0] +
                       " " +
-                      (b.time ?? "00:00 AM").toUpperCase())));
+                      (a.time ?? "00:00 AM").toUpperCase())
+                  .compareTo(DateFormat("yyyy-MM-dd h:mm a").parse(
+                      DateTime.now().toString().split(" ")[0] +
+                          " " +
+                          (b.time ?? "00:00 AM").toUpperCase())));
           tomorrowAppointments.addAll(response.data!.tomorrow!);
         }
 
         if (response.data!.upcoming!.isNotEmpty) {
-          response.data!.upcoming!.sort((a, b) => DateFormat("yyyy-MM-dd h:mm a")
-              .parse(DateTime.now().toString().split(" ")[0] +
-                  " " +
-                  (a.time ?? "00:00 AM").toUpperCase())
-              .compareTo(DateFormat("yyyy-MM-dd h:mm a").parse(
-                  DateTime.now().toString().split(" ")[0] +
+          response.data!.upcoming!.sort((a, b) =>
+              DateFormat("yyyy-MM-dd h:mm a")
+                  .parse(DateTime.now().toString().split(" ")[0] +
                       " " +
-                      (b.time ?? "00:00 AM").toUpperCase())));
+                      (a.time ?? "00:00 AM").toUpperCase())
+                  .compareTo(DateFormat("yyyy-MM-dd h:mm a").parse(
+                      DateTime.now().toString().split(" ")[0] +
+                          " " +
+                          (b.time ?? "00:00 AM").toUpperCase())));
           upcomingAppointments.addAll(response.data!.upcoming!);
         }
 
         // Simple way to estimate active patients: unique patient names across all categories
         Set<String> uniquePatients = {};
-        todayAppointments.forEach((a) { if (a.patientName != null) uniquePatients.add(a.patientName!); });
-        tomorrowAppointments.forEach((a) { if (a.patientName != null) uniquePatients.add(a.patientName!); });
-        upcomingAppointments.forEach((a) { if (a.patientName != null) uniquePatients.add(a.patientName!); });
+        todayAppointments.forEach((a) {
+          if (a.patientName != null) uniquePatients.add(a.patientName!);
+        });
+        tomorrowAppointments.forEach((a) {
+          if (a.patientName != null) uniquePatients.add(a.patientName!);
+        });
+        upcomingAppointments.forEach((a) {
+          if (a.patientName != null) uniquePatients.add(a.patientName!);
+        });
         patientCount = uniquePatients.length;
       });
     } catch (error, stacktrace) {
@@ -689,7 +793,6 @@ Widget _buildAppointmentCard(dynamic app) {
     }
     return BaseModel()..data = response;
   }
-
 
   Widget dialog() {
     return Container(
@@ -715,10 +818,10 @@ Widget _buildAppointmentCard(dynamic app) {
               ),
               SizedBox(
                 height: 10,
-),
-               Container(
-                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                 child: Text(
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
                   getTranslated(context, AppString.home_subscription_deActive)
                       .toString(),
                   style: TextStyle(
@@ -727,50 +830,52 @@ Widget _buildAppointmentCard(dynamic app) {
                       decoration: TextDecoration.none),
                   textAlign: TextAlign.center,
                 ),
-               ),
-               GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, "subscription");
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(top: height * 0.02),
-                      child: Text(
-                        getTranslated(context, AppString.home_please_active_plan)
-                            .toString(),
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: AyurezeTheme.textSecondary,
-                          decoration: TextDecoration.none),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-),
+              ),
               GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, "subscription");
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(top: height * 0.02),
-                      child: Text(
-                        getTranslated(context, AppString.home_please_active_plan)
-                            .toString(),
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: darkGrey,
-                            decoration: TextDecoration.none),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-               ),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "subscription");
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: height * 0.02),
+                  child: Text(
+                    getTranslated(context, AppString.home_please_active_plan)
+                        .toString(),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: AyurezeTheme.textSecondary,
+                        decoration: TextDecoration.none),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "subscription");
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: height * 0.02),
+                  child: Text(
+                    getTranslated(context, AppString.home_please_active_plan)
+                        .toString(),
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: darkGrey,
+                        decoration: TextDecoration.none),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
               Container(
-                  margin: EdgeInsets.only(left: 12, right: 12),
-                  child: OslerButton(
-                      text: getTranslated(context, AppString.home_activate_subscription).toString(),
-                      onPressed: () => Navigator.pushReplacementNamed(context, "subscription")
-                  ),
+                margin: EdgeInsets.only(left: 12, right: 12),
+                child: OslerButton(
+                    text: getTranslated(
+                            context, AppString.home_activate_subscription)
+                        .toString(),
+                    onPressed: () => Navigator.pushReplacementNamed(
+                        context, "subscription")),
               ),
             ],
           ),
@@ -820,7 +925,6 @@ Widget _buildAppointmentCard(dynamic app) {
   //     // print(error);
   //   }
   // }
-
 
   onSearchTextChanged(String text) async {
     _searchResult.clear();
