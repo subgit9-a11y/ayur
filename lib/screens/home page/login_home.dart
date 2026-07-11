@@ -63,7 +63,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
   var appointment;
 
   //Set Loader
-  Future? todayAppointment;
+  Future<BaseModel<TodayAppointment>>? todayAppointment;
   Timer? timer;
 
   //Set Open Drawer
