@@ -45,8 +45,6 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
   List<AppointmentCancel> _searchResult = [];
   List<AppointmentCancel> _userCancel = [];
 
-
-
   @override
   void initState() {
     super.initState();
@@ -79,7 +77,8 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
       },
       child: RefreshIndicator(
         onRefresh: cancelAppointmentRequest,
-        child: Scaffold( backgroundColor: AyurezeTheme.canvas,
+        child: Scaffold(
+          backgroundColor: AyurezeTheme.canvas,
           key: _scaffoldKey,
           drawer: const ModernDrawer(),
           appBar: PreferredSize(
@@ -109,9 +108,9 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
                                               AppString
                                                   .cancel_appointment_heading)
                                           .toString(),
-                                       style: TextStyle(
-                                           fontSize: width * 0.05,
-                                           color: AyurezeTheme.textPrimary),
+                                      style: TextStyle(
+                                          fontSize: width * 0.05,
+                                          color: AyurezeTheme.textPrimary),
                                     ),
                                   ),
                                 ],
@@ -164,7 +163,8 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
                                           .toString(),
                                       hintStyle: TextStyle(
                                         fontSize: width * 0.045,
-                                        color: AyurezeTheme.textSecondary.withOpacity(0.3),
+                                        color: AyurezeTheme.textSecondary
+                                            .withOpacity(0.3),
                                       ),
                                     ),
                                     onChanged: onSearchTextChanged,
@@ -222,7 +222,9 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
                                                         .cancel_appointment_heading)
                                                 .toString(),
                                             style: TextStyle(
-                                                fontSize: 16, color: AyurezeTheme.textPrimary),
+                                                fontSize: 16,
+                                                color:
+                                                    AyurezeTheme.textPrimary),
                                           ),
                                         ),
                                         Text(
@@ -259,15 +261,15 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
                                                             right:
                                                                 width * 0.02),
                                                         child: Text(
-                                                           DateUtil().formattedDate(
-                                                               DateTime.parse(
-                                                                   _searchResult[
-                                                                           i]
-                                                                       .date!)),
-                                                           style: TextStyle(
-                                                               fontSize: 14,
-                                                               color:
-                                                                   AyurezeTheme.forestDeep),
+                                                          DateUtil().formattedDate(
+                                                              DateTime.parse(
+                                                                  _searchResult[
+                                                                          i]
+                                                                      .date!)),
+                                                          style: TextStyle(
+                                                              fontSize: 14,
+                                                              color: AyurezeTheme
+                                                                  .forestDeep),
                                                         ),
                                                       ),
                                                       Container(
@@ -276,12 +278,12 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
                                                             right:
                                                                 width * 0.02),
                                                         child: Text(
-                                                           _searchResult[i]
-                                                               .time!,
-                                                           style: TextStyle(
-                                                               fontSize: 14,
-                                                               color:
-                                                                   AyurezeTheme.forestDeep),
+                                                          _searchResult[i]
+                                                              .time!,
+                                                          style: TextStyle(
+                                                              fontSize: 14,
+                                                              color: AyurezeTheme
+                                                                  .forestDeep),
                                                         ),
                                                       )
                                                     ],
@@ -572,7 +574,6 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
     );
   }
 
-
   Future<BaseModel<CancelAppointment>> cancelAppointmentRequest() async {
     CancelAppointment response;
     try {
@@ -590,7 +591,6 @@ class _CancelAppointmentScreen extends State<CancelAppointmentScreen> {
     }
     return BaseModel()..data = response;
   }
-
 
   onSearchTextChanged(String text) async {
     _searchResult.clear();

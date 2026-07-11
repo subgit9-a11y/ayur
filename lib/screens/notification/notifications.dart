@@ -62,87 +62,91 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ),
         Scaffold(
-      key: _scaffoldKey,
-      drawer: ModernDrawer(),
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            AppIcons.back,
-            color: AyurezeTheme.forestDeep,
-            size: 20,
-          ),
-        ),
-        title: Text(
-          getTranslated(context, AppString.notification_heading).toString(),
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-            color: AyurezeTheme.textPrimary,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/dMenuBar.svg",
-              height: 16,
-              color: GlassTheme.textPrimaryLight,
+          key: _scaffoldKey,
+          drawer: ModernDrawer(),
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                AppIcons.back,
+                color: AyurezeTheme.forestDeep,
+                size: 20,
+              ),
             ),
-          ),
-        ],
-      ),
-      body: PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, result) {
-          if (didPop) return;
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            'loginHome',
-            (route) => false,
-          );
-        },
-        child: RefreshIndicator(
-          onRefresh: bookNotifications,
-          color: AyurezeTheme.forestDeep,
-          child: FutureBuilder(
-            future: loadData,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState != ConnectionState.done) {
-                return Center(
-                  child: CircularProgressIndicator(color: AyurezeTheme.forestDeep),
-                );
-              }
-
-              return SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                padding: AyurezeTheme.screenPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildHero(),
-                    const SizedBox(height: 18),
-                    if (patientNotification.isEmpty)
-                      _buildEmptyState()
-                    else ...[
-                      ...patientNotification
-                          .take(patientNotification.length > 6 ? 6 : patientNotification.length)
-                          .map((item) => _buildNotificationCard(item)),
-                      if (patientNotification.length >= 6) _buildViewAllCard(),
-                    ],
-                  ],
+            title: Text(
+              getTranslated(context, AppString.notification_heading).toString(),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: AyurezeTheme.textPrimary,
+              ),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  _scaffoldKey.currentState!.openDrawer();
+                },
+                icon: SvgPicture.asset(
+                  "assets/icons/dMenuBar.svg",
+                  height: 16,
+                  color: GlassTheme.textPrimaryLight,
                 ),
+              ),
+            ],
+          ),
+          body: PopScope(
+            canPop: false,
+            onPopInvokedWithResult: (didPop, result) {
+              if (didPop) return;
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                'loginHome',
+                (route) => false,
               );
             },
+            child: RefreshIndicator(
+              onRefresh: bookNotifications,
+              color: AyurezeTheme.forestDeep,
+              child: FutureBuilder(
+                future: loadData,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState != ConnectionState.done) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                          color: AyurezeTheme.forestDeep),
+                    );
+                  }
+
+                  return SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: AyurezeTheme.screenPadding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildHero(),
+                        const SizedBox(height: 18),
+                        if (patientNotification.isEmpty)
+                          _buildEmptyState()
+                        else ...[
+                          ...patientNotification
+                              .take(patientNotification.length > 6
+                                  ? 6
+                                  : patientNotification.length)
+                              .map((item) => _buildNotificationCard(item)),
+                          if (patientNotification.length >= 6)
+                            _buildViewAllCard(),
+                        ],
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
-        ),
-      ),
         ),
       ],
     );
@@ -160,7 +164,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
-          BoxShadow(color: GlassTheme.primaryGreen.withOpacity(0.3), blurRadius: 10, offset: Offset(0, 5))
+          BoxShadow(
+              color: GlassTheme.primaryGreen.withOpacity(0.3),
+              blurRadius: 10,
+              offset: Offset(0, 5))
         ],
       ),
       child: Column(
@@ -309,7 +316,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             children: [
               Expanded(
                 child: Text(
-                  getTranslated(context, AppString.notification_view_all).toString(),
+                  getTranslated(context, AppString.notification_view_all)
+                      .toString(),
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -317,21 +325,21 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   ),
                 ),
               ),
-            SvgPicture.asset(
-              'assets/icons/longArrow.svg',
-              height: 12,
-              color: AyurezeTheme.forestDeep,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              "${patientNotification.length}",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w800,
+              SvgPicture.asset(
+                'assets/icons/longArrow.svg',
+                height: 12,
                 color: AyurezeTheme.forestDeep,
               ),
-            ),
-          ],
+              const SizedBox(width: 10),
+              Text(
+                "${patientNotification.length}",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                  color: AyurezeTheme.forestDeep,
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -371,4 +379,3 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return BaseModel()..data = response;
   }
 }
-

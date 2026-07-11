@@ -28,7 +28,11 @@ class WalletData {
   String? withdrawnAmount;
   List<WalletTransaction>? transactions;
 
-  WalletData({this.availableBalance, this.totalEarned, this.withdrawnAmount, this.transactions});
+  WalletData(
+      {this.availableBalance,
+      this.totalEarned,
+      this.withdrawnAmount,
+      this.transactions});
 
   WalletData.fromJson(Map<String, dynamic> json) {
     availableBalance = json['available_balance']?.toString();

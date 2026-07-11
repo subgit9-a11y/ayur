@@ -22,7 +22,7 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
   final ScrollController _scrollController = ScrollController();
   final AstraApiService _apiService = AstraApiService();
   final List<ChatMessage> _messages = [];
-  
+
   // Voice Recording state
   final AudioRecorder _audioRecorder = AudioRecorder();
   bool _isRecording = false;
@@ -71,7 +71,8 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
   void _addInitialMessage() {
     setState(() {
       _messages.add(ChatMessage(
-        text: "Hello Doctor! I'm Astra, your AI clinical assistant. How can I help you today?",
+        text:
+            "Hello Doctor! I'm Astra, your AI clinical assistant. How can I help you today?",
         isMe: false,
         time: DateTime.now(),
       ));
@@ -102,15 +103,16 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
           SharedPreferenceHelper.getString(Preferences.uniqueId) != 'N_A'
               ? SharedPreferenceHelper.getString(Preferences.uniqueId)
               : SharedPreferenceHelper.getString(Preferences.doctorId);
-      final String effectiveUserId =
-          user?.uid ?? (fallbackUserId == 'N_A' ? 'doctor_app_user' : fallbackUserId);
+      final String effectiveUserId = user?.uid ??
+          (fallbackUserId == 'N_A' ? 'doctor_app_user' : fallbackUserId);
 
       // Prepare history for memory (last 10 messages)
       List<Map<String, String>> history = _messages
           .where((m) => !m.isSystem && !m.isError)
           .toList()
           .reversed
-          .skip(1) // Skip the message we just added (or the voice processing message)
+          .skip(
+              1) // Skip the message we just added (or the voice processing message)
           .take(10)
           .toList()
           .reversed
@@ -121,7 +123,7 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
           .toList();
 
       Map<String, dynamic> response;
-      
+
       if (voicePath != null) {
         // Handle voice processing
         if (mounted) {
@@ -134,17 +136,19 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
             ));
           });
         }
-        
-        final voiceResponse = await _apiService.processVoice(File(voicePath), effectiveUserId);
-        String extractedText = voiceResponse['text'] ?? "Voice processed successfully.";
-        
+
+        final voiceResponse =
+            await _apiService.processVoice(File(voicePath), effectiveUserId);
+        String extractedText =
+            voiceResponse['text'] ?? "Voice processed successfully.";
+
         response = await _apiService.brainChat({
           'q': extractedText,
           'user_id': effectiveUserId,
           'session_id': _sessionId,
           'history': history,
           'user_metadata': {
-            'role': 'doctor', 
+            'role': 'doctor',
             'source': 'voice',
             'precise': true // Request precise clinical response
           }
@@ -164,7 +168,7 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
       }
 
       final aiResponse = AIChatResponse.fromJson(response);
-      
+
       // Store session ID for memory
       if (aiResponse.sessionId != null) {
         _sessionId = aiResponse.sessionId;
@@ -173,7 +177,8 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
       if (mounted) {
         setState(() {
           _messages.add(ChatMessage(
-            text: aiResponse.response ?? "I apologize, I couldn't process that request.",
+            text: aiResponse.response ??
+                "I apologize, I couldn't process that request.",
             isMe: false,
             time: DateTime.now(),
           ));
@@ -183,16 +188,18 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
     } catch (e) {
       final String errorText = e.toString();
       // Improved error reporting
-      String friendlyMessage = "Connection failed: $errorText. Please check internet.";
+      String friendlyMessage =
+          "Connection failed: $errorText. Please check internet.";
 
       if (errorText.contains('401') || errorText.contains('Unauthorized')) {
         friendlyMessage = "Session expired. Please re-login.";
       } else if (errorText.contains('500') || errorText.contains('Server')) {
-        friendlyMessage = "Astra server error. Please try again in a few moments.";
+        friendlyMessage =
+            "Astra server error. Please try again in a few moments.";
       } else if (errorText.contains('Timeout')) {
-        friendlyMessage = "Astra server taking too long to respond. Please try again.";
+        friendlyMessage =
+            "Astra server taking too long to respond. Please try again.";
       }
-
 
       if (mounted) {
         setState(() {
@@ -215,8 +222,9 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
       if (_isRecording) return;
       if (await _audioRecorder.hasPermission()) {
         final directory = await getTemporaryDirectory();
-        _recordingPath = '${directory.path}/astra_voice_${DateTime.now().millisecondsSinceEpoch}.wav';
-        
+        _recordingPath =
+            '${directory.path}/astra_voice_${DateTime.now().millisecondsSinceEpoch}.wav';
+
         await _audioRecorder.start(const RecordConfig(), path: _recordingPath!);
         setState(() {
           _isRecording = true;
@@ -272,29 +280,37 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                 color: AyurezeTheme.forestDeep.withOpacity(0.1),
+                color: AyurezeTheme.forestDeep.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.psychology, color: AyurezeTheme.textPrimary, size: 20),
+              child: Icon(Icons.psychology,
+                  color: AyurezeTheme.textPrimary, size: 20),
             ),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Astra AI Assistant", 
-                  style: TextStyle(color: AyurezeTheme.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+                Text("Astra AI Assistant",
+                    style: TextStyle(
+                        color: AyurezeTheme.textPrimary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
                 Row(
                   children: [
                     Container(
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: _isBrainOnline ? Colors.green : AyurezeTheme.warning,
+                        color: _isBrainOnline
+                            ? Colors.green
+                            : AyurezeTheme.warning,
                         shape: BoxShape.circle,
                       ),
                     ),
                     const SizedBox(width: 4),
-                    Text(_brainStatusLabel, style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 10)),
+                    Text(_brainStatusLabel,
+                        style: TextStyle(
+                            color: AyurezeTheme.textSecondary, fontSize: 10)),
                   ],
                 ),
               ],
@@ -302,7 +318,8 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: AyurezeTheme.textPrimary, size: 20),
+          icon: Icon(Icons.arrow_back_ios,
+              color: AyurezeTheme.textPrimary, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
@@ -329,9 +346,15 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 children: [
-                   SizedBox(height: 15, width: 15, child: CircularProgressIndicator(strokeWidth: 2, color: AyurezeTheme.forestDeep)),
-                   const SizedBox(width: 10),
-                    Text("Astra is thinking...", style: TextStyle(color: AyurezeTheme.textSecondary, fontSize: 12)),
+                  SizedBox(
+                      height: 15,
+                      width: 15,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: AyurezeTheme.forestDeep)),
+                  const SizedBox(width: 10),
+                  Text("Astra is thinking...",
+                      style: TextStyle(
+                          color: AyurezeTheme.textSecondary, fontSize: 12)),
                 ],
               ),
             ),
@@ -346,12 +369,17 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
       alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.only(bottom: 15),
-        constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
+        constraints:
+            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: message.isError 
+          color: message.isError
               ? AyurezeTheme.danger.withOpacity(0.1)
-              : (message.isSystem ? AyurezeTheme.lightGreenSoft : (message.isMe ? AyurezeTheme.forestDeep : AyurezeTheme.surface)),
+              : (message.isSystem
+                  ? AyurezeTheme.lightGreenSoft
+                  : (message.isMe
+                      ? AyurezeTheme.forestDeep
+                      : AyurezeTheme.surface)),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(20),
             topRight: const Radius.circular(20),
@@ -360,7 +388,10 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
           ),
           boxShadow: [
             if (!message.isMe)
-              BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4)),
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4)),
           ],
         ),
         child: Column(
@@ -369,11 +400,13 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
             Text(
               message.text,
               style: TextStyle(
-                color: message.isError 
-                    ? Colors.red 
+                color: message.isError
+                    ? Colors.red
                     : (message.isSystem
                         ? AyurezeTheme.forestDeep
-                        : (message.isMe ? Colors.white : AyurezeTheme.textPrimary)),
+                        : (message.isMe
+                            ? Colors.white
+                            : AyurezeTheme.textPrimary)),
                 fontSize: 14,
               ),
             ),
@@ -381,7 +414,8 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
             Text(
               DateFormat('hh:mm a').format(message.time),
               style: TextStyle(
-                color: message.isMe ? Colors.white70 : AyurezeTheme.textSecondary,
+                color:
+                    message.isMe ? Colors.white70 : AyurezeTheme.textSecondary,
                 fontSize: 10,
               ),
             ),
@@ -397,7 +431,10 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
       decoration: BoxDecoration(
         color: AyurezeTheme.surface,
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20, offset: const Offset(0, -5)),
+          BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 20,
+              offset: const Offset(0, -5)),
         ],
       ),
       child: SafeArea(
@@ -432,7 +469,8 @@ class _AstraAIChatScreenState extends State<AstraAIChatScreen> {
                   decoration: InputDecoration(
                     hintText: "Type or hold mic to dictate...",
                     border: InputBorder.none,
-                    hintStyle: TextStyle(fontSize: 14, color: AyurezeTheme.textSecondary),
+                    hintStyle: TextStyle(
+                        fontSize: 14, color: AyurezeTheme.textSecondary),
                   ),
                   style: TextStyle(color: AyurezeTheme.textPrimary),
                   onSubmitted: (_) => _sendMessage(),
@@ -473,4 +511,3 @@ class ChatMessage {
     this.isSystem = false,
   });
 }
-

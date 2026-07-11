@@ -76,11 +76,13 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
         child: Row(
           children: [
             SizedBox(
-              width: 20, height: 20,
+              width: 20,
+              height: 20,
               child: CircularProgressIndicator(strokeWidth: 2, color: purple),
             ),
             SizedBox(width: 12),
-            Text("Loading patient's health intake...", style: TextStyle(color: hintColor)),
+            Text("Loading patient's health intake...",
+                style: TextStyle(color: hintColor)),
           ],
         ),
       ),
@@ -112,31 +114,37 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
 
   Widget _buildAstraFillCard() {
     // Standardize data from the NEW upgraded Astra Fill 20-parameter model Response
-    final chiefComplaint = _astraFillData?['primary_complaint'] ?? _astraFillData?['chief_complaint'] ?? '';
+    final chiefComplaint = _astraFillData?['primary_complaint'] ??
+        _astraFillData?['chief_complaint'] ??
+        '';
     final duration = _astraFillData?['duration'] ?? '';
     final severityDetails = _astraFillData?['severity_clues'] ?? '';
     final timing = _astraFillData?['pattern_or_timing'] ?? '';
-    
+
     // Ayurvedic / Lifestyle Parameters
     final sleepDetails = _astraFillData?['sleep'] ?? '';
     final appetiteDetails = _astraFillData?['appetite'] ?? '';
     final bowelDetails = _astraFillData?['bowel'] ?? '';
     final micturitionDetails = _astraFillData?['micturition'] ?? '';
-    
+
     // Medical History
     final pastHistory = _astraFillData?['past_history'] ?? '';
     final previousTreatment = _astraFillData?['previous_treatment'] ?? '';
-    
+
     // Boolean Flags
     final hasDiabetes = _astraFillData?['history_of_diabetes'] == true;
     final hasThyroid = _astraFillData?['history_of_thyroid'] == true;
     final hasBp = _astraFillData?['history_of_blood_pressure'] == true;
-    
+
     // Legacy support handles
-    final rawSymptoms = _astraFillData?['extracted_symptoms'] ?? _astraFillData?['symptoms'];
-    final List<String> symptoms = rawSymptoms is List ? List<String>.from(rawSymptoms) : (rawSymptoms != null ? [rawSymptoms.toString()] : []);
+    final rawSymptoms =
+        _astraFillData?['extracted_symptoms'] ?? _astraFillData?['symptoms'];
+    final List<String> symptoms = rawSymptoms is List
+        ? List<String>.from(rawSymptoms)
+        : (rawSymptoms != null ? [rawSymptoms.toString()] : []);
     final currentMedications = _astraFillData?['current_medications'] ?? [];
-    final timestamp = _astraFillData?['created_at'] ?? _astraFillData?['timestamp'] ?? '';
+    final timestamp =
+        _astraFillData?['created_at'] ?? _astraFillData?['timestamp'] ?? '';
     final severityScore = _astraFillData?['severity_score'];
 
     return GlassCard(
@@ -170,7 +178,8 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                         color: GlassTheme.primaryGreen,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Icon(Icons.auto_awesome, color: Colors.white, size: 20),
+                      child: Icon(Icons.auto_awesome,
+                          color: Colors.white, size: 20),
                     ),
                     SizedBox(width: 12),
                     Expanded(
@@ -195,7 +204,8 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                     ),
                     if (severityScore != null)
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
                           color: _getSeverityColor(severityScore),
                           borderRadius: BorderRadius.circular(20),
@@ -211,7 +221,9 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                       ),
                     SizedBox(width: 8),
                     Icon(
-                      _isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                      _isExpanded
+                          ? Icons.keyboard_arrow_up
+                          : Icons.keyboard_arrow_down,
                       color: GlassTheme.textPrimaryLight,
                     ),
                   ],
@@ -234,14 +246,16 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                         content: chiefComplaint.toString(),
                         iconColor: Colors.orange,
                       ),
-                      
+
                     // Severity & Timing
-                    if (severityDetails.toString().isNotEmpty || timing.toString().isNotEmpty)
+                    if (severityDetails.toString().isNotEmpty ||
+                        timing.toString().isNotEmpty)
                       _buildSection(
                         icon: Icons.timeline,
                         title: "Pattern & Severity",
-                        content: "${severityDetails.toString().isNotEmpty ? 'Severity: $severityDetails\n' : ''}"
-                                 "${timing.toString().isNotEmpty ? 'Timing: $timing' : ''}",
+                        content:
+                            "${severityDetails.toString().isNotEmpty ? 'Severity: $severityDetails\n' : ''}"
+                            "${timing.toString().isNotEmpty ? 'Timing: $timing' : ''}",
                         iconColor: Colors.redAccent,
                       ),
 
@@ -255,29 +269,37 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                       ),
 
                     // Lifestyle & Ayurvedic Parameters
-                    if (sleepDetails.toString().isNotEmpty || appetiteDetails.toString().isNotEmpty || bowelDetails.toString().isNotEmpty || micturitionDetails.toString().isNotEmpty)
+                    if (sleepDetails.toString().isNotEmpty ||
+                        appetiteDetails.toString().isNotEmpty ||
+                        bowelDetails.toString().isNotEmpty ||
+                        micturitionDetails.toString().isNotEmpty)
                       _buildSection(
                         icon: Icons.self_improvement,
                         title: "Lifestyle & Ashtavidha Pariksha",
                         content: "${sleepDetails.toString().isNotEmpty ? '• Sleep: $sleepDetails\n' : ''}"
-                                 "${appetiteDetails.toString().isNotEmpty ? '• Appetite: $appetiteDetails\n' : ''}"
-                                 "${bowelDetails.toString().isNotEmpty ? '• Bowel: $bowelDetails\n' : ''}"
-                                 "${micturitionDetails.toString().isNotEmpty ? '• Urine: $micturitionDetails' : ''}".trim(),
+                                "${appetiteDetails.toString().isNotEmpty ? '• Appetite: $appetiteDetails\n' : ''}"
+                                "${bowelDetails.toString().isNotEmpty ? '• Bowel: $bowelDetails\n' : ''}"
+                                "${micturitionDetails.toString().isNotEmpty ? '• Urine: $micturitionDetails' : ''}"
+                            .trim(),
                         iconColor: Colors.green,
                       ),
 
                     // Medical Flags
-                    if (hasDiabetes || hasThyroid || hasBp || pastHistory.toString().isNotEmpty)
+                    if (hasDiabetes ||
+                        hasThyroid ||
+                        hasBp ||
+                        pastHistory.toString().isNotEmpty)
                       _buildSection(
                         icon: Icons.history,
                         title: "Medical History",
                         content: "${hasDiabetes ? '⚠️ Diabetes\n' : ''}"
-                                 "${hasThyroid ? '⚠️ Thyroid\n' : ''}"
-                                 "${hasBp ? '⚠️ Blood Pressure\n' : ''}"
-                                 "${pastHistory.toString().isNotEmpty ? 'Details: $pastHistory' : ''}".trim(),
+                                "${hasThyroid ? '⚠️ Thyroid\n' : ''}"
+                                "${hasBp ? '⚠️ Blood Pressure\n' : ''}"
+                                "${pastHistory.toString().isNotEmpty ? 'Details: $pastHistory' : ''}"
+                            .trim(),
                         iconColor: AyurezeTheme.forestDeep,
                       ),
-                      
+
                     // Previous Treatment
                     if (previousTreatment.toString().isNotEmpty)
                       _buildSection(
@@ -288,7 +310,8 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                       ),
 
                     // Current Medications (Legacy/Standard)
-                    if (currentMedications != null && (currentMedications as List).isNotEmpty)
+                    if (currentMedications != null &&
+                        (currentMedications as List).isNotEmpty)
                       _buildChipsSection(
                         icon: Icons.medication_outlined,
                         title: "Current Medications",
@@ -333,7 +356,10 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
                 SizedBox(height: 4),
                 Text(
                   content,
-                  style: TextStyle(fontSize: 14, color: cardText, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: cardText,
+                      fontWeight: FontWeight.w500),
                 ),
               ],
             ),
@@ -366,18 +392,24 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: items.map((item) => Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: chipColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: textColor.withOpacity(0.3)),
-              ),
-              child: Text(
-                item,
-                style: TextStyle(color: textColor, fontSize: 13, fontWeight: FontWeight.w500),
-              ),
-            )).toList(),
+            children: items
+                .map((item) => Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: chipColor,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: textColor.withOpacity(0.3)),
+                      ),
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                            color: textColor,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ))
+                .toList(),
           ),
         ],
       ),
@@ -408,13 +440,20 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 if (vitals['blood_pressure'] != null)
-                  _buildVitalItem("BP", vitals['blood_pressure'].toString(), Icons.favorite),
+                  _buildVitalItem("BP", vitals['blood_pressure'].toString(),
+                      Icons.favorite),
                 if (vitals['heart_rate'] != null)
-                  _buildVitalItem("HR", "${vitals['heart_rate']} bpm", Icons.monitor_heart),
+                  _buildVitalItem(
+                      "HR", "${vitals['heart_rate']} bpm", Icons.monitor_heart),
                 if (vitals['temperature'] != null)
-                  _buildVitalItem("Temp", "${vitals['temperature']}°F", Icons.thermostat),
-                if (vitals['oxygen_saturation'] != null || vitals['spo2'] != null)
-                  _buildVitalItem("SpO2", "${vitals['oxygen_saturation'] ?? vitals['spo2']}%", Icons.air),
+                  _buildVitalItem(
+                      "Temp", "${vitals['temperature']}°F", Icons.thermostat),
+                if (vitals['oxygen_saturation'] != null ||
+                    vitals['spo2'] != null)
+                  _buildVitalItem(
+                      "SpO2",
+                      "${vitals['oxygen_saturation'] ?? vitals['spo2']}%",
+                      Icons.air),
               ],
             ),
           ),
@@ -429,14 +468,16 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
         Icon(icon, color: Colors.blue.shade700, size: 20),
         SizedBox(height: 4),
         Text(label, style: TextStyle(fontSize: 10, color: hintColor)),
-        Text(value, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: cardText)),
+        Text(value,
+            style: TextStyle(
+                fontSize: 13, fontWeight: FontWeight.bold, color: cardText)),
       ],
     );
   }
 
   Widget _buildMedicalHistorySection(Map history) {
     List<String> conditions = [];
-    
+
     if (history['conditions'] != null) {
       if (history['conditions'] is List) {
         conditions.addAll(List<String>.from(history['conditions']));
@@ -453,7 +494,8 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
     }
     if (history['past_surgeries'] != null) {
       if (history['past_surgeries'] is List) {
-        conditions.addAll((history['past_surgeries'] as List).map((s) => "Surgery: $s"));
+        conditions.addAll(
+            (history['past_surgeries'] as List).map((s) => "Surgery: $s"));
       } else {
         conditions.add("Surgery: ${history['past_surgeries'].toString()}");
       }
@@ -478,12 +520,12 @@ class _AstraFillDisplayWidgetState extends State<AstraFillDisplayWidget> {
   }
 }
 
-
 /// Compact version for inline display (e.g., in prescription screen)
 class AstraFillCompactWidget extends StatelessWidget {
   final Map<String, dynamic>? astraFillData;
 
-  const AstraFillCompactWidget({Key? key, this.astraFillData}) : super(key: key);
+  const AstraFillCompactWidget({Key? key, this.astraFillData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -491,9 +533,9 @@ class AstraFillCompactWidget extends StatelessWidget {
       return SizedBox.shrink();
     }
 
-    final rawSymptoms = astraFillData?['extracted_symptoms'] ?? 
-                        astraFillData?['symptoms'];
-    final List<String> symptoms = rawSymptoms is List 
+    final rawSymptoms =
+        astraFillData?['extracted_symptoms'] ?? astraFillData?['symptoms'];
+    final List<String> symptoms = rawSymptoms is List
         ? List<String>.from(rawSymptoms)
         : (rawSymptoms != null ? [rawSymptoms.toString()] : []);
     final severityScore = astraFillData?['severity_score'];
@@ -512,7 +554,8 @@ class AstraFillCompactWidget extends StatelessWidget {
                 SizedBox(width: 8),
                 Text(
                   "Astra AI Summary",
-                  style: TextStyle(fontWeight: FontWeight.bold, color: purple, fontSize: 14),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: purple, fontSize: 14),
                 ),
                 Spacer(),
                 if (severityScore != null)
@@ -524,7 +567,10 @@ class AstraFillCompactWidget extends StatelessWidget {
                     ),
                     child: Text(
                       "$severityScore/10",
-                      style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
               ],

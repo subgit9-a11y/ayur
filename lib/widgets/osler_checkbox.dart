@@ -28,15 +28,16 @@ class OslerCheckbox extends StatelessWidget {
               color: value ? AyurezeTheme.healingGreen50 : Colors.transparent,
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
-                color: isError 
-                    ? AyurezeTheme.remoteRed50 
-                    : (value ? AyurezeTheme.healingGreen50 : AyurezeTheme.border),
+                color: isError
+                    ? AyurezeTheme.remoteRed50
+                    : (value
+                        ? AyurezeTheme.healingGreen50
+                        : AyurezeTheme.border),
                 width: 2,
               ),
             ),
-            child: value
-                ? Icon(Icons.check, size: 14, color: Colors.white)
-                : null,
+            child:
+                value ? Icon(Icons.check, size: 14, color: Colors.white) : null,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -45,7 +46,9 @@ class OslerCheckbox extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: isError ? AyurezeTheme.remoteRed50 : AyurezeTheme.textPrimary,
+                color: isError
+                    ? AyurezeTheme.remoteRed50
+                    : AyurezeTheme.textPrimary,
               ),
             ),
           ),

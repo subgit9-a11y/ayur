@@ -1,7 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceHelper {
-  static Future<SharedPreferences> get _instance async => _preferences ??= await SharedPreferences.getInstance();
+  static Future<SharedPreferences> get _instance async =>
+      _preferences ??= await SharedPreferences.getInstance();
 
   static SharedPreferences? _preferences;
 
@@ -12,15 +13,20 @@ class SharedPreferenceHelper {
   }
 
   //sets
-  static Future setBoolean(String key, bool value) async => await _preferences!.setBool(key, value);
+  static Future setBoolean(String key, bool value) async =>
+      await _preferences!.setBool(key, value);
 
-  static Future<bool> setDouble(String key, double value) async => await _preferences!.setDouble(key, value);
+  static Future<bool> setDouble(String key, double value) async =>
+      await _preferences!.setDouble(key, value);
 
-  static Future<bool> setInt(String key, int value) async => await _preferences!.setInt(key, value);
+  static Future<bool> setInt(String key, int value) async =>
+      await _preferences!.setInt(key, value);
 
-  static Future<bool> setString(String key, String value) async => await _preferences!.setString(key, value);
+  static Future<bool> setString(String key, String value) async =>
+      await _preferences!.setString(key, value);
 
-  static Future<bool> setStringList(String key, List<String> value) async => await _preferences!.setStringList(key, value);
+  static Future<bool> setStringList(String key, List<String> value) async =>
+      await _preferences!.setStringList(key, value);
 
   //gets
 
@@ -32,10 +38,12 @@ class SharedPreferenceHelper {
 
   static String getString(String key) => _preferences?.getString(key) ?? 'N_A';
 
-  static List<String> getStringList(String key) => _preferences!.getStringList(key) ?? [];
+  static List<String> getStringList(String key) =>
+      _preferences!.getStringList(key) ?? [];
 
   //deletes..
-  static Future<bool> remove(String key) async => await _preferences!.remove(key);
+  static Future<bool> remove(String key) async =>
+      await _preferences!.remove(key);
 
   static void clearPref() {
     _preferences!.clear();

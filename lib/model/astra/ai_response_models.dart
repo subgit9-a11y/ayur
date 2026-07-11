@@ -23,9 +23,13 @@ class AIChatResponse {
     if (json.containsKey('data') && json['data'] is Map) {
       json = json['data'] as Map<String, dynamic>;
     }
-    
+
     return AIChatResponse(
-      response: json['response'] ?? json['message'] ?? json['answer'] ?? json['text'] ?? json['reply'],
+      response: json['response'] ??
+          json['message'] ??
+          json['answer'] ??
+          json['text'] ??
+          json['reply'],
       intent: json['intent'],
       capability: json['capability'],
       confidence: json['confidence']?.toDouble(),
@@ -123,9 +127,8 @@ class SafetyAnalysisResponse {
   factory SafetyAnalysisResponse.fromJson(Map<String, dynamic> json) {
     return SafetyAnalysisResponse(
       isSafe: json['is_safe'],
-      warnings: json['warnings'] != null
-          ? List<String>.from(json['warnings'])
-          : null,
+      warnings:
+          json['warnings'] != null ? List<String>.from(json['warnings']) : null,
       interactions: json['interactions'] != null
           ? (json['interactions'] as List)
               .map((i) => DrugInteraction.fromJson(i))
@@ -190,9 +193,8 @@ class ScheduleExtractionResponse {
           : null,
       rawText: json['raw_text'],
       confidence: json['confidence']?.toDouble(),
-      warnings: json['warnings'] != null
-          ? List<String>.from(json['warnings'])
-          : null,
+      warnings:
+          json['warnings'] != null ? List<String>.from(json['warnings']) : null,
     );
   }
 }
@@ -354,7 +356,8 @@ class ProductRecommendation {
   factory ProductRecommendation.fromJson(Map<String, dynamic> json) {
     return ProductRecommendation(
       productId: json['product_id']?.toString(),
-      variantId: json['variant_id']?.toString() ?? json['shopify_variant_id']?.toString(),
+      variantId: json['variant_id']?.toString() ??
+          json['shopify_variant_id']?.toString(),
       name: json['name'] ?? json['medicine_name'],
       description: json['description'],
       price: json['price']?.toDouble(),

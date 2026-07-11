@@ -68,7 +68,8 @@ class OslerAlert extends StatelessWidget {
             if (onDismiss != null) ...[
               GestureDetector(
                 onTap: onDismiss,
-                child: Icon(Icons.close, color: _getForegroundColor(), size: 18),
+                child:
+                    Icon(Icons.close, color: _getForegroundColor(), size: 18),
               ),
             ],
           ],

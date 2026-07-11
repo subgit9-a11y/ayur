@@ -37,8 +37,12 @@ class OslerDropdown extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: AyurezeTheme.oslerGray10,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20, color: AyurezeTheme.healingGreen100) : null,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            prefixIcon: prefixIcon != null
+                ? Icon(prefixIcon,
+                    size: 20, color: AyurezeTheme.healingGreen100)
+                : null,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide.none,
@@ -49,10 +53,14 @@ class OslerDropdown extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: AyurezeTheme.healingGreen50, width: 2),
+              borderSide:
+                  BorderSide(color: AyurezeTheme.healingGreen50, width: 2),
             ),
           ),
-          items: items.map((String item) => DropdownMenuItem(value: item, child: Text(item))).toList(),
+          items: items
+              .map((String item) =>
+                  DropdownMenuItem(value: item, child: Text(item)))
+              .toList(),
           onChanged: onChanged,
           validator: validator,
         ),

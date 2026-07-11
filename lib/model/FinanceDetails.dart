@@ -42,7 +42,21 @@ class PurchaseDetails {
   Subscription? subscription;
 
   PurchaseDetails(
-      {this.id, this.doctorId, this.subscriptionId, this.duration, this.startDate, this.endDate, this.paymentType, this.amount, this.paymentToken, this.paymentStatus, this.status, this.createdAt, this.updatedAt, this.doctorName, this.subscription});
+      {this.id,
+      this.doctorId,
+      this.subscriptionId,
+      this.duration,
+      this.startDate,
+      this.endDate,
+      this.paymentType,
+      this.amount,
+      this.paymentToken,
+      this.paymentStatus,
+      this.status,
+      this.createdAt,
+      this.updatedAt,
+      this.doctorName,
+      this.subscription});
 
   PurchaseDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -59,7 +73,9 @@ class PurchaseDetails {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     doctorName = json['doctor_name'];
-    subscription = json['subscription'] != null ? new Subscription.fromJson(json['subscription']) : null;
+    subscription = json['subscription'] != null
+        ? new Subscription.fromJson(json['subscription'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {

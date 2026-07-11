@@ -44,39 +44,53 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    final balance = double.tryParse(_walletResponse?.data?.availableBalance ?? "0") ?? 0.0;
+    final balance =
+        double.tryParse(_walletResponse?.data?.availableBalance ?? "0") ?? 0.0;
     final bool isEligible = balance >= 300;
 
     return Scaffold(
       backgroundColor: AyurezeTheme.canvas,
       appBar: AppBar(
-        title: Text("Earnings & Payouts", style: TextStyle(color: AyurezeTheme.textPrimary, fontWeight: FontWeight.w800, fontSize: 22)),
+        title: Text("Earnings & Payouts",
+            style: TextStyle(
+                color: AyurezeTheme.textPrimary,
+                fontWeight: FontWeight.w800,
+                fontSize: 22)),
         backgroundColor: AyurezeTheme.surface,
         elevation: 0.5,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios_new, color: AyurezeTheme.textPrimary, size: 20), onPressed: () => Navigator.pop(context)),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new,
+                color: AyurezeTheme.textPrimary, size: 20),
+            onPressed: () => Navigator.pop(context)),
       ),
-      body: _isLoading 
-        ? Center(child: CircularProgressIndicator(color: AyurezeTheme.healingGreen100))
-        : RefreshIndicator(
-            onRefresh: _fetchWallet,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildBalanceCard(balance),
-                  const SizedBox(height: 15),
-                  _buildStatusBanner(isEligible, balance),
-                  const SizedBox(height: 30),
-                  Text("Transaction History", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
-                  const SizedBox(height: 15),
-                  _buildTransactionsList(),
-                ],
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(
+                  color: AyurezeTheme.healingGreen100))
+          : RefreshIndicator(
+              onRefresh: _fetchWallet,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildBalanceCard(balance),
+                    const SizedBox(height: 15),
+                    _buildStatusBanner(isEligible, balance),
+                    const SizedBox(height: 30),
+                    Text("Transaction History",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            color: AyurezeTheme.textPrimary)),
+                    const SizedBox(height: 15),
+                    _buildTransactionsList(),
+                  ],
+                ),
               ),
             ),
-          ),
     );
   }
 
@@ -87,22 +101,39 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
       decoration: BoxDecoration(
         color: AyurezeTheme.surface,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [BoxShadow(color: AyurezeTheme.shadow.withOpacity(0.08), blurRadius: 10)],
+        boxShadow: [
+          BoxShadow(
+              color: AyurezeTheme.shadow.withOpacity(0.08), blurRadius: 10)
+        ],
         border: Border.all(color: AyurezeTheme.border.withOpacity(0.5)),
       ),
       child: Column(
         children: [
-          Text("Available Balance", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AyurezeTheme.textSecondary)),
+          Text("Available Balance",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AyurezeTheme.textSecondary)),
           const SizedBox(height: 10),
-          Text("₹${balance.toStringAsFixed(2)}", style: TextStyle(fontSize: 36, fontWeight: FontWeight.w900, color: AyurezeTheme.healingGreen100)),
+          Text("₹${balance.toStringAsFixed(2)}",
+              style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w900,
+                  color: AyurezeTheme.healingGreen100)),
           const SizedBox(height: 20),
           Divider(color: AyurezeTheme.border),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Lifetime Earnings: ", style: TextStyle(fontSize: 13, color: AyurezeTheme.textSecondary)),
-              Text("₹${_walletResponse?.data?.totalEarned ?? "0"}", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AyurezeTheme.textPrimary)),
+              Text("Lifetime Earnings: ",
+                  style: TextStyle(
+                      fontSize: 13, color: AyurezeTheme.textSecondary)),
+              Text("₹${_walletResponse?.data?.totalEarned ?? "0"}",
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: AyurezeTheme.textPrimary)),
             ],
           )
         ],
@@ -114,26 +145,42 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isEligible ? AyurezeTheme.healingGreen10 : const Color(0xFFFFF4E5),
+        color:
+            isEligible ? AyurezeTheme.healingGreen10 : const Color(0xFFFFF4E5),
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: isEligible ? AyurezeTheme.healingGreen50.withOpacity(0.5) : Colors.orangeAccent.withOpacity(0.5)),
+        border: Border.all(
+            color: isEligible
+                ? AyurezeTheme.healingGreen50.withOpacity(0.5)
+                : Colors.orangeAccent.withOpacity(0.5)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(isEligible ? Icons.check_circle : Icons.info, color: isEligible ? AyurezeTheme.healingGreen100 : Colors.orange, size: 24),
+          Icon(isEligible ? Icons.check_circle : Icons.info,
+              color: isEligible ? AyurezeTheme.healingGreen100 : Colors.orange,
+              size: 24),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(isEligible ? "Payout Scheduled" : "Minimum Balance Not Reached", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: AyurezeTheme.textPrimary)),
+                Text(
+                    isEligible
+                        ? "Payout Scheduled"
+                        : "Minimum Balance Not Reached",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: AyurezeTheme.textPrimary)),
                 const SizedBox(height: 4),
                 Text(
-                  isEligible 
-                    ? "Your available balance is over ₹300. It will be automatically processed to your bank account on the upcoming Tuesday or Friday via Cashfree."
-                    : "You need at least ₹300 in available balance to qualify for the automated Tuesday/Friday payouts. You are short by ₹${(300 - balance).toStringAsFixed(2)}.",
-                  style: TextStyle(fontSize: 13, color: AyurezeTheme.textSecondary, height: 1.4),
+                  isEligible
+                      ? "Your available balance is over ₹300. It will be automatically processed to your bank account on the upcoming Tuesday or Friday via Cashfree."
+                      : "You need at least ₹300 in available balance to qualify for the automated Tuesday/Friday payouts. You are short by ₹${(300 - balance).toStringAsFixed(2)}.",
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: AyurezeTheme.textSecondary,
+                      height: 1.4),
                 ),
               ],
             ),
@@ -146,7 +193,11 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
   Widget _buildTransactionsList() {
     final txs = _walletResponse?.data?.transactions ?? [];
     if (txs.isEmpty) {
-      return Center(child: Padding(padding: const EdgeInsets.all(30), child: Text("No transactions yet.", style: TextStyle(color: AyurezeTheme.textSecondary))));
+      return Center(
+          child: Padding(
+              padding: const EdgeInsets.all(30),
+              child: Text("No transactions yet.",
+                  style: TextStyle(color: AyurezeTheme.textSecondary))));
     }
 
     return ListView.builder(
@@ -168,24 +219,40 @@ class _EarningsDashboardState extends State<EarningsDashboard> {
             children: [
               Container(
                 padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(color: isCredit ? AyurezeTheme.healingGreen10 : Colors.red.withOpacity(0.1), shape: BoxShape.circle),
-                child: Icon(isCredit ? Icons.arrow_downward : Icons.arrow_upward, color: isCredit ? AyurezeTheme.healingGreen100 : Colors.red, size: 20),
+                decoration: BoxDecoration(
+                    color: isCredit
+                        ? AyurezeTheme.healingGreen10
+                        : Colors.red.withOpacity(0.1),
+                    shape: BoxShape.circle),
+                child: Icon(
+                    isCredit ? Icons.arrow_downward : Icons.arrow_upward,
+                    color: isCredit ? AyurezeTheme.healingGreen100 : Colors.red,
+                    size: 20),
               ),
               const SizedBox(width: 15),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(tx.description ?? "", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14, color: AyurezeTheme.textPrimary)),
+                    Text(tx.description ?? "",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: AyurezeTheme.textPrimary)),
                     const SizedBox(height: 4),
-                    Text(tx.createdAt ?? "", style: TextStyle(fontSize: 12, color: AyurezeTheme.textSecondary)),
+                    Text(tx.createdAt ?? "",
+                        style: TextStyle(
+                            fontSize: 12, color: AyurezeTheme.textSecondary)),
                   ],
                 ),
               ),
-              Text(
-                "${isCredit ? '+' : '-'}₹${tx.amount}", 
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: isCredit ? AyurezeTheme.healingGreen100 : Colors.red)
-              ),
+              Text("${isCredit ? '+' : '-'}₹${tx.amount}",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: isCredit
+                          ? AyurezeTheme.healingGreen100
+                          : Colors.red)),
             ],
           ),
         );

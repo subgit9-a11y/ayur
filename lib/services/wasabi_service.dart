@@ -14,7 +14,7 @@ class WasabiService {
       return '';
     }
   }
-  
+
   // Credentials from Environment
   late final String _accessKey;
   late final String _secretKey;
@@ -35,7 +35,9 @@ class WasabiService {
     _bucket = _env('WASABI_BUCKET');
     _endpoint = _env('WASABI_ENDPOINT');
 
-    if (_endpoint.isNotEmpty && _accessKey.isNotEmpty && _secretKey.isNotEmpty) {
+    if (_endpoint.isNotEmpty &&
+        _accessKey.isNotEmpty &&
+        _secretKey.isNotEmpty) {
       _minio = Minio(
         endPoint: _endpoint,
         accessKey: _accessKey,
@@ -53,7 +55,8 @@ class WasabiService {
     required String category, // e.g., 'gov_id' or 'reg_cert'
   }) async {
     try {
-      final String fileName = "${doctorId}/${category}_${DateTime.now().millisecondsSinceEpoch}${path.extension(file.path)}";
+      final String fileName =
+          "${doctorId}/${category}_${DateTime.now().millisecondsSinceEpoch}${path.extension(file.path)}";
       final String folderPath = "doctors/verification/$fileName";
 
       if (_minio == null || _bucket.isEmpty || _endpoint.isEmpty) {
@@ -84,7 +87,7 @@ class WasabiService {
   }) async {
     try {
       final String folderPath = "doctors/verification/$doctorId/$fileName";
-      
+
       if (_minio == null || _bucket.isEmpty || _endpoint.isEmpty) {
         throw Exception("Wasabi not configured");
       }

@@ -12,4 +12,3 @@ class BaseModel<T> {
     this.data = data;
   }
 }
-

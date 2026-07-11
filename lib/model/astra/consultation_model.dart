@@ -41,9 +41,8 @@ class Consultation {
       doctorId: json['doctor_id']?.toString(),
       patientId: json['patient_id']?.toString(),
       chiefComplaint: json['chief_complaint'],
-      symptoms: json['symptoms'] != null
-          ? List<String>.from(json['symptoms'])
-          : null,
+      symptoms:
+          json['symptoms'] != null ? List<String>.from(json['symptoms']) : null,
       diagnosis: json['diagnosis'],
       prescriptionId: json['prescription_id']?.toString(),
       notes: json['notes'],

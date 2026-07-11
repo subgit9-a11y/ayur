@@ -35,7 +35,16 @@ class AppointmentCancel {
   int? amount;
   User? user;
 
-  AppointmentCancel({this.id, this.date, this.time, this.userId, this.patientAddress, this.patientName, this.age, this.amount, this.user});
+  AppointmentCancel(
+      {this.id,
+      this.date,
+      this.time,
+      this.userId,
+      this.patientAddress,
+      this.patientName,
+      this.age,
+      this.amount,
+      this.user});
 
   AppointmentCancel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

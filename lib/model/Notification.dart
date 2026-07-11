@@ -35,7 +35,16 @@ class NotificationData {
   String? updatedAt;
   User? user;
 
-  NotificationData({this.id, this.userId, this.doctorId, this.title, this.message, this.userType, this.createdAt, this.updatedAt, this.user});
+  NotificationData(
+      {this.id,
+      this.userId,
+      this.doctorId,
+      this.title,
+      this.message,
+      this.userType,
+      this.createdAt,
+      this.updatedAt,
+      this.user});
 
   NotificationData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

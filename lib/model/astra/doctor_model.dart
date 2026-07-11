@@ -102,8 +102,7 @@ class AstraDoctor {
   String get displayName => name != null ? 'Dr. $name' : 'Doctor';
 
   /// Get qualifications as comma-separated string
-  String get qualificationsDisplay =>
-      qualifications?.join(', ') ?? '';
+  String get qualificationsDisplay => qualifications?.join(', ') ?? '';
 }
 
 /// Location model for geolocation

@@ -55,8 +55,8 @@ class _SettingScreenState extends State<SettingScreen> {
   void _loadSettings() {
     setState(() {
       isDarkMode = SharedPreferenceHelper.getBoolean(Preferences.is_dark_mode);
-      isNotificationEnabled =
-          SharedPreferenceHelper.getBoolean(Preferences.is_notification_enabled);
+      isNotificationEnabled = SharedPreferenceHelper.getBoolean(
+          Preferences.is_notification_enabled);
     });
   }
 
@@ -81,232 +81,252 @@ class _SettingScreenState extends State<SettingScreen> {
           ),
         ),
         Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: AyurezeTheme.canvas,
-        leading: IconButton(
-          icon: Icon(
-            AppIcons.back,
-            color: AyurezeTheme.forestDeep,
-            size: 20,
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: AyurezeTheme.canvas,
+            leading: IconButton(
+              icon: Icon(
+                AppIcons.back,
+                color: AyurezeTheme.forestDeep,
+                size: 20,
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+            title: Text(
+              getTranslated(context, AppString.drawer_setting).toString(),
+              style: TextStyle(
+                color: GlassTheme.textPrimaryLight,
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
           ),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          getTranslated(context, AppString.drawer_setting).toString(),
-          style: TextStyle(
-            color: GlassTheme.textPrimaryLight,
-            fontSize: 20,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: AyurezeTheme.screenPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildHeroCard(),
-            const SizedBox(height: 18),
-            _buildSection(
-              title: getTranslated(context, AppString.settings_appearance)
-                  .toString(),
-              items: [
-                _buildToggleItem(
-                  icon: AppIcons.settings,
-                  title: getTranslated(
-                    context,
-                    AppString.settings_dark_mode,
-                  ).toString(),
-                  value: isDarkMode,
-                  color: const Color(0xFF7E8D9B),
-                  onChanged: (val) async {
-                    setState(() => isDarkMode = val);
-                    // Use ThemeProvider for instant theme change
-                    await context.read<ThemeProvider>().setDarkMode(val);
-                    OslerToast.success(context, "Dark mode: ${val ? 'ON' : 'OFF'}");
-                  },
-                ),
-                _buildNavigationItem(
-                  icon: AppIcons.language2,
-                  title: getTranslated(
-                    context,
-                    AppString.drawer_change_language,
-                  ).toString(),
-                  color: const Color(0xFFE0B65A),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ChangeLanguage()),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 18),
-            _buildSection(
-              title: getTranslated(
-                context,
-                AppString.settings_notifications_section,
-              ).toString(),
-              items: [
-                _buildToggleItem(
-                  icon: AppIcons.notifications,
-                  title: getTranslated(
-                    context,
-                    AppString.settings_push_notifications,
-                  ).toString(),
-                  value: isNotificationEnabled,
-                  color: const Color(0xFFE37C61),
-                  onChanged: (val) {
-                    setState(() => isNotificationEnabled = val);
-                    SharedPreferenceHelper.setBoolean(
-                      Preferences.is_notification_enabled,
-                      val,
-                    );
-                  },
-                ),
-                _buildToggleItem(
-                  icon: AppIcons.videoCall,
-                  title: getTranslated(context, AppString.video_call).toString(),
-                  subtitle: getTranslated(
-                    context,
-                    AppString.settings_video_call_desc,
-                  ).toString(),
-                  value: isCallEnable,
-                  color: const Color(0xFF84A98C),
-                  onChanged: (val) {
-                    setState(() => isCallEnable = val);
-                    updateVCall(val ? 1 : 0);
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 18),
-            _buildSection(
-              title: "Finance & Wallet",
-              items: [
-                _buildNavigationItem(
-                  icon: Icons.account_balance_wallet_outlined,
-                  title: "Earnings & Payouts",
-                  color: const Color(0xFFF2A900),
-                  onTap: () async {
-                    String doctorId = SharedPreferenceHelper.getString(Preferences.uniqueId);
-                    if (doctorId == 'N_A' || doctorId.isEmpty) {
-                      doctorId = SharedPreferenceHelper.getString(Preferences.doctorId);
-                    }
-                    try {
-                      final statusRes = await AstraApiService().getKycStatus(doctorId);
-                      if (statusRes['status'] == 'not_submitted') {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const PayoutSetupScreen()));
-                      } else {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
-                      }
-                    } catch (e) {
-                      // Fallback in case of error
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
-                    }
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 18),
-            _buildSection(
-              title: getTranslated(
-                context,
-                AppString.settings_security_section,
-              ).toString(),
-              items: [
-                _buildNavigationItem(
-                  icon: AppIcons.password,
-                  title: getTranslated(
-                    context,
-                    AppString.drawer_change_password,
-                  ).toString(),
-                  color: const Color(0xFF5B7F6A),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ChangePassword()),
-                  ),
-                ),
-              ],
-            ),
-            if (hasSubscription) ...[
-              const SizedBox(height: 18),
-              _buildSection(
-                title: getTranslated(
-                  context,
-                  AppString.settings_account_section,
-                ).toString(),
-                items: [
-                  _buildNavigationItem(
-                    icon: Icons.history_rounded,
-                    title: getTranslated(
-                      context,
-                      AppString.drawer_subscription_history,
-                    ).toString(),
-                    color: AyurezeTheme.healingGreen50,
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SubscriptionHistory(),
+          body: SingleChildScrollView(
+            padding: AyurezeTheme.screenPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeroCard(),
+                const SizedBox(height: 18),
+                _buildSection(
+                  title: getTranslated(context, AppString.settings_appearance)
+                      .toString(),
+                  items: [
+                    _buildToggleItem(
+                      icon: AppIcons.settings,
+                      title: getTranslated(
+                        context,
+                        AppString.settings_dark_mode,
+                      ).toString(),
+                      value: isDarkMode,
+                      color: const Color(0xFF7E8D9B),
+                      onChanged: (val) async {
+                        setState(() => isDarkMode = val);
+                        // Use ThemeProvider for instant theme change
+                        await context.read<ThemeProvider>().setDarkMode(val);
+                        OslerToast.success(
+                            context, "Dark mode: ${val ? 'ON' : 'OFF'}");
+                      },
+                    ),
+                    _buildNavigationItem(
+                      icon: AppIcons.language2,
+                      title: getTranslated(
+                        context,
+                        AppString.drawer_change_language,
+                      ).toString(),
+                      color: const Color(0xFFE0B65A),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangeLanguage()),
                       ),
                     ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+                _buildSection(
+                  title: getTranslated(
+                    context,
+                    AppString.settings_notifications_section,
+                  ).toString(),
+                  items: [
+                    _buildToggleItem(
+                      icon: AppIcons.notifications,
+                      title: getTranslated(
+                        context,
+                        AppString.settings_push_notifications,
+                      ).toString(),
+                      value: isNotificationEnabled,
+                      color: const Color(0xFFE37C61),
+                      onChanged: (val) {
+                        setState(() => isNotificationEnabled = val);
+                        SharedPreferenceHelper.setBoolean(
+                          Preferences.is_notification_enabled,
+                          val,
+                        );
+                      },
+                    ),
+                    _buildToggleItem(
+                      icon: AppIcons.videoCall,
+                      title: getTranslated(context, AppString.video_call)
+                          .toString(),
+                      subtitle: getTranslated(
+                        context,
+                        AppString.settings_video_call_desc,
+                      ).toString(),
+                      value: isCallEnable,
+                      color: const Color(0xFF84A98C),
+                      onChanged: (val) {
+                        setState(() => isCallEnable = val);
+                        updateVCall(val ? 1 : 0);
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+                _buildSection(
+                  title: "Finance & Wallet",
+                  items: [
+                    _buildNavigationItem(
+                      icon: Icons.account_balance_wallet_outlined,
+                      title: "Earnings & Payouts",
+                      color: const Color(0xFFF2A900),
+                      onTap: () async {
+                        String doctorId = SharedPreferenceHelper.getString(
+                            Preferences.uniqueId);
+                        if (doctorId == 'N_A' || doctorId.isEmpty) {
+                          doctorId = SharedPreferenceHelper.getString(
+                              Preferences.doctorId);
+                        }
+                        try {
+                          final statusRes =
+                              await AstraApiService().getKycStatus(doctorId);
+                          if (statusRes['status'] == 'not_submitted') {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PayoutSetupScreen()));
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EarningsDashboard()));
+                          }
+                        } catch (e) {
+                          // Fallback in case of error
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EarningsDashboard()));
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 18),
+                _buildSection(
+                  title: getTranslated(
+                    context,
+                    AppString.settings_security_section,
+                  ).toString(),
+                  items: [
+                    _buildNavigationItem(
+                      icon: AppIcons.password,
+                      title: getTranslated(
+                        context,
+                        AppString.drawer_change_password,
+                      ).toString(),
+                      color: const Color(0xFF5B7F6A),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangePassword()),
+                      ),
+                    ),
+                  ],
+                ),
+                if (hasSubscription) ...[
+                  const SizedBox(height: 18),
+                  _buildSection(
+                    title: getTranslated(
+                      context,
+                      AppString.settings_account_section,
+                    ).toString(),
+                    items: [
+                      _buildNavigationItem(
+                        icon: Icons.history_rounded,
+                        title: getTranslated(
+                          context,
+                          AppString.drawer_subscription_history,
+                        ).toString(),
+                        color: AyurezeTheme.healingGreen50,
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SubscriptionHistory(),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-            const SizedBox(height: 18),
-            _buildSection(
-              title: getTranslated(
-                context,
-                AppString.settings_support_section,
-              ).toString(),
-              items: [
-                _buildNavigationItem(
-                  icon: Icons.support_agent_outlined,
-                  title: "Contact Support",
-                  color: const Color(0xFF7AA6D8),
-                  onTap: () {
-                    OslerToast.info(context, "Support ticket system coming soon");
-                  },
-                ),
-                _buildNavigationItem(
-                  icon: Icons.privacy_tip_outlined,
+                const SizedBox(height: 18),
+                _buildSection(
                   title: getTranslated(
                     context,
-                    AppString.settings_privacy_policy,
+                    AppString.settings_support_section,
                   ).toString(),
-                  color: const Color(0xFF84A98C),
-                  onTap: () {},
+                  items: [
+                    _buildNavigationItem(
+                      icon: Icons.support_agent_outlined,
+                      title: "Contact Support",
+                      color: const Color(0xFF7AA6D8),
+                      onTap: () {
+                        OslerToast.info(
+                            context, "Support ticket system coming soon");
+                      },
+                    ),
+                    _buildNavigationItem(
+                      icon: Icons.privacy_tip_outlined,
+                      title: getTranslated(
+                        context,
+                        AppString.settings_privacy_policy,
+                      ).toString(),
+                      color: const Color(0xFF84A98C),
+                      onTap: () {},
+                    ),
+                    _buildNavigationItem(
+                      icon: Icons.description_outlined,
+                      title: getTranslated(
+                        context,
+                        AppString.settings_terms_conditions,
+                      ).toString(),
+                      color: const Color(0xFF9A8F6A),
+                      onTap: () {},
+                    ),
+                  ],
                 ),
-                _buildNavigationItem(
-                  icon: Icons.description_outlined,
-                  title: getTranslated(
-                    context,
-                    AppString.settings_terms_conditions,
-                  ).toString(),
-                  color: const Color(0xFF9A8F6A),
-                  onTap: () {},
+                const SizedBox(height: 22),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: _showDeleteAccountDialog,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AyurezeTheme.danger,
+                      side: BorderSide(color: AyurezeTheme.danger),
+                    ),
+                    child: Text(
+                      getTranslated(context, AppString.settings_delete_account)
+                          .toString(),
+                    ),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 22),
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: _showDeleteAccountDialog,
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: AyurezeTheme.danger,
-                  side: BorderSide(color: AyurezeTheme.danger),
-                ),
-                child: Text(
-                  getTranslated(context, AppString.settings_delete_account)
-                      .toString(),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
         ),
       ],
     );
@@ -324,7 +344,10 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
-          BoxShadow(color: GlassTheme.primaryGreen.withOpacity(0.3), blurRadius: 10, offset: Offset(0, 5))
+          BoxShadow(
+              color: GlassTheme.primaryGreen.withOpacity(0.3),
+              blurRadius: 10,
+              offset: Offset(0, 5))
         ],
       ),
       child: Column(
@@ -499,7 +522,8 @@ class _SettingScreenState extends State<SettingScreen> {
     OslerModal.show(
       context: context,
       title: "Delete Account?",
-      message: "This action is permanent and cannot be undone. All your data will be removed from our servers.",
+      message:
+          "This action is permanent and cannot be undone. All your data will be removed from our servers.",
       primaryText: "Cancel",
       secondaryText: "Delete",
       primaryAction: () => Navigator.pop(context),
@@ -540,4 +564,3 @@ class _SettingScreenState extends State<SettingScreen> {
     return BaseModel()..data = response;
   }
 }
-

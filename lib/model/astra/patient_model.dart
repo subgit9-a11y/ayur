@@ -60,22 +60,22 @@ class AstraPatient {
       city: json['city'],
       state: json['state'],
       pincode: json['pincode'],
-      allergies: json['allergies'] != null 
-          ? List<String>.from(json['allergies']) 
+      allergies: json['allergies'] != null
+          ? List<String>.from(json['allergies'])
           : null,
-      chronicConditions: json['chronic_conditions'] != null 
-          ? List<String>.from(json['chronic_conditions']) 
+      chronicConditions: json['chronic_conditions'] != null
+          ? List<String>.from(json['chronic_conditions'])
           : null,
       bloodGroup: json['blood_group'],
       height: json['height']?.toDouble(),
       weight: json['weight']?.toDouble(),
       profileImageUrl: json['profile_image_url'],
       patientCode: json['patient_code'],
-      createdAt: json['created_at'] != null 
-          ? DateTime.parse(json['created_at']) 
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
           : null,
-      updatedAt: json['updated_at'] != null 
-          ? DateTime.parse(json['updated_at']) 
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
           : null,
     );
   }
@@ -120,7 +120,7 @@ class AstraPatient {
   bool get hasAllergies => allergies != null && allergies!.isNotEmpty;
 
   /// Check if patient has chronic conditions
-  bool get hasChronicConditions => 
+  bool get hasChronicConditions =>
       chronicConditions != null && chronicConditions!.isNotEmpty;
 }
 

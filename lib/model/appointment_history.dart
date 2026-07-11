@@ -43,10 +43,12 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.upcomingAppointment != null) {
-      data['upcoming_appointment'] = this.upcomingAppointment!.map((v) => v.toJson()).toList();
+      data['upcoming_appointment'] =
+          this.upcomingAppointment!.map((v) => v.toJson()).toList();
     }
     if (this.pastAppointment != null) {
-      data['past_appointment'] = this.pastAppointment!.map((v) => v.toJson()).toList();
+      data['past_appointment'] =
+          this.pastAppointment!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -68,7 +70,21 @@ class UpcomingAppointment {
   User? user;
   Hospital? hospital;
 
-  UpcomingAppointment({this.id, this.date, this.time, this.userId, this.hospitalId, this.patientAddress, this.patientName, this.appointmentStatus, this.treatment, this.doctorName, this.rate, this.review, this.user, this.hospital});
+  UpcomingAppointment(
+      {this.id,
+      this.date,
+      this.time,
+      this.userId,
+      this.hospitalId,
+      this.patientAddress,
+      this.patientName,
+      this.appointmentStatus,
+      this.treatment,
+      this.doctorName,
+      this.rate,
+      this.review,
+      this.user,
+      this.hospital});
 
   UpcomingAppointment.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -84,7 +100,9 @@ class UpcomingAppointment {
     rate = json['rate'];
     review = json['review'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    hospital = json['hospital'] != null ? new Hospital.fromJson(json['hospital']) : null;
+    hospital = json['hospital'] != null
+        ? new Hospital.fromJson(json['hospital'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -127,7 +145,21 @@ class PastAppointment {
   User? user;
   Hospital? hospital;
 
-  PastAppointment({this.id, this.date, this.time, this.userId, this.hospitalId, this.patientAddress, this.patientName, this.appointmentStatus, this.treatment, this.doctorName, this.rate, this.review, this.user, this.hospital});
+  PastAppointment(
+      {this.id,
+      this.date,
+      this.time,
+      this.userId,
+      this.hospitalId,
+      this.patientAddress,
+      this.patientName,
+      this.appointmentStatus,
+      this.treatment,
+      this.doctorName,
+      this.rate,
+      this.review,
+      this.user,
+      this.hospital});
 
   PastAppointment.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -143,7 +175,9 @@ class PastAppointment {
     rate = json['rate'];
     review = json['review'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    hospital = json['hospital'] != null ? new Hospital.fromJson(json['hospital']) : null;
+    hospital = json['hospital'] != null
+        ? new Hospital.fromJson(json['hospital'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {

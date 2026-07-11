@@ -191,7 +191,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.14),
                       borderRadius: BorderRadius.circular(999),
@@ -239,7 +240,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                    color: AyurezeTheme.textSecondary
+                                        .withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
                                     offset: Offset(
@@ -298,7 +300,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                    color: AyurezeTheme.textSecondary
+                                        .withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
                                     offset: Offset(
@@ -357,7 +360,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                    color: AyurezeTheme.textSecondary
+                                        .withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
                                     offset: Offset(
@@ -416,7 +420,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                      color: AyurezeTheme.textSecondary
+                                          .withOpacity(0.2),
                                       spreadRadius: 2,
                                       blurRadius: 7,
                                       offset: Offset(0, 3)),
@@ -473,7 +478,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                    color: AyurezeTheme.textSecondary
+                                        .withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
                                     offset: Offset(0, 3),
@@ -531,7 +537,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                                    color: AyurezeTheme.textSecondary
+                                        .withOpacity(0.2),
                                     spreadRadius: 2,
                                     blurRadius: 7,
                                     offset: Offset(0, 3),
@@ -637,17 +644,20 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
               }
             },
             child: Container(
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: AyurezeTheme.textSecondary.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 7,
-                    offset: Offset(0, 3)),
-              ], borderRadius: BorderRadius.circular(20), color: AyurezeTheme.forestDeep),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: AyurezeTheme.textSecondary.withOpacity(0.2),
+                        spreadRadius: 2,
+                        blurRadius: 7,
+                        offset: Offset(0, 3)),
+                  ],
+                  borderRadius: BorderRadius.circular(20),
+                  color: AyurezeTheme.forestDeep),
               height: MediaQuery.of(context).size.height * 0.07,
               width: MediaQuery.of(context).size.width,
               child: Center(
-            child: Text(
+                child: Text(
                   getTranslated(context, AppString.payment_gateway_pay)
                       .toString(),
                   style: TextStyle(color: Colors.white, fontSize: 20),
@@ -748,7 +758,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
       setState(() {
         SharedPreferenceHelper.setInt(Preferences.subscription_status, 1);
         Navigator.pushNamed(context, "loginHome");
-        OslerToast.success(context, getTranslated(context, AppString.payment_success).toString());
+        OslerToast.success(context,
+            getTranslated(context, AppString.payment_success).toString());
       });
     } catch (error, stacktrace) {
       // print("Exception occur: $error stackTrace: $stacktrace");
@@ -841,7 +852,8 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
     // print(response.paymentId);
     aPaymentToken != ""
         ? purchaseSubscriptions()
-        : OslerToast.error(context, getTranslated(context, AppString.payment_not_complete).toString());
+        : OslerToast.error(context,
+            getTranslated(context, AppString.payment_not_complete).toString());
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {}
@@ -850,4 +862,3 @@ class _PaymentGatewayScreenState extends State<PaymentGatewayScreen> {
     OslerToast.warning(context, "EXTERNAL_WALLET: " + response.walletName!);
   }
 }
-

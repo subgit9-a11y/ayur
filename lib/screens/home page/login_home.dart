@@ -333,8 +333,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
         const SizedBox(height: 12),
         Text(
           "You have ${todayAppointments.length} appointments today.",
-          style: TextStyle(
-              color: GlassTheme.textSecondaryLight, fontSize: 14),
+          style: TextStyle(color: GlassTheme.textSecondaryLight, fontSize: 14),
         ),
       ],
     );
@@ -1038,7 +1037,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
         labelColor: GlassTheme.primaryGreen,
         unselectedLabelColor: GlassTheme.textSecondaryLight,
         labelStyle: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
-        unselectedLabelStyle: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+        unselectedLabelStyle:
+            const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
         dividerColor: Colors.transparent,
         indicatorSize: TabBarIndicatorSize.tab,
       ),
@@ -1063,7 +1063,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
     );
   }
 
-  Widget _buildMinimalOverviewTab(AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
+  Widget _buildMinimalOverviewTab(
+      AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       padding: AyurezeTheme.screenPadding,
@@ -1083,7 +1084,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
     );
   }
 
-  Widget _buildMinimalAppointmentsTab(AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
+  Widget _buildMinimalAppointmentsTab(
+      AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       padding: AyurezeTheme.screenPadding,
@@ -1109,7 +1111,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            getTranslated(context, AppString.dashboard_quick_actions).toString(),
+            getTranslated(context, AppString.dashboard_quick_actions)
+                .toString(),
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,

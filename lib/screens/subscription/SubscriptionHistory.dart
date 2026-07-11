@@ -67,7 +67,8 @@ class _SubscriptionHistoryState extends State<SubscriptionHistory> {
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
               return Center(
-                child: CircularProgressIndicator(color: AyurezeTheme.forestDeep),
+                child:
+                    CircularProgressIndicator(color: AyurezeTheme.forestDeep),
               );
             }
 
@@ -230,9 +231,13 @@ class _SubscriptionHistoryState extends State<SubscriptionHistory> {
               ),
               OslerTag(
                 label: statusActive
-                    ? getTranslated(context, AppString.subscription_active_button).toString()
-                    : getTranslated(context, AppString.subscription_expired).toString(),
-                style: statusActive ? OslerTagStyle.success : OslerTagStyle.danger,
+                    ? getTranslated(
+                            context, AppString.subscription_active_button)
+                        .toString()
+                    : getTranslated(context, AppString.subscription_expired)
+                        .toString(),
+                style:
+                    statusActive ? OslerTagStyle.success : OslerTagStyle.danger,
               ),
             ],
           ),
@@ -350,4 +355,3 @@ class _SubscriptionHistoryState extends State<SubscriptionHistory> {
     setState(() {});
   }
 }
-

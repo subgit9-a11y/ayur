@@ -39,13 +39,13 @@ class ReviewData {
 
   ReviewData(
       {this.id,
-        this.review,
-        this.rate,
-        this.appointmentId,
-        this.doctorId,
-        this.userId,
-        this.createdAt,
-        this.user});
+      this.review,
+      this.rate,
+      this.appointmentId,
+      this.doctorId,
+      this.userId,
+      this.createdAt,
+      this.user});
 
   ReviewData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

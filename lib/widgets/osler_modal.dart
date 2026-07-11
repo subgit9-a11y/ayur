@@ -105,7 +105,8 @@ class OslerModal extends StatelessWidget {
                         color: AyurezeTheme.surfaceMuted,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(Icons.close, color: AyurezeTheme.textSecondary, size: 20),
+                      child: Icon(Icons.close,
+                          color: AyurezeTheme.textSecondary, size: 20),
                     ),
                   ),
                 ),
@@ -114,23 +115,30 @@ class OslerModal extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: (iconColor ?? AyurezeTheme.healingGreen50).withOpacity(0.1),
+                    color: (iconColor ?? AyurezeTheme.healingGreen50)
+                        .withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(icon, color: iconColor ?? AyurezeTheme.healingGreen50, size: 32),
+                  child: Icon(icon,
+                      color: iconColor ?? AyurezeTheme.healingGreen50,
+                      size: 32),
                 ),
               ],
               const SizedBox(height: 16),
               Text(
                 title,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary),
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w800,
+                    color: AyurezeTheme.textPrimary),
                 textAlign: TextAlign.center,
               ),
               if (subtitle != null || message != null) ...[
                 const SizedBox(height: 8),
                 Text(
                   message ?? subtitle!,
-                  style: TextStyle(fontSize: 14, color: AyurezeTheme.textSecondary),
+                  style: TextStyle(
+                      fontSize: 14, color: AyurezeTheme.textSecondary),
                   textAlign: TextAlign.center,
                 ),
               ],

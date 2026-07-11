@@ -126,7 +126,8 @@ class _ViewAllAppointmentState extends State<ViewAllNotification> {
                     ),
                   )
                 else
-                  ...patientNotification.map((item) => _buildNotificationCard(item)),
+                  ...patientNotification
+                      .map((item) => _buildNotificationCard(item)),
               ],
             ),
           );
@@ -246,4 +247,3 @@ class _ViewAllAppointmentState extends State<ViewAllNotification> {
     return BaseModel()..data = response;
   }
 }
-

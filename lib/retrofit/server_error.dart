@@ -22,14 +22,17 @@ class ServerError implements Exception {
       _errorMessage = error.toString();
       return CommonFunction.toastMessage("An unexpected error occurred.");
     }
-    
+
     var data = error.response?.data;
     if (data is! Map) {
-      return CommonFunction.toastMessage("Server returned an invalid response.");
+      return CommonFunction.toastMessage(
+          "Server returned an invalid response.");
     }
 
     if (error.response?.statusCode == 401) {
-      String msg = data['msg']?.toString() ?? data['message']?.toString() ?? "Unauthorized";
+      String msg = data['msg']?.toString() ??
+          data['message']?.toString() ??
+          "Unauthorized";
       if (msg.toLowerCase().contains("unauthorized")) {
         msg = "Session expired. Please log in again.";
       }
@@ -51,7 +54,8 @@ class ServerError implements Exception {
     } else if (error.type == DioExceptionType.cancel) {
       return CommonFunction.toastMessage('Request was cancelled');
     } else if (error.type == DioExceptionType.connectionError) {
-      return CommonFunction.toastMessage('Connection failed. Please check internet connection');
+      return CommonFunction.toastMessage(
+          'Connection failed. Please check internet connection');
     } else if (error.type == DioExceptionType.connectionTimeout) {
       return CommonFunction.toastMessage('Connection timeout');
     } else if (error.type == DioExceptionType.badCertificate) {

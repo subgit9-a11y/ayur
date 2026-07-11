@@ -60,7 +60,7 @@ class _patientDetailsScreenState extends State<patientDetailsScreen>
     with TickerProviderStateMixin {
   //Set Loader
   Future? appointmentDetail;
-  
+
   // Astra Fill Data (Health intake from patient's app)
   final AstraService _astraService = AstraService();
   Map<String, dynamic>? _astraFillData;
@@ -143,31 +143,35 @@ class _patientDetailsScreenState extends State<patientDetailsScreen>
   }
 
   /// Load Astra Fill data (health intake submitted by patient)
-  Future<void> _loadAstraFillData({String? patientId, String? searchPhone}) async {
+  Future<void> _loadAstraFillData(
+      {String? patientId, String? searchPhone}) async {
     final targetId = patientId ?? userId?.toString();
     final targetPhone = searchPhone ?? phoneNo;
-    
+
     if (targetId == null && targetPhone == null) return;
-    
+
     setState(() => _isLoadingAstraFill = true);
     try {
       Map<String, dynamic> data = {};
-      
+
       // 1. Try loading by ID if available
       if (targetId != null) {
         data = await _astraService.getLatestAstraFill(targetId);
       }
-      
+
       // 2. Fallback: If no data or loading by ID failed, try searching by phone in Astra
-      if ((data == null || data.isEmpty) && targetPhone != null && targetPhone.isNotEmpty) {
+      if ((data == null || data.isEmpty) &&
+          targetPhone != null &&
+          targetPhone.isNotEmpty) {
         // Clean phone number (remove +, spaces, etc. for search)
         String cleanPhone = targetPhone.replaceAll(RegExp(r'\D'), '');
         final searchResults = await _astraService.searchPatients(cleanPhone);
-        
+
         if (searchResults.isNotEmpty) {
           // Found matching patient in Astra! Use their Astra ID
           final astraPatient = searchResults[0];
-          final astraId = astraPatient['id']?.toString() ?? astraPatient['uid']?.toString();
+          final astraId =
+              astraPatient['id']?.toString() ?? astraPatient['uid']?.toString();
           if (astraId != null) {
             data = await _astraService.getLatestAstraFill(astraId);
           }
@@ -216,355 +220,640 @@ class _patientDetailsScreenState extends State<patientDetailsScreen>
             ),
           ),
         ),
-        Scaffold( backgroundColor: Colors.transparent,
-      appBar: PreferredSize(
-        preferredSize: Size(width! * 0.3, height * 0.2),
-        child: SafeArea(
-          top: true,
-          child: Container(
-              margin: EdgeInsets.only(top: height * 0.02),
-              color: AyurezeTheme.canvas,
-              child: Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                    margin: EdgeInsets.only(
-                        left: width! * 0.9, right: width! * 0.02),
-                    child: InkWell(
-                      child: Icon(Icons.arrow_back_ios, color: AyurezeTheme.forestDeep),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: PreferredSize(
+            preferredSize: Size(width! * 0.3, height * 0.2),
+            child: SafeArea(
+              top: true,
+              child: Container(
+                  margin: EdgeInsets.only(top: height * 0.02),
+                  color: AyurezeTheme.canvas,
+                  child: Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            left: width! * 0.9, right: width! * 0.02),
+                        child: InkWell(
+                          child: Icon(Icons.arrow_back_ios,
+                              color: AyurezeTheme.forestDeep),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        )),
+                  )),
+            ),
+          ),
+          body: FutureBuilder(
+              future: appointmentDetail,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return SingleChildScrollView(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () {
-                        Navigator.pop(context);
+                        FocusScope.of(context).requestFocus(new FocusNode());
                       },
-                    )),
-              )),
-        ),
-      ),
-      body: FutureBuilder(
-          future: appointmentDetail,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return SingleChildScrollView(
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                  child: Column(
-                    children: [
-                      Row(
+                      child: Column(
                         children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: width! * 0.16, right: width! * 0.03),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext bc) {
-                                  return SafeArea(
-                                    child: Container(
-                                      child: new Wrap(
-                                        children: <Widget>[
-                                          new ListTile(
-                                            leading:
-                                                new Icon(AppIcons.call),
-                                            title: new Text(
-                                              getTranslated(
-                                                      context, "call_text")
-                                                  .toString(),
-                                            ),
-                                            onTap: () {
-                                              if (SharedPreferenceHelper
-                                                      .getBoolean(Preferences
-                                                          .is_logged_in) ==
-                                                  true) {
-                                                Navigator.of(context).pop();
-                                                launchUrl(
-                                                    Uri.parse("tel:$phoneNo"));
-                                              } else {
-                                                Navigator.of(context).pop();
-                                              }
-                                            },
-                                          ),
-                                          if (appointmentType == 'video')
-                                            new ListTile(
-                                              leading: new Icon(Icons.videocam),
-                                              title: new Text(
-                                                getTranslated(
-                                                        context, "video_call")
-                                                    .toString(),
+                          Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                    left: width! * 0.16, right: width! * 0.03),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext bc) {
+                                      return SafeArea(
+                                        child: Container(
+                                          child: new Wrap(
+                                            children: <Widget>[
+                                              new ListTile(
+                                                leading:
+                                                    new Icon(AppIcons.call),
+                                                title: new Text(
+                                                  getTranslated(
+                                                          context, "call_text")
+                                                      .toString(),
+                                                ),
+                                                onTap: () {
+                                                  if (SharedPreferenceHelper
+                                                          .getBoolean(Preferences
+                                                              .is_logged_in) ==
+                                                      true) {
+                                                    Navigator.of(context).pop();
+                                                    launchUrl(Uri.parse(
+                                                        "tel:$phoneNo"));
+                                                  } else {
+                                                    Navigator.of(context).pop();
+                                                  }
+                                                },
                                               ),
-                                              onTap: () {
-                                                setState(
-                                                  () {
-                                                    if (SharedPreferenceHelper
-                                                            .getBoolean(Preferences
-                                                                .is_logged_in) ==
-                                                        true) {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      _addVideoOverlay(context);
-                                                    } else {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    }
+                                              if (appointmentType == 'video')
+                                                new ListTile(
+                                                  leading:
+                                                      new Icon(Icons.videocam),
+                                                  title: new Text(
+                                                    getTranslated(context,
+                                                            "video_call")
+                                                        .toString(),
+                                                  ),
+                                                  onTap: () {
+                                                    setState(
+                                                      () {
+                                                        if (SharedPreferenceHelper
+                                                                .getBoolean(
+                                                                    Preferences
+                                                                        .is_logged_in) ==
+                                                            true) {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          _addVideoOverlay(
+                                                              context);
+                                                        } else {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        }
+                                                      },
+                                                    );
                                                   },
-                                                );
-                                              },
-                                            ),
-                                        ],
-                                      ),
-                                    ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
-                            child: Container(
-                              child: SvgPicture.asset(
-                                'assets/icons/call_dialler.svg',
-                                colorFilter: ColorFilter.mode(AyurezeTheme.iconPrimary, BlendMode.srcIn),
+                                child: Container(
+                                  child: SvgPicture.asset(
+                                    'assets/icons/call_dialler.svg',
+                                    colorFilter: ColorFilter.mode(
+                                        AyurezeTheme.iconPrimary,
+                                        BlendMode.srcIn),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                              left: width! * 0.04,
-                              right: width! * 0.03,
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-                                  width: 120,
-                                  height: 120,
-                                  child: CachedNetworkImage(
-                                    alignment: Alignment.center,
-                                    imageUrl: '$fullImage',
-                                    imageBuilder: (context, imageProvider) =>
-                                        CircleAvatar(
-                                      radius: 50,
-                                      backgroundColor: AyurezeTheme.textPrimary,
-                                      child: CircleAvatar(
-                                        radius: 52,
-                                        backgroundImage: imageProvider,
+                              Container(
+                                margin: EdgeInsets.only(
+                                  left: width! * 0.04,
+                                  right: width! * 0.03,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 120,
+                                      height: 120,
+                                      child: CachedNetworkImage(
+                                        alignment: Alignment.center,
+                                        imageUrl: '$fullImage',
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                CircleAvatar(
+                                          radius: 50,
+                                          backgroundColor:
+                                              AyurezeTheme.textPrimary,
+                                          child: CircleAvatar(
+                                            radius: 52,
+                                            backgroundImage: imageProvider,
+                                          ),
+                                        ),
+                                        placeholder: (context, url) =>
+                                            CircularProgressIndicator(
+                                                color: AyurezeTheme
+                                                    .healingGreen50),
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(
+                                                "assets/images/no_image.jpg"),
                                       ),
                                     ),
-                                    placeholder: (context, url) =>
-                                        CircularProgressIndicator(color: AyurezeTheme.healingGreen50),
-                                    errorWidget: (context, url, error) =>
-                                        Image.asset(
-                                            "assets/images/no_image.jpg"),
-                                  ),
-                                ),
-                                Container(
-                                    margin:
-                                        EdgeInsets.only(top: height * 0.015),
-                                    child: Text(
-                                      '${name ?? ''}',
+                                    Container(
+                                        margin: EdgeInsets.only(
+                                            top: height * 0.015),
+                                        child: Text(
+                                          '${name ?? ''}',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: AyurezeTheme.textPrimary),
+                                        )),
+                                    Text(
+                                      getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_booking_id)
+                                              .toString() +
+                                          '$appointmentId',
                                       style: TextStyle(
-                                          fontSize: 20, color: AyurezeTheme.textPrimary),
-                                    )),
-                                Text(
-                                  getTranslated(context,
-                                              AppString.information_booking_id)
-                                          .toString() +
-                                      '$appointmentId',
-                                  style: TextStyle(
-                                      fontSize: 14, color: AyurezeTheme.textPrimary),
+                                          fontSize: 14,
+                                          color: AyurezeTheme.textPrimary),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    right: width! * 0.01, top: height * 0.2),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ChatPage(
+                                                peerId:
+                                                    body['peerId'].toString(),
+                                                peerAvatar: body['peerAvatar']
+                                                    .toString(),
+                                                peerNickname:
+                                                    body['nickName'].toString(),
+                                                token: body['token'].toString(),
+                                                isNavigate: 'chatHome',
+                                              )));
+                                  // launchUrl(Uri.parse("sms:$phoneNo"));
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/icons/message_dialler.svg',
+                                  colorFilter: ColorFilter.mode(
+                                      AyurezeTheme.iconPrimary,
+                                      BlendMode.srcIn),
+                                ),
+                              ),
+                              StreamBuilder<QuerySnapshot>(
+                                stream:
+                                    homeProvider.getStreamFireStoreSpecificUser(
+                                        FirestoreConstants.pathUserCollection,
+                                        1,
+                                        userId.toString()),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasData) {
+                                    if ((snapshot.data?.docs.length ?? 0) > 0) {
+                                      UserChat userChat = UserChat.fromDocument(
+                                          snapshot.data!.docs[0]);
+                                      body = {
+                                        "peerId": userChat.id,
+                                        "nickName": userChat.nickname,
+                                        "peerAvatar": userChat.photoUrl,
+                                        "token": userChat.token
+                                      };
+                                      return SizedBox();
+                                    } else {
+                                      return SizedBox();
+                                    }
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                },
+                              ),
+                            ],
                           ),
                           Container(
-                            margin: EdgeInsets.only(
-                                right: width! * 0.01, top: height * 0.2),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ChatPage(
-                                            peerId: body['peerId'].toString(),
-                                            peerAvatar:
-                                                body['peerAvatar'].toString(),
-                                            peerNickname:
-                                                body['nickName'].toString(),
-                                            token: body['token'].toString(),
-                                            isNavigate: 'chatHome',
-                                          )));
-                              // launchUrl(Uri.parse("sms:$phoneNo"));
-                            },
-                            child: SvgPicture.asset(
-                              'assets/icons/message_dialler.svg',
-                              colorFilter: ColorFilter.mode(AyurezeTheme.iconPrimary, BlendMode.srcIn),
-                            ),
-                          ),
-                          StreamBuilder<QuerySnapshot>(
-                            stream: homeProvider.getStreamFireStoreSpecificUser(
-                                FirestoreConstants.pathUserCollection,
-                                1,
-                                userId.toString()),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
-                              if (snapshot.hasData) {
-                                if ((snapshot.data?.docs.length ?? 0) > 0) {
-                                  UserChat userChat = UserChat.fromDocument(
-                                      snapshot.data!.docs[0]);
-                                  body = {
-                                    "peerId": userChat.id,
-                                    "nickName": userChat.nickname,
-                                    "peerAvatar": userChat.photoUrl,
-                                    "token": userChat.token
-                                  };
-                                  return SizedBox();
-                                } else {
-                                  return SizedBox();
-                                }
-                              } else {
-                                return SizedBox();
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  getTranslated(
-                                          context, AppString.information_amount)
-                                      .toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: AyurezeTheme.textPrimary,
-                                      fontWeight: FontWeight.bold),
+                                Column(
+                                  children: [
+                                    Text(
+                                      getTranslated(context,
+                                              AppString.information_amount)
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: AyurezeTheme.textPrimary,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      SharedPreferenceHelper.getString(
+                                              Preferences.currency_symbol) +
+                                          '$amount',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: AyurezeTheme.textPrimary),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  SharedPreferenceHelper.getString(
-                                          Preferences.currency_symbol) +
-                                      '$amount',
-                                  style:
-                                      TextStyle(fontSize: 16, color: AyurezeTheme.textPrimary),
+                                Column(
+                                  children: [
+                                    Text(
+                                      getTranslated(context,
+                                              AppString.information_date)
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: AyurezeTheme.textPrimary,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '$date',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: AyurezeTheme.textPrimary),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  getTranslated(
-                                          context, AppString.information_date)
-                                      .toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: AyurezeTheme.textPrimary,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '$date',
-                                  style:
-                                      TextStyle(fontSize: 16, color: AyurezeTheme.textPrimary),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  getTranslated(context,
-                                          AppString.information_appointment)
-                                      .toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: AyurezeTheme.textPrimary,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "${appointmentType ?? '-'} ${appointmentType != null ? ' appointment' : ''}\n$appointment",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: AyurezeTheme.textPrimary,
-                                  ),
-                                  textAlign: TextAlign.center,
+                                Column(
+                                  children: [
+                                    Text(
+                                      getTranslated(context,
+                                              AppString.information_appointment)
+                                          .toString(),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: AyurezeTheme.textPrimary,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      "${appointmentType ?? '-'} ${appointmentType != null ? ' appointment' : ''}\n$appointment",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: AyurezeTheme.textPrimary,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
                                 )
                               ],
-                            )
-                          ],
-                        ),
-                      ),
-                      new Container(
-                        margin: EdgeInsets.only(top: 20),
-                        color: divider,
-                        padding: EdgeInsets.all(15),
-                        child: new TabBar(
-                          labelColor: AyurezeTheme.textPrimary,
-                          controller: _tabController,
-                          indicatorSize: TabBarIndicatorSize.tab,
-                          tabs: tabList,
-                          unselectedLabelColor: AyurezeTheme.textSecondary,
-                        ),
-                      ),
-                      new Container(
-                        height: height * 0.54,
-                        child: new TabBarView(
-                          controller: _tabController,
-                          children: [
-                            ///tab 1
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              physics: AlwaysScrollableScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  hideButton == false
-                                      ? Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                            ),
+                          ),
+                          new Container(
+                            margin: EdgeInsets.only(top: 20),
+                            color: divider,
+                            padding: EdgeInsets.all(15),
+                            child: new TabBar(
+                              labelColor: AyurezeTheme.textPrimary,
+                              controller: _tabController,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              tabs: tabList,
+                              unselectedLabelColor: AyurezeTheme.textSecondary,
+                            ),
+                          ),
+                          new Container(
+                            height: height * 0.54,
+                            child: new TabBarView(
+                              controller: _tabController,
+                              children: [
+                                ///tab 1
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      hideButton == false
+                                          ? Column(
                                               children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: width! * 0.06,
+                                                          top: height * 0.01,
+                                                          right: width! * 0.06),
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .topStart,
+                                                      child: Text(
+                                                        getTranslated(
+                                                                context,
+                                                                AppString
+                                                                    .information_appointment_status)
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            color: AyurezeTheme
+                                                                .textPrimary),
+                                                      ),
+                                                    ),
+                                                    appointmentStatus ==
+                                                            'approve'
+                                                        ? Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    right:
+                                                                        width! *
+                                                                            0.06,
+                                                                    top: 5,
+                                                                    left: width! *
+                                                                        0.06),
+                                                            child: OslerButton(
+                                                              text: getTranslated(
+                                                                      context,
+                                                                      AppString
+                                                                          .information_complete_status)
+                                                                  .toString(),
+                                                              onPressed: () {
+                                                                setState(() {
+                                                                  statusChangeRequest(
+                                                                      "complete");
+                                                                });
+                                                              },
+                                                            ),
+                                                          )
+                                                        : Container(),
+                                                  ],
+                                                ),
                                                 Container(
                                                   margin: EdgeInsets.only(
                                                       left: width! * 0.06,
-                                                      top: height * 0.01,
+                                                      top: height * 0.001,
                                                       right: width! * 0.06),
                                                   alignment:
                                                       AlignmentDirectional
                                                           .topStart,
                                                   child: Text(
-                                                    getTranslated(
-                                                            context,
-                                                            AppString
-                                                                .information_appointment_status)
-                                                        .toString(),
+                                                    '$appointmentStatus',
                                                     style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: AyurezeTheme.textPrimary),
+                                                        fontSize: 15,
+                                                        color: AyurezeTheme
+                                                            .textSecondary),
                                                   ),
                                                 ),
-                                                appointmentStatus == 'approve'
-                                                    ? Container(
-                                                        margin: EdgeInsets.only(
-                                                            right:
-                                                                width! * 0.06,
-                                                            top: 5,
-                                                            left:
-                                                                width! * 0.06),
-                                                        child: OslerButton(
-                                                          text: getTranslated(context, AppString.information_complete_status).toString(),
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              statusChangeRequest("complete");
-                                                            });
-                                                          },
-                                                        ),
-                                                      )
-                                                    : Container(),
                                               ],
-                                            ),
-                                            Container(
+                                            )
+                                          : StatefulBuilder(
+                                              builder: (context, myState) {
+                                              return Visibility(
+                                                visible: hideButton,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    Container(
+                                                      child: OslerButton(
+                                                        text: getTranslated(
+                                                                context,
+                                                                AppString
+                                                                    .information_approve_status)
+                                                            .toString(),
+                                                        onPressed: () {
+                                                          myState(() {
+                                                            statusChangeRequest(
+                                                                "approve");
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: OslerButton(
+                                                        text: getTranslated(
+                                                                context,
+                                                                AppString
+                                                                    .information_cancel_status)
+                                                            .toString(),
+                                                        customColor:
+                                                            AyurezeTheme
+                                                                .remoteRed50,
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            statusChangeRequest(
+                                                                "cancel");
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_patient_name)
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AyurezeTheme.textPrimary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.001,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '$name',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_patient_age)
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AyurezeTheme.textPrimary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.001,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '$age',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_patient_phone_number)
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AyurezeTheme.textPrimary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.001,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '$phoneNo',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_patient_time)
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AyurezeTheme.textPrimary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.001,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '$time',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          getTranslated(
+                                                  context,
+                                                  AppString
+                                                      .information_patient_address)
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: AyurezeTheme.textPrimary),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.001,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '$patientAddress',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
+                                        ),
+                                      ),
+
+                                      ///Patient Insured
+                                      isInsured == 0
+                                          ? Container(
+                                              margin: EdgeInsets.only(
+                                                  left: width! * 0.06,
+                                                  top: height * 0.01,
+                                                  right: width! * 0.06),
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: Text(
+                                                getTranslated(
+                                                        context,
+                                                        AppString
+                                                            .patientInsured)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: AyurezeTheme
+                                                        .textPrimary),
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isInsured == 0
+                                          ? Container(
                                               margin: EdgeInsets.only(
                                                   left: width! * 0.06,
                                                   top: height * 0.001,
@@ -572,552 +861,373 @@ class _patientDetailsScreenState extends State<patientDetailsScreen>
                                               alignment:
                                                   AlignmentDirectional.topStart,
                                               child: Text(
-                                                '$appointmentStatus',
+                                                "${isInsured == 1 ? isInsured : getTranslated(context, AppString.patientIsNotInsured).toString()}",
                                                 style: TextStyle(
                                                     fontSize: 15,
-                                                    color: AyurezeTheme.textSecondary),
+                                                    color: AyurezeTheme
+                                                        .textSecondary),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                              ),
+                                            )
+                                          : SizedBox(),
+
+                                      ///Policy Provider
+                                      isInsured == 1
+                                          ? Container(
+                                              margin: EdgeInsets.only(
+                                                  left: width! * 0.06,
+                                                  top: height * 0.01,
+                                                  right: width! * 0.06),
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: Text(
+                                                getTranslated(
+                                                        context,
+                                                        AppString
+                                                            .policy_provider)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: AyurezeTheme
+                                                        .textPrimary),
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isInsured == 1
+                                          ? Container(
+                                              margin: EdgeInsets.only(
+                                                  left: width! * 0.06,
+                                                  top: height * 0.001,
+                                                  right: width! * 0.06),
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: Text(
+                                                '$policyInsurerName',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: AyurezeTheme
+                                                        .textSecondary),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                              ),
+                                            )
+                                          : SizedBox(),
+
+                                      ///Policy Number
+                                      isInsured == 1
+                                          ? Container(
+                                              margin: EdgeInsets.only(
+                                                  left: width! * 0.06,
+                                                  top: height * 0.01,
+                                                  right: width! * 0.06),
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: Text(
+                                                getTranslated(context,
+                                                        AppString.policy_number)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: AyurezeTheme
+                                                        .textPrimary),
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                      isInsured == 1
+                                          ? Container(
+                                              margin: EdgeInsets.only(
+                                                  left: width! * 0.06,
+                                                  top: height * 0.001,
+                                                  right: width! * 0.06,
+                                                  bottom: 20),
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: Text(
+                                                '$policyNumber',
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    color: AyurezeTheme
+                                                        .textSecondary),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 2,
+                                              ),
+                                            )
+                                          : SizedBox(),
+                                    ],
+                                  ),
+                                ),
+
+                                ///tab 2
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      // NEW: Astra Fill Widget - Shows health intake from patient's app
+                                      if (userId != null)
+                                        AstraFillDisplayWidget(
+                                          patientId: userId.toString(),
+                                          preloadedData: _astraFillData,
+                                        ),
+
+                                      SizedBox(height: 8),
+
+                                      // Original illness information section
+                                      Center(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              left: width! * 0.06,
+                                              top: height * 0.02,
+                                              right: width! * 0.06),
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: Text(
+                                            getTranslated(
+                                                    context,
+                                                    AppString
+                                                        .information_patient_illness_information)
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color:
+                                                    AyurezeTheme.textPrimary),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: width! * 0.06,
+                                            top: height * 0.01,
+                                            right: width! * 0.06),
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: Text(
+                                          '* ' + '$illness',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color:
+                                                  AyurezeTheme.textSecondary),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              left: width! * 0.06,
+                                              top: height * 0.01,
+                                              right: width! * 0.06),
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: Text(
+                                            getTranslated(
+                                                    context,
+                                                    AppString
+                                                        .information_side_effect_drug)
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color:
+                                                    AyurezeTheme.textPrimary),
+                                          ),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              left: width! * 0.06,
+                                              top: height * 0.01,
+                                              right: width! * 0.06),
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: Text(
+                                            ' *  $drugEffect',
+                                            style: TextStyle(
+                                                fontSize: 14.5,
+                                                color:
+                                                    AyurezeTheme.textSecondary),
+                                          ),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              left: width! * 0.06,
+                                              top: height * 0.02,
+                                              right: width! * 0.06),
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: Text(
+                                            getTranslated(context,
+                                                    AppString.information_note)
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color:
+                                                    AyurezeTheme.textPrimary),
+                                          ),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              left: width! * 0.06,
+                                              top: height * 0.01,
+                                              right: width! * 0.06),
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: Text(
+                                            ' * $note',
+                                            style: TextStyle(
+                                                fontSize: 14.5,
+                                                color:
+                                                    AyurezeTheme.textSecondary),
+                                          ),
+                                        ),
+                                      ),
+                                      reportImages.length == 0
+                                          ? Container()
+                                          : Center(
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                    left: width! * 0.06,
+                                                    top: height * 0.02,
+                                                    right: width! * 0.06),
+                                                alignment: AlignmentDirectional
+                                                    .topStart,
+                                                child: Text(
+                                                  getTranslated(
+                                                          context,
+                                                          AppString
+                                                              .information_report_image_title)
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: AyurezeTheme
+                                                          .textPrimary),
+                                                ),
                                               ),
                                             ),
-                                          ],
-                                        )
-                                      : StatefulBuilder(
-                                          builder: (context, myState) {
-                                          return Visibility(
-                                            visible: hideButton,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Container(
-                                                  child: OslerButton(
-                                                    text: getTranslated(context, AppString.information_approve_status).toString(),
-                                                    onPressed: () {
-                                                      myState(() {
-                                                        statusChangeRequest("approve");
-                                                      });
-                                                    },
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: OslerButton(
-                                                    text: getTranslated(context, AppString.information_cancel_status).toString(),
-                                                    customColor: AyurezeTheme.remoteRed50,
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        statusChangeRequest("cancel");
-                                                      });
-                                                    },
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      getTranslated(
-                                              context,
-                                              AppString
-                                                  .information_patient_name)
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 18, color: AyurezeTheme.textPrimary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.001,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '$name',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      getTranslated(context,
-                                              AppString.information_patient_age)
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 18, color: AyurezeTheme.textPrimary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.001,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '$age',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      getTranslated(
-                                              context,
-                                              AppString
-                                                  .information_patient_phone_number)
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 18, color: AyurezeTheme.textPrimary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.001,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '$phoneNo',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      getTranslated(
-                                              context,
-                                              AppString
-                                                  .information_patient_time)
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 18, color: AyurezeTheme.textPrimary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.001,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '$time',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      getTranslated(
-                                              context,
-                                              AppString
-                                                  .information_patient_address)
-                                          .toString(),
-                                      style: TextStyle(
-                                          fontSize: 18, color: AyurezeTheme.textPrimary),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.001,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '$patientAddress',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                    ),
-                                  ),
-
-                                  ///Patient Insured
-                                  isInsured == 0
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.01,
-                                              right: width! * 0.06),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            getTranslated(context,
-                                                    AppString.patientInsured)
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 18, color: AyurezeTheme.textPrimary),
+                                      Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: width! * 0.05),
+                                        height: 120,
+                                        width: width,
+                                        child: GridView.builder(
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: reportImages.length,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3,
                                           ),
-                                        )
-                                      : SizedBox(),
-                                  isInsured == 0
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.001,
-                                              right: width! * 0.06),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            "${isInsured == 1 ? isInsured : getTranslated(context, AppString.patientIsNotInsured).toString()}",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: AyurezeTheme.textSecondary),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                          ),
-                                        )
-                                      : SizedBox(),
-
-                                  ///Policy Provider
-                                  isInsured == 1
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.01,
-                                              right: width! * 0.06),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            getTranslated(context,
-                                                    AppString.policy_provider)
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 18, color: AyurezeTheme.textPrimary),
-                                          ),
-                                        )
-                                      : SizedBox(),
-                                  isInsured == 1
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.001,
-                                              right: width! * 0.06),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            '$policyInsurerName',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: AyurezeTheme.textSecondary),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                          ),
-                                        )
-                                      : SizedBox(),
-
-                                  ///Policy Number
-                                  isInsured == 1
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.01,
-                                              right: width! * 0.06),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            getTranslated(context,
-                                                    AppString.policy_number)
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: 18, color: AyurezeTheme.textPrimary),
-                                          ),
-                                        )
-                                      : SizedBox(),
-                                  isInsured == 1
-                                      ? Container(
-                                          margin: EdgeInsets.only(
-                                              left: width! * 0.06,
-                                              top: height * 0.001,
-                                              right: width! * 0.06,
-                                              bottom: 20),
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Text(
-                                            '$policyNumber',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: AyurezeTheme.textSecondary),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                          ),
-                                        )
-                                      : SizedBox(),
-                                ],
-                              ),
-                            ),
-
-                            ///tab 2
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              physics: AlwaysScrollableScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  // NEW: Astra Fill Widget - Shows health intake from patient's app
-                                  if (userId != null)
-                                    AstraFillDisplayWidget(
-                                      patientId: userId.toString(),
-                                      preloadedData: _astraFillData,
-                                    ),
-                                  
-                                  SizedBox(height: 8),
-                                  
-                                  // Original illness information section
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: width! * 0.06,
-                                          top: height * 0.02,
-                                          right: width! * 0.06),
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        getTranslated(
-                                                context,
-                                                AppString
-                                                    .information_patient_illness_information)
-                                            .toString(),
-                                        style: TextStyle(
-                                            fontSize: 18, color: AyurezeTheme.textPrimary),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                        left: width! * 0.06,
-                                        top: height * 0.01,
-                                        right: width! * 0.06),
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: Text(
-                                      '* ' + '$illness',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: AyurezeTheme.textSecondary),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: width! * 0.06,
-                                          top: height * 0.01,
-                                          right: width! * 0.06),
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        getTranslated(
-                                                context,
-                                                AppString
-                                                    .information_side_effect_drug)
-                                            .toString(),
-                                        style: TextStyle(
-                                            fontSize: 18, color: AyurezeTheme.textPrimary),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: width! * 0.06,
-                                          top: height * 0.01,
-                                          right: width! * 0.06),
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        ' *  $drugEffect',
-                                        style: TextStyle(
-                                            fontSize: 14.5,
-                                            color: AyurezeTheme.textSecondary),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: width! * 0.06,
-                                          top: height * 0.02,
-                                          right: width! * 0.06),
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        getTranslated(context,
-                                                AppString.information_note)
-                                            .toString(),
-                                        style: TextStyle(
-                                            fontSize: 18, color: AyurezeTheme.textPrimary),
-                                      ),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(
-                                          left: width! * 0.06,
-                                          top: height * 0.01,
-                                          right: width! * 0.06),
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        ' * $note',
-                                        style: TextStyle(
-                                            fontSize: 14.5,
-                                            color: AyurezeTheme.textSecondary),
-                                      ),
-                                    ),
-                                  ),
-                                  reportImages.length == 0
-                                      ? Container()
-                                      : Center(
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                left: width! * 0.06,
-                                                top: height * 0.02,
-                                                right: width! * 0.06),
-                                            alignment:
-                                                AlignmentDirectional.topStart,
-                                            child: Text(
-                                              getTranslated(
-                                                      context,
-                                                      AppString
-                                                          .information_report_image_title)
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: AyurezeTheme.textPrimary),
-                                            ),
-                                          ),
-                                        ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: width! * 0.05),
-                                    height: 120,
-                                    width: width,
-                                    child: GridView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: reportImages.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 3,
-                                      ),
-                                      itemBuilder: (context, index) {
-                                        return Card(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Container(
-                                              height: 100,
-                                              width: 100,
-                                              margin: EdgeInsets.all(5),
-                                              child: FullScreenWidget(
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.network(
-                                                    reportImages[index],
-                                                    fit: BoxFit.fitWidth,
-                                                  ),
-                                                ),
-                                              )),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            ///tab 3
-                            SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              physics: AlwaysScrollableScrollPhysics(),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: width! * 0.06,
-                                      vertical: 12,
-                                    ),
-                                    child: ElevatedButton.icon(
-                                      icon: Icon(Icons.auto_awesome, color: colorWhite),
-                                      label: Text(
-                                        "Smart Prescribe (Astra AI)",
-                                        style: TextStyle(
-                                          color: colorWhite,
-                                          fontWeight: FontWeight.bold,
+                                          itemBuilder: (context, index) {
+                                            return Card(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Container(
+                                                  height: 100,
+                                                  width: 100,
+                                                  margin: EdgeInsets.all(5),
+                                                  child: FullScreenWidget(
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      child: Image.network(
+                                                        reportImages[index],
+                                                        fit: BoxFit.fitWidth,
+                                                      ),
+                                                    ),
+                                                  )),
+                                            );
+                                          },
                                         ),
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AyurezeTheme.forestDeep,
-                                        padding: EdgeInsets.symmetric(vertical: 14),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12),
+                                    ],
+                                  ),
+                                ),
+
+                                ///tab 3
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.symmetric(
+                                          horizontal: width! * 0.06,
+                                          vertical: 12,
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => PrescriptionScreen(
-                                              patientId: userId.toString(),
-                                              patientName: name ?? "Patient",
-                                              patientPhone: phoneNo,
-                                              astraFillData: _astraFillData,
+                                        child: ElevatedButton.icon(
+                                          icon: Icon(Icons.auto_awesome,
+                                              color: colorWhite),
+                                          label: Text(
+                                            "Smart Prescribe (Astra AI)",
+                                            style: TextStyle(
+                                              color: colorWhite,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: width! * 0.06),
-                                    child: Text(
-                                      "Manual PDF generation removed. Use Smart Prescribe for AI-assisted prescription workflow.",
-                                      style: TextStyle(
-                                        color: AyurezeTheme.textSecondary,
-                                        fontSize: 13,
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                AyurezeTheme.forestDeep,
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 14),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    PrescriptionScreen(
+                                                  patientId: userId.toString(),
+                                                  patientName:
+                                                      name ?? "Patient",
+                                                  patientPhone: phoneNo,
+                                                  astraFillData: _astraFillData,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: width! * 0.06),
+                                        child: Text(
+                                          "Manual PDF generation removed. Use Smart Prescribe for AI-assisted prescription workflow.",
+                                          style: TextStyle(
+                                            color: AyurezeTheme.textSecondary,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 14),
+                                    ],
                                   ),
-                                  SizedBox(height: 14),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            } else {
-              return Center(child: OslerLoader());
-            }
-          }),
+                    ),
+                  );
+                } else {
+                  return Center(child: OslerLoader());
+                }
+              }),
         ),
       ],
     );
@@ -1203,7 +1313,7 @@ class _patientDetailsScreenState extends State<patientDetailsScreen>
         policyNumber = response.data!.policyNumber ?? "";
         appointmentStatus == 'Approve' ? hideButton = false : hideButton = true;
         appointmentStatus == 'pending' ? hideButton = true : hideButton = false;
-        
+
         // After loading appointment details, refresh Astra Fill data with resolved IDs
         _loadAstraFillData(patientId: userId.toString(), searchPhone: phoneNo);
       });

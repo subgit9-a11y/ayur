@@ -15,8 +15,10 @@ class ModernDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String? dName = SharedPreferenceHelper.getString(Preferences.name);
-    final String? dFullImage = SharedPreferenceHelper.getString(Preferences.image);
-    final String? phone = SharedPreferenceHelper.getString(Preferences.phone_no);
+    final String? dFullImage =
+        SharedPreferenceHelper.getString(Preferences.image);
+    final String? phone =
+        SharedPreferenceHelper.getString(Preferences.phone_no);
 
     return Drawer(
       child: Container(
@@ -35,16 +37,19 @@ class ModernDrawer extends StatelessWidget {
             Container(
               height: 260,
               width: double.infinity,
-              padding: const EdgeInsets.only(top: 54, left: 22, right: 22, bottom: 22),
+              padding: const EdgeInsets.only(
+                  top: 54, left: 22, right: 22, bottom: 22),
               decoration: BoxDecoration(
                 color: GlassTheme.primaryGreen.withOpacity(0.1),
-                border: Border(bottom: BorderSide(color: Colors.white.withOpacity(0.2))),
+                border: Border(
+                    bottom: BorderSide(color: Colors.white.withOpacity(0.2))),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                       color: GlassTheme.primaryGreen.withOpacity(0.14),
                       borderRadius: BorderRadius.circular(999),
@@ -66,7 +71,8 @@ class ModernDrawer extends StatelessWidget {
                     height: 76,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: GlassTheme.accentTeal, width: 2),
+                      border:
+                          Border.all(color: GlassTheme.accentTeal, width: 2),
                       image: DecorationImage(
                         image: (dFullImage != null && dFullImage!.isNotEmpty)
                             ? NetworkImage(dFullImage!)
@@ -79,16 +85,21 @@ class ModernDrawer extends StatelessWidget {
                   const SizedBox(height: 16),
                   Text(
                     "Dr. ${dName ?? "Doctor"}",
-                    style: TextStyle(color: GlassTheme.textPrimaryLight, fontSize: 20, fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        color: GlassTheme.textPrimaryLight,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     phone ?? "",
-                    style: TextStyle(color: GlassTheme.textSecondaryLight, fontSize: 13),
+                    style: TextStyle(
+                        color: GlassTheme.textSecondaryLight, fontSize: 13),
                   ),
                   const SizedBox(height: 14),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: GlassTheme.primaryGreen.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(999),
@@ -110,29 +121,80 @@ class ModernDrawer extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(14, 16, 14, 10),
                 children: [
                   _buildSectionHeader("Main"),
-                  _drawerItem(context, AppIcons.home, getTranslated(context, AppString.drawer_home).toString(), () => Navigator.popUntil(context, ModalRoute.withName('loginHome'))),
-                  _drawerItem(context, AppIcons.notifications, getTranslated(context, AppString.drawer_notification).toString(), () => Navigator.popAndPushNamed(context, 'notifications')),
-                  
+                  _drawerItem(
+                      context,
+                      AppIcons.home,
+                      getTranslated(context, AppString.drawer_home).toString(),
+                      () => Navigator.popUntil(
+                          context, ModalRoute.withName('loginHome'))),
+                  _drawerItem(
+                      context,
+                      AppIcons.notifications,
+                      getTranslated(context, AppString.drawer_notification)
+                          .toString(),
+                      () =>
+                          Navigator.popAndPushNamed(context, 'notifications')),
                   const SizedBox(height: 10),
                   _buildSectionHeader("Appointments"),
-                  _drawerItem(context, AppIcons.appointment, getTranslated(context, AppString.drawer_appointments).toString(), () => Navigator.popAndPushNamed(context, 'AppointmentHistoryScreen')),
-                  _drawerItem(context, AppIcons.clock, getTranslated(context, AppString.drawer_schedule_timing).toString(), () => Navigator.popAndPushNamed(context, 'Schedule Timings')),
-                  _drawerItem(context, AppIcons.close, getTranslated(context, AppString.drawer_canceled_appointment).toString(), () => Navigator.popAndPushNamed(context, 'cancelAppoitmentRoutes')),
-                  
+                  _drawerItem(
+                      context,
+                      AppIcons.appointment,
+                      getTranslated(context, AppString.drawer_appointments)
+                          .toString(),
+                      () => Navigator.popAndPushNamed(
+                          context, 'AppointmentHistoryScreen')),
+                  _drawerItem(
+                      context,
+                      AppIcons.clock,
+                      getTranslated(context, AppString.drawer_schedule_timing)
+                          .toString(),
+                      () => Navigator.popAndPushNamed(
+                          context, 'Schedule Timings')),
+                  _drawerItem(
+                      context,
+                      AppIcons.close,
+                      getTranslated(
+                              context, AppString.drawer_canceled_appointment)
+                          .toString(),
+                      () => Navigator.popAndPushNamed(
+                          context, 'cancelAppoitmentRoutes')),
                   const SizedBox(height: 10),
                   _buildSectionHeader("Management"),
-                  _drawerItem(context, AppIcons.star, getTranslated(context, AppString.drawer_review).toString(), () => Navigator.popAndPushNamed(context, 'rateAndReviewRoutes')),
-                  _drawerItem(context, AppIcons.verified, "Profile & Registration", () {
+                  _drawerItem(
+                      context,
+                      AppIcons.star,
+                      getTranslated(context, AppString.drawer_review)
+                          .toString(),
+                      () => Navigator.popAndPushNamed(
+                          context, 'rateAndReviewRoutes')),
+                  _drawerItem(
+                      context, AppIcons.verified, "Profile & Registration", () {
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfessionalRegistrationScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProfessionalRegistrationScreen()));
                   }),
-                  _drawerItem(context, AppIcons.settings, getTranslated(context, AppString.drawer_setting).toString(), () => Navigator.popAndPushNamed(context, 'Settings')),
-                  
+                  _drawerItem(
+                      context,
+                      AppIcons.settings,
+                      getTranslated(context, AppString.drawer_setting)
+                          .toString(),
+                      () => Navigator.popAndPushNamed(context, 'Settings')),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: Divider(color: GlassTheme.textSecondaryLight.withOpacity(0.2)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    child: Divider(
+                        color: GlassTheme.textSecondaryLight.withOpacity(0.2)),
                   ),
-                  _drawerItem(context, Icons.logout, getTranslated(context, AppString.drawer_logout).toString(), () => _showLogoutDialog(context), isDestructive: true),
+                  _drawerItem(
+                      context,
+                      Icons.logout,
+                      getTranslated(context, AppString.drawer_logout)
+                          .toString(),
+                      () => _showLogoutDialog(context),
+                      isDestructive: true),
                 ],
               ),
             ),
@@ -157,7 +219,9 @@ class ModernDrawer extends StatelessWidget {
     );
   }
 
-  Widget _drawerItem(BuildContext context, IconData icon, String label, VoidCallback onTap, {bool isDestructive = false}) {
+  Widget _drawerItem(
+      BuildContext context, IconData icon, String label, VoidCallback onTap,
+      {bool isDestructive = false}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: GlassCard(
@@ -167,10 +231,14 @@ class ModernDrawer extends StatelessWidget {
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: isDestructive ? Colors.red.withOpacity(0.1) : GlassTheme.primaryGreen.withOpacity(0.1),
+              color: isDestructive
+                  ? Colors.red.withOpacity(0.1)
+                  : GlassTheme.primaryGreen.withOpacity(0.1),
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Icon(icon, color: isDestructive ? Colors.red : GlassTheme.primaryGreen, size: 20),
+            child: Icon(icon,
+                color: isDestructive ? Colors.red : GlassTheme.primaryGreen,
+                size: 20),
           ),
           title: Text(
             label,
@@ -183,7 +251,9 @@ class ModernDrawer extends StatelessWidget {
           trailing: Icon(
             Icons.arrow_forward_ios,
             size: 14,
-            color: isDestructive ? Colors.red.withOpacity(0.7) : GlassTheme.textSecondaryLight,
+            color: isDestructive
+                ? Colors.red.withOpacity(0.7)
+                : GlassTheme.textSecondaryLight,
           ),
           onTap: onTap,
           dense: true,
@@ -197,19 +267,25 @@ class ModernDrawer extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(getTranslated(context, AppString.drawer_logout).toString()),
-        content: Text(getTranslated(context, AppString.are_you_sure_logout).toString()),
+        content: Text(
+            getTranslated(context, AppString.are_you_sure_logout).toString()),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(getTranslated(context, AppString.cancel_button).toString())),
+          TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                  getTranslated(context, AppString.cancel_button).toString())),
           TextButton(
             onPressed: () {
               SharedPreferenceHelper.clearPref();
-              Navigator.pushNamedAndRemoveUntil(context, 'SignIn', (route) => false);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, 'SignIn', (route) => false);
             },
-            child: Text(getTranslated(context, AppString.logout_button).toString(), style: const TextStyle(color: Colors.red)),
+            child: Text(
+                getTranslated(context, AppString.logout_button).toString(),
+                style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
   }
 }
-

@@ -8,15 +8,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http_parser/http_parser.dart';
 
 /// Legacy Astra Service - Maintained for backward compatibility
-/// 
+///
 /// For new implementations, use [AstraApiService] from astra_api_service.dart
 /// which provides access to all Astra AI Healthcare endpoints.
 class AstraService {
   static final AstraService _instance = AstraService._internal();
   late Dio _dio;
-  
+
   /// Use the actual backend URL here.
-  final String baseUrl = Apis.astraBaseUrl; 
+  final String baseUrl = Apis.astraBaseUrl;
 
   factory AstraService() {
     return _instance;
@@ -75,7 +75,8 @@ class AstraService {
   }
 
   /// Update doctor profile
-  Future<Response> updateDoctorProfile(String doctorId, Map<String, dynamic> data) async {
+  Future<Response> updateDoctorProfile(
+      String doctorId, Map<String, dynamic> data) async {
     try {
       return await _dio.put('/api/v1/api/doctors/$doctorId', data: data);
     } catch (e) {
@@ -106,7 +107,8 @@ class AstraService {
   /// Returns the symptoms, medical history, and vitals that patient entered
   Future<Map<String, dynamic>> getAstraFillRecords(String patientId) async {
     try {
-      final response = await _dio.get('/api/v1/astra-fill/patient/$patientId/records');
+      final response =
+          await _dio.get('/api/v1/astra-fill/patient/$patientId/records');
       if (response.data is List) {
         if ((response.data as List).isNotEmpty) {
           return response.data[0] as Map<String, dynamic>;
@@ -122,7 +124,8 @@ class AstraService {
   /// Get latest Astra Fill (most recent health intake from patient)
   Future<Map<String, dynamic>> getLatestAstraFill(String patientId) async {
     try {
-      final response = await _dio.get('/api/v1/astra-fill/patient/$patientId/latest');
+      final response =
+          await _dio.get('/api/v1/astra-fill/patient/$patientId/latest');
       if (response.data is List) {
         if ((response.data as List).isNotEmpty) {
           return response.data[0] as Map<String, dynamic>;
@@ -138,7 +141,8 @@ class AstraService {
   /// Get all Astra Fill history for a patient
   Future<List<dynamic>> getAstraFillHistory(String patientId) async {
     try {
-      final response = await _dio.get('/api/v1/astra-fill/patient/$patientId/history');
+      final response =
+          await _dio.get('/api/v1/astra-fill/patient/$patientId/history');
       return response.data ?? [];
     } catch (e) {
       return [];
@@ -146,19 +150,24 @@ class AstraService {
   }
 
   /// Get patient consultation data including Astra Fill (for doctor view)
-  Future<Map<String, dynamic>> getPatientConsultationData(String patientId) async {
+  Future<Map<String, dynamic>> getPatientConsultationData(
+      String patientId) async {
     try {
       // Fetch multiple data sources in parallel
       final futures = await Future.wait([
         _dio.get('/api/v1/patients/profile/$patientId'),
-        _dio.get('/api/v1/astra-fill/patient/$patientId/latest').catchError((_) => Response(
-          requestOptions: RequestOptions(path: ''),
-          data: {},
-        )),
-        _dio.get('/api/v1/api/prescriptions/patient/$patientId').catchError((_) => Response(
-          requestOptions: RequestOptions(path: ''),
-          data: [],
-        )),
+        _dio
+            .get('/api/v1/astra-fill/patient/$patientId/latest')
+            .catchError((_) => Response(
+                  requestOptions: RequestOptions(path: ''),
+                  data: {},
+                )),
+        _dio
+            .get('/api/v1/api/prescriptions/patient/$patientId')
+            .catchError((_) => Response(
+                  requestOptions: RequestOptions(path: ''),
+                  data: [],
+                )),
       ]);
 
       return {
@@ -227,12 +236,11 @@ class AstraService {
   }
 
   /// Suggest medicines based on symptoms
-  Future<List<dynamic>> suggestMedicinesFromSymptoms(List<String> symptoms) async {
+  Future<List<dynamic>> suggestMedicinesFromSymptoms(
+      List<String> symptoms) async {
     try {
-      final response = await _dio.post(
-        '/api/v1/shopify/ai-shop-assist', 
-        data: {'symptoms': symptoms}
-      );
+      final response = await _dio
+          .post('/api/v1/shopify/ai-shop-assist', data: {'symptoms': symptoms});
       return response.data?['recommendations'] ?? [];
     } catch (e) {
       return [];
@@ -251,7 +259,8 @@ class AstraService {
   /// Get patient prescriptions
   Future<List<dynamic>> getPatientPrescriptions(String patientId) async {
     try {
-      final response = await _dio.get('/api/v1/api/prescriptions/patient/$patientId');
+      final response =
+          await _dio.get('/api/v1/api/prescriptions/patient/$patientId');
       return response.data ?? [];
     } catch (e) {
       return [];
@@ -263,7 +272,8 @@ class AstraService {
   // ============================================================
 
   /// Chat with Astra AI Brain
-  Future<Map<String, dynamic>> chatWithAstra(String message, String userId, {Map<String, dynamic>? metadata}) async {
+  Future<Map<String, dynamic>> chatWithAstra(String message, String userId,
+      {Map<String, dynamic>? metadata}) async {
     try {
       final response = await _dio.post('/api/v1/brain/chat', data: {
         'q': message,
@@ -277,9 +287,11 @@ class AstraService {
   }
 
   /// Generate doctor summary from patient data
-  Future<Map<String, dynamic>> generateDoctorSummary(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> generateDoctorSummary(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/doctor-summary', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/doctor-summary', data: data);
       return response.data;
     } catch (e) {
       return {};
@@ -287,9 +299,11 @@ class AstraService {
   }
 
   /// Analyze medication safety
-  Future<Map<String, dynamic>> analyzeMedicationSafety(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> analyzeMedicationSafety(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/analyze-safety', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/analyze-safety', data: data);
       return response.data;
     } catch (e) {
       return {'is_safe': true, 'warnings': []};
@@ -299,7 +313,8 @@ class AstraService {
   /// Extract medication schedule from text
   Future<Map<String, dynamic>> extractSchedule(String text) async {
     try {
-      final response = await _dio.post('/api/v1/brain/extract-schedule', data: {'text': text});
+      final response = await _dio
+          .post('/api/v1/brain/extract-schedule', data: {'text': text});
       return response.data;
     } catch (e) {
       return {};
@@ -311,12 +326,13 @@ class AstraService {
   // ============================================================
 
   /// Process voice for prescription extraction
-  Future<Map<String, dynamic>> processVoice(File audioFile, String userId, {String languageCode = "en-IN"}) async {
+  Future<Map<String, dynamic>> processVoice(File audioFile, String userId,
+      {String languageCode = "en-IN"}) async {
     try {
       String fileName = p.basename(audioFile.path);
       FormData formData = FormData.fromMap({
         "audio": await MultipartFile.fromFile(
-          audioFile.path, 
+          audioFile.path,
           filename: fileName,
           contentType: MediaType('audio', 'wav'),
         ),
@@ -325,7 +341,7 @@ class AstraService {
       });
 
       final response = await _dio.post(
-        '/api/v1/astra-fill/process-voice', 
+        '/api/v1/astra-fill/process-voice',
         data: formData,
         options: Options(headers: {"Content-Type": "multipart/form-data"}),
       );
@@ -338,7 +354,8 @@ class AstraService {
   /// Process text for data extraction
   Future<Map<String, dynamic>> processText(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/astra-fill/process-text', data: data);
+      final response =
+          await _dio.post('/api/v1/astra-fill/process-text', data: data);
       return response.data;
     } catch (e) {
       rethrow;
@@ -346,9 +363,11 @@ class AstraService {
   }
 
   /// Confirm extraction
-  Future<Map<String, dynamic>> confirmExtraction(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> confirmExtraction(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/astra-fill/confirm', data: data);
+      final response =
+          await _dio.post('/api/v1/astra-fill/confirm', data: data);
       return response.data;
     } catch (e) {
       rethrow;
@@ -373,12 +392,13 @@ class AstraService {
   // ============================================================
 
   /// Upload document
-  Future<Map<String, dynamic>> uploadDocument(File file, String patientId, String documentType) async {
+  Future<Map<String, dynamic>> uploadDocument(
+      File file, String patientId, String documentType) async {
     try {
       String fileName = p.basename(file.path);
       String ext = p.extension(file.path).replaceFirst('.', '').toLowerCase();
       String mimeType = ext == 'pdf' ? 'application/pdf' : 'image/$ext';
-      
+
       FormData formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(
           file.path,
@@ -411,9 +431,11 @@ class AstraService {
   }
 
   /// Share document via WhatsApp
-  Future<Map<String, dynamic>> shareDocumentViaWhatsApp(String documentId) async {
+  Future<Map<String, dynamic>> shareDocumentViaWhatsApp(
+      String documentId) async {
     try {
-      final response = await _dio.post('/api/v1/documents/share-whatsapp/$documentId');
+      final response =
+          await _dio.post('/api/v1/documents/share-whatsapp/$documentId');
       return response.data;
     } catch (e) {
       rethrow;
@@ -425,9 +447,11 @@ class AstraService {
   // ============================================================
 
   /// Generate catchy prescription from data
-  Future<Map<String, dynamic>> generateCatchyPrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> generateCatchyPrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/prescriptions/catchy-from-data', data: data);
+      final response =
+          await _dio.post('/api/v1/prescriptions/catchy-from-data', data: data);
       return response.data;
     } catch (e) {
       rethrow;
@@ -435,9 +459,11 @@ class AstraService {
   }
 
   /// Auto-generate catchy prescription
-  Future<Map<String, dynamic>> autoGenerateCatchyPrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> autoGenerateCatchyPrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/prescriptions/auto-generate-catchy', data: data);
+      final response = await _dio
+          .post('/api/v1/prescriptions/auto-generate-catchy', data: data);
       return response.data;
     } catch (e) {
       rethrow;
@@ -480,7 +506,8 @@ class AstraService {
   // ============================================================
 
   /// Translate text
-  Future<Map<String, dynamic>> translateText(String text, String targetLanguage) async {
+  Future<Map<String, dynamic>> translateText(
+      String text, String targetLanguage) async {
     try {
       final response = await _dio.post('/api/v1/api/translate/', data: {
         'text': text,

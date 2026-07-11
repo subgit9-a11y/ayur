@@ -15,7 +15,8 @@ const String TELUGU = "te";
 const String KANNADA = "kn";
 
 Future<Locale> setLocale(String languageCode) async {
-  SharedPreferenceHelper.setString(Preferences.current_language_code, languageCode);
+  SharedPreferenceHelper.setString(
+      Preferences.current_language_code, languageCode);
   return _locale(languageCode);
 }
 
@@ -47,6 +48,7 @@ Locale _locale(String languageCode) {
 }
 
 Future<Locale> getLocale() async {
-  String languageCode = SharedPreferenceHelper.getString(Preferences.current_language_code);
+  String languageCode =
+      SharedPreferenceHelper.getString(Preferences.current_language_code);
   return _locale(languageCode);
 }

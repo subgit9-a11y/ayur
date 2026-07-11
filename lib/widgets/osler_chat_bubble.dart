@@ -24,18 +24,23 @@ class OslerChatBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isMe && showAvatar) ...[
-            avatar ?? CircleAvatar(radius: 16, backgroundColor: AyurezeTheme.healingGreen50),
+            avatar ??
+                CircleAvatar(
+                    radius: 16, backgroundColor: AyurezeTheme.healingGreen50),
             const SizedBox(width: 8),
           ],
           Flexible(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: isMe ? AyurezeTheme.healingGreen50 : AyurezeTheme.surfaceMuted,
+                color: isMe
+                    ? AyurezeTheme.healingGreen50
+                    : AyurezeTheme.surfaceMuted,
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(20),
                   topRight: const Radius.circular(20),
@@ -63,7 +68,9 @@ class OslerChatBubble extends StatelessWidget {
                           time!,
                           style: TextStyle(
                             fontSize: 10,
-                            color: isMe ? Colors.white70 : AyurezeTheme.textSecondary,
+                            color: isMe
+                                ? Colors.white70
+                                : AyurezeTheme.textSecondary,
                           ),
                         ),
                         if (isMe) ...[
@@ -71,7 +78,9 @@ class OslerChatBubble extends StatelessWidget {
                           Icon(
                             isRead ? Icons.done_all : Icons.done,
                             size: 14,
-                            color: isRead ? AyurezeTheme.connectivityBlue50 : Colors.white70,
+                            color: isRead
+                                ? AyurezeTheme.connectivityBlue50
+                                : Colors.white70,
                           ),
                         ],
                       ],
@@ -83,7 +92,9 @@ class OslerChatBubble extends StatelessWidget {
           ),
           if (isMe && showAvatar) ...[
             const SizedBox(width: 8),
-            avatar ?? CircleAvatar(radius: 16, backgroundColor: AyurezeTheme.surfaceMuted),
+            avatar ??
+                CircleAvatar(
+                    radius: 16, backgroundColor: AyurezeTheme.surfaceMuted),
           ],
         ],
       ),

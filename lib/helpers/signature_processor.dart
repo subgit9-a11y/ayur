@@ -3,10 +3,11 @@ import 'package:image/image.dart' as img;
 
 class SignatureProcessor {
   /// Extracts the ink from a signature photo and removes the background on-device.
-  /// 
+  ///
   /// [rawBytes] - The raw bytes of the captured signature photo.
   /// [threshold] - The brightness threshold (0-255). Pixels above this become transparent.
-  static Future<Uint8List?> cleanSignature(Uint8List rawBytes, {int threshold = 200}) async {
+  static Future<Uint8List?> cleanSignature(Uint8List rawBytes,
+      {int threshold = 200}) async {
     try {
       // Decode image
       img.Image? original = img.decodeImage(rawBytes);
@@ -23,7 +24,8 @@ class SignatureProcessor {
       // Deep Check: Iterate through pixels using the new 4.x pixel iterator
       for (final pixel in processed) {
         // Calculate brightness (Luminance)
-        double luminance = (0.299 * pixel.r) + (0.587 * pixel.g) + (0.114 * pixel.b);
+        double luminance =
+            (0.299 * pixel.r) + (0.587 * pixel.g) + (0.114 * pixel.b);
 
         if (luminance > threshold) {
           pixel.setRgba(0, 0, 0, 0); // Make paper transparent

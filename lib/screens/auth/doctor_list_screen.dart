@@ -32,8 +32,9 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
   void _filterDoctors(String query) {
     setState(() {
       _filteredDoctors = _doctors
-          .where((doc) => doc.name!.toLowerCase().contains(query.toLowerCase()) || 
-                          doc.uniqueId!.toLowerCase().contains(query.toLowerCase()))
+          .where((doc) =>
+              doc.name!.toLowerCase().contains(query.toLowerCase()) ||
+              doc.uniqueId!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -52,7 +53,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0F0F0F),
       appBar: AppBar(
-        title: const Text("Medical Registry", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        title: const Text("Medical Registry",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
@@ -71,13 +73,16 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
                 prefixIcon: const Icon(Icons.search, color: Colors.cyanAccent),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.05),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none),
               ),
             ),
           ),
           Expanded(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator(color: Colors.cyanAccent))
+                ? const Center(
+                    child: CircularProgressIndicator(color: Colors.cyanAccent))
                 : ListView.builder(
                     itemCount: _filteredDoctors.length,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -110,14 +115,17 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         ),
         title: Text(
           doc.name ?? "Unknown",
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          style: const TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(doc.uniqueId ?? "ID: ---", style: const TextStyle(color: Colors.cyanAccent, fontSize: 12)),
+            Text(doc.uniqueId ?? "ID: ---",
+                style: const TextStyle(color: Colors.cyanAccent, fontSize: 12)),
             const SizedBox(height: 4),
-            Text(doc.treatmentName ?? "General", style: TextStyle(color: Colors.white.withOpacity(0.6))),
+            Text(doc.treatmentName ?? "General",
+                style: TextStyle(color: Colors.white.withOpacity(0.6))),
           ],
         ),
         trailing: IconButton(

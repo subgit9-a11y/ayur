@@ -13,7 +13,9 @@ class SubscriptionPlan {
         data!.add(new Data.fromJson(v));
       });
     }
-    purchaseSubscription = json['purchase_subacription'] != null ? new PurchaseSubsciptionModel.fromJson(json['purchase_subacription']) : null;
+    purchaseSubscription = json['purchase_subacription'] != null
+        ? new PurchaseSubsciptionModel.fromJson(json['purchase_subacription'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -69,7 +71,20 @@ class PurchaseSubsciptionModel {
   String? createdAt;
   String? updatedAt;
 
-  PurchaseSubsciptionModel({this.id, this.doctorId, this.subscriptionId, this.duration, this.startDate, this.endDate, this.paymentType, this.amount, this.paymentToken, this.paymentStatus, this.status, this.createdAt, this.updatedAt});
+  PurchaseSubsciptionModel(
+      {this.id,
+      this.doctorId,
+      this.subscriptionId,
+      this.duration,
+      this.startDate,
+      this.endDate,
+      this.paymentType,
+      this.amount,
+      this.paymentToken,
+      this.paymentStatus,
+      this.status,
+      this.createdAt,
+      this.updatedAt});
 
   PurchaseSubsciptionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

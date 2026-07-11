@@ -86,7 +86,8 @@ class _VideoCallState extends State<VideoCall> {
             decoration: BoxDecoration(
               color: AyurezeTheme.surfaceDark.withOpacity(0.72),
               borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: AyurezeTheme.border.withOpacity(0.35), width: 1),
+              border: Border.all(
+                  color: AyurezeTheme.border.withOpacity(0.35), width: 1),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -95,17 +96,25 @@ class _VideoCallState extends State<VideoCall> {
                 _buildControlButton(
                   onPressed: _onToggleMute,
                   icon: muted ? AppIcons.micOff : AppIcons.mic,
-                  color: muted ? AyurezeTheme.remoteRed100 : AyurezeTheme.textPrimary,
-                  bgColor: muted ? AyurezeTheme.surface : AyurezeTheme.surface.withOpacity(0.2),
+                  color: muted
+                      ? AyurezeTheme.remoteRed100
+                      : AyurezeTheme.textPrimary,
+                  bgColor: muted
+                      ? AyurezeTheme.surface
+                      : AyurezeTheme.surface.withOpacity(0.2),
                 ),
                 const SizedBox(width: 15),
-                
+
                 // Mute Video
                 _buildControlButton(
                   onPressed: _onToggleVideo,
                   icon: mutedVideo ? AppIcons.videoCallOff : AppIcons.videoCall,
-                  color: mutedVideo ? AyurezeTheme.remoteRed100 : AyurezeTheme.textPrimary,
-                  bgColor: mutedVideo ? AyurezeTheme.surface : AyurezeTheme.surface.withOpacity(0.2),
+                  color: mutedVideo
+                      ? AyurezeTheme.remoteRed100
+                      : AyurezeTheme.textPrimary,
+                  bgColor: mutedVideo
+                      ? AyurezeTheme.surface
+                      : AyurezeTheme.surface.withOpacity(0.2),
                 ),
                 const SizedBox(width: 15),
 
@@ -128,10 +137,14 @@ class _VideoCallState extends State<VideoCall> {
                       color: Colors.red,
                       shape: BoxShape.circle,
                       boxShadow: [
-                        BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4))
+                        BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            offset: Offset(0, 4))
                       ],
                     ),
-                    child: Icon(AppIcons.callEnd, color: Colors.white, size: 28),
+                    child:
+                        Icon(AppIcons.callEnd, color: Colors.white, size: 28),
                   ),
                 ),
               ],
@@ -168,6 +181,7 @@ class _VideoCallState extends State<VideoCall> {
       _engine.muteLocalVideoStream(mutedVideo);
     });
   }
+
   void _onCallEnd(BuildContext context) {
     try {
       setState(() {
@@ -275,7 +289,10 @@ class _VideoCallState extends State<VideoCall> {
           },
         ),
       );
-      if (token != null && channelName != null && token!.isNotEmpty && channelName!.isNotEmpty) {
+      if (token != null &&
+          channelName != null &&
+          token!.isNotEmpty &&
+          channelName!.isNotEmpty) {
         await _engine.startPreview();
         _engine.joinChannel(
           token: '$token',
@@ -322,7 +339,8 @@ class _VideoCallState extends State<VideoCall> {
                       right: 0,
                       child: Center(
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
                             color: AyurezeTheme.surfaceDark.withOpacity(0.7),
                             borderRadius: BorderRadius.circular(20),
@@ -341,7 +359,10 @@ class _VideoCallState extends State<VideoCall> {
                               const SizedBox(width: 8),
                               Text(
                                 "Live Consultation",
-                                style: TextStyle(color: AyurezeTheme.textPrimary, fontSize: 13, fontWeight: FontWeight.w500),
+                                style: TextStyle(
+                                    color: AyurezeTheme.textPrimary,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),
@@ -360,7 +381,10 @@ class _VideoCallState extends State<VideoCall> {
                             // Boundary checks
                             double newX = offset.dx + details.delta.dx;
                             double newY = offset.dy + details.delta.dy;
-                            if (newX > 0 && newX < width - 120 && newY > 0 && newY < height - 160) {
+                            if (newX > 0 &&
+                                newX < width - 120 &&
+                                newY > 0 &&
+                                newY < height - 160) {
                               offset = Offset(newX, newY);
                             }
                           });
@@ -371,9 +395,14 @@ class _VideoCallState extends State<VideoCall> {
                           height: 160,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: AyurezeTheme.border.withOpacity(0.5), width: 1.5),
+                            border: Border.all(
+                                color: AyurezeTheme.border.withOpacity(0.5),
+                                width: 1.5),
                             boxShadow: const [
-                              BoxShadow(color: Color(0x55000000), blurRadius: 10, spreadRadius: 2)
+                              BoxShadow(
+                                  color: Color(0x55000000),
+                                  blurRadius: 10,
+                                  spreadRadius: 2)
                             ],
                           ),
                           child: ClipRRect(
@@ -382,7 +411,9 @@ class _VideoCallState extends State<VideoCall> {
                                 ? _localPreview()
                                 : Container(
                                     color: AyurezeTheme.surfaceDark,
-                                    child: Icon(Icons.videocam_off, color: AyurezeTheme.textMuted, size: 30),
+                                    child: Icon(Icons.videocam_off,
+                                        color: AyurezeTheme.textMuted,
+                                        size: 30),
                                   ),
                           ),
                         ),
@@ -432,11 +463,13 @@ class _VideoCallState extends State<VideoCall> {
         await initAgora();
         setState(() {});
       } else {
-        OslerToast.error(context, "Failed to call the patient! Unable to connect!");
+        OslerToast.error(
+            context, "Failed to call the patient! Unable to connect!");
         Navigator.pop(context);
       }
     } catch (error, stacktrace) {
-      OslerToast.error(context, "Failed to call the patient! Unable to connect!");
+      OslerToast.error(
+          context, "Failed to call the patient! Unable to connect!");
       Navigator.pop(context);
     }
   }
@@ -494,7 +527,6 @@ class _VideoCallState extends State<VideoCall> {
   }
 
   Widget _remoteVideo() {
-
     if (_remoteUid != null) {
       return AgoraVideoView(
         controller: VideoViewController.remote(
@@ -522,16 +554,23 @@ class _VideoCallState extends State<VideoCall> {
               CircleAvatar(
                 radius: 50,
                 backgroundColor: AyurezeTheme.surface.withOpacity(0.15),
-                child: Icon(Icons.person, size: 50, color: AyurezeTheme.textSecondary),
+                child: Icon(Icons.person,
+                    size: 50, color: AyurezeTheme.textSecondary),
               ),
               const SizedBox(height: 25),
               ScalingText(
                 widget.callEnd == true
-                    ? getTranslated(context, AppString.disconnect_call).toString()
+                    ? getTranslated(context, AppString.disconnect_call)
+                        .toString()
                     : widget.flag == "OutGoing"
                         ? getTranslated(context, AppString.ringing).toString()
-                        : getTranslated(context, AppString.connect_call).toString(),
-                style: TextStyle(fontSize: 18, color: AyurezeTheme.textPrimary, fontWeight: FontWeight.w400, letterSpacing: 0.5),
+                        : getTranslated(context, AppString.connect_call)
+                            .toString(),
+                style: TextStyle(
+                    fontSize: 18,
+                    color: AyurezeTheme.textPrimary,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 0.5),
               ),
             ],
           ),

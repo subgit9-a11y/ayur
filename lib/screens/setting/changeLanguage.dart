@@ -155,7 +155,8 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                           groupValue: value,
                           activeColor: AyurezeTheme.forestDeep,
                           onChanged: (dynamic selected) async {
-                            Future.delayed(const Duration(seconds: 1), () async {
+                            Future.delayed(const Duration(seconds: 1),
+                                () async {
                               value = selected;
                               Locale local = await setLocale(
                                 Language.languageList()[index].languageCode,
@@ -340,4 +341,3 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
     return BaseModel()..data = response;
   }
 }
-

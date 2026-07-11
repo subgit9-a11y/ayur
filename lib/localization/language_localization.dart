@@ -9,13 +9,15 @@ class LanguageLocalization {
   LanguageLocalization(this.locale);
 
   static LanguageLocalization? of(BuildContext context) {
-    return Localizations.of<LanguageLocalization>(context, LanguageLocalization);
+    return Localizations.of<LanguageLocalization>(
+        context, LanguageLocalization);
   }
 
   late Map<String, String> _localizationValue;
 
   Future load() async {
-    String jsonStringValue = await rootBundle.loadString('lib/localization/language/${locale.languageCode.toString()}.json');
+    String jsonStringValue = await rootBundle.loadString(
+        'lib/localization/language/${locale.languageCode.toString()}.json');
 
     Map<String, dynamic> mappedJson = json.decode(jsonStringValue);
 
@@ -26,15 +28,18 @@ class LanguageLocalization {
     return _localizationValue[key];
   }
 
-  static const LocalizationsDelegate<LanguageLocalization> delegate = _LanguageLocalizationDelegate();
+  static const LocalizationsDelegate<LanguageLocalization> delegate =
+      _LanguageLocalizationDelegate();
 }
 
-class _LanguageLocalizationDelegate extends LocalizationsDelegate<LanguageLocalization> {
+class _LanguageLocalizationDelegate
+    extends LocalizationsDelegate<LanguageLocalization> {
   const _LanguageLocalizationDelegate();
 
   @override
   bool isSupported(Locale locale) {
-    return [ENGLISH, TAMIL, HINDI, MALAYALAM, TELUGU, KANNADA].contains(locale.languageCode);
+    return [ENGLISH, TAMIL, HINDI, MALAYALAM, TELUGU, KANNADA]
+        .contains(locale.languageCode);
   }
 
   @override

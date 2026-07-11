@@ -140,7 +140,8 @@ class _ChangePasswordState extends State<ChangePassword> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _fieldLabel(getTranslated(context, AppString.change_old_password).toString()),
+          _fieldLabel(
+              getTranslated(context, AppString.change_old_password).toString()),
           TextFormField(
             controller: _oldPassword,
             keyboardType: TextInputType.name,
@@ -148,7 +149,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9!@#\$.*&~_]'))
             ],
             decoration: InputDecoration(
-              hintText: getTranslated(context, AppString.change_old_password_hint).toString(),
+              hintText:
+                  getTranslated(context, AppString.change_old_password_hint)
+                      .toString(),
               suffixIcon: _toggleIcon(_isHidden, () {
                 setState(() {
                   _isHidden = !_isHidden;
@@ -158,15 +161,21 @@ class _ChangePasswordState extends State<ChangePassword> {
             obscureText: _isHidden,
             validator: (String? value) {
               if (value!.isEmpty) {
-                return getTranslated(context, AppString.please_enter_old_password).toString();
+                return getTranslated(
+                        context, AppString.please_enter_old_password)
+                    .toString();
               } else if (value.length < 6) {
-                return getTranslated(context, AppString.please_enter_valid_password).toString();
+                return getTranslated(
+                        context, AppString.please_enter_valid_password)
+                    .toString();
               }
               return null;
             },
           ),
           const SizedBox(height: 16),
-          _fieldLabel(getTranslated(context, AppString.change_enter_new_password).toString()),
+          _fieldLabel(
+              getTranslated(context, AppString.change_enter_new_password)
+                  .toString()),
           TextFormField(
             controller: _newPassword,
             keyboardType: TextInputType.name,
@@ -174,7 +183,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9!@#\$.*&~_]'))
             ],
             decoration: InputDecoration(
-              hintText: getTranslated(context, AppString.change_enter_new_password_hint).toString(),
+              hintText: getTranslated(
+                      context, AppString.change_enter_new_password_hint)
+                  .toString(),
               suffixIcon: _toggleIcon(_isHidden1, () {
                 setState(() {
                   _isHidden1 = !_isHidden1;
@@ -184,15 +195,21 @@ class _ChangePasswordState extends State<ChangePassword> {
             obscureText: _isHidden1,
             validator: (String? value) {
               if (value!.isEmpty) {
-                return getTranslated(context, AppString.please_enter_new_password).toString();
+                return getTranslated(
+                        context, AppString.please_enter_new_password)
+                    .toString();
               } else if (value.length < 6) {
-                return getTranslated(context, AppString.please_enter_valid_password).toString();
+                return getTranslated(
+                        context, AppString.please_enter_valid_password)
+                    .toString();
               }
               return null;
             },
           ),
           const SizedBox(height: 16),
-          _fieldLabel(getTranslated(context, AppString.change_enter_confirm_password).toString()),
+          _fieldLabel(
+              getTranslated(context, AppString.change_enter_confirm_password)
+                  .toString()),
           TextFormField(
             controller: _confirmPassword,
             keyboardType: TextInputType.name,
@@ -200,7 +217,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9!@#\$.*&~_]'))
             ],
             decoration: InputDecoration(
-              hintText: getTranslated(context, AppString.change_enter_confirm_password_hint).toString(),
+              hintText: getTranslated(
+                      context, AppString.change_enter_confirm_password_hint)
+                  .toString(),
               suffixIcon: _toggleIcon(_isHidden2, () {
                 setState(() {
                   _isHidden2 = !_isHidden2;
@@ -210,9 +229,12 @@ class _ChangePasswordState extends State<ChangePassword> {
             obscureText: _isHidden2,
             validator: (String? value) {
               if (value!.isEmpty) {
-                return getTranslated(context, AppString.please_enter_confirm_password).toString();
+                return getTranslated(
+                        context, AppString.please_enter_confirm_password)
+                    .toString();
               } else if (_newPassword.text != _confirmPassword.text) {
-                return getTranslated(context, AppString.confirm_not_match).toString();
+                return getTranslated(context, AppString.confirm_not_match)
+                    .toString();
               }
               return null;
             },
@@ -221,7 +243,8 @@ class _ChangePasswordState extends State<ChangePassword> {
           SizedBox(
             width: double.infinity,
             child: OslerButton(
-              text: getTranslated(context, AppString.change_password_button).toString(),
+              text: getTranslated(context, AppString.change_password_button)
+                  .toString(),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   passwordChange();
@@ -281,4 +304,3 @@ class _ChangePasswordState extends State<ChangePassword> {
     return BaseModel()..data = response;
   }
 }
-

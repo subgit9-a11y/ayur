@@ -60,7 +60,8 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
       final res = await _astraApiService.submitKyc(data);
       if (res['status'] == 'success') {
         OslerToast.success(context, "Payout details saved successfully");
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const EarningsDashboard()));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const EarningsDashboard()));
       } else {
         OslerToast.error(context, res['message'] ?? "Failed to save details");
       }
@@ -75,29 +76,50 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
     }
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, {bool isNumber = false, int maxLines = 1, String? Function(String?)? validator}) {
+  Widget _buildTextField(String label, TextEditingController controller,
+      {bool isNumber = false,
+      int maxLines = 1,
+      String? Function(String?)? validator}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: TextStyle(fontWeight: FontWeight.w700, color: AyurezeTheme.textSecondary, fontSize: 13)),
+          Text(label,
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: AyurezeTheme.textSecondary,
+                  fontSize: 13)),
           const SizedBox(height: 8),
           TextFormField(
             controller: controller,
             maxLines: maxLines,
             keyboardType: isNumber ? TextInputType.number : TextInputType.text,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15, color: AyurezeTheme.textPrimary),
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 15,
+                color: AyurezeTheme.textPrimary),
             decoration: InputDecoration(
               filled: true,
               fillColor: AyurezeTheme.surface,
-              contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AyurezeTheme.border.withOpacity(0.6))),
-              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide(color: AyurezeTheme.healingGreen100, width: 1.5)),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: const BorderSide(color: Colors.redAccent)),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide:
+                      BorderSide(color: AyurezeTheme.border.withOpacity(0.6))),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide(
+                      color: AyurezeTheme.healingGreen100, width: 1.5)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(color: Colors.redAccent)),
             ),
-            validator: validator ?? (value) => value == null || value.isEmpty ? "Required" : null,
+            validator: validator ??
+                (value) => value == null || value.isEmpty ? "Required" : null,
           ),
         ],
       ),
@@ -109,14 +131,23 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
     return Scaffold(
       backgroundColor: AyurezeTheme.canvas,
       appBar: AppBar(
-        title: Text("Payout Setup & KYC", style: TextStyle(color: AyurezeTheme.textPrimary, fontWeight: FontWeight.w800, fontSize: 22)),
+        title: Text("Payout Setup & KYC",
+            style: TextStyle(
+                color: AyurezeTheme.textPrimary,
+                fontWeight: FontWeight.w800,
+                fontSize: 22)),
         backgroundColor: AyurezeTheme.surface,
         elevation: 0.5,
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios_new, color: AyurezeTheme.textPrimary, size: 20), onPressed: () => Navigator.pop(context)),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new,
+                color: AyurezeTheme.textPrimary, size: 20),
+            onPressed: () => Navigator.pop(context)),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator(color: AyurezeTheme.healingGreen100))
+          ? Center(
+              child: CircularProgressIndicator(
+                  color: AyurezeTheme.healingGreen100))
           : SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Form(
@@ -129,16 +160,21 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
                       decoration: BoxDecoration(
                         color: AyurezeTheme.healingGreen10,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AyurezeTheme.healingGreen50.withOpacity(0.5)),
+                        border: Border.all(
+                            color:
+                                AyurezeTheme.healingGreen50.withOpacity(0.5)),
                       ),
                       child: Row(
                         children: [
-                          Icon(Icons.info_outline, color: AyurezeTheme.healingGreen100),
+                          Icon(Icons.info_outline,
+                              color: AyurezeTheme.healingGreen100),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
                               "We need these details to process your automated payouts via Cashfree. Ensure they match your PAN.",
-                              style: TextStyle(fontSize: 13, color: AyurezeTheme.textSecondary),
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: AyurezeTheme.textSecondary),
                             ),
                           ),
                         ],
@@ -147,37 +183,51 @@ class _PayoutSetupScreenState extends State<PayoutSetupScreen> {
                     const SizedBox(height: 30),
                     Row(
                       children: [
-                        Icon(Icons.account_balance, color: AyurezeTheme.healingGreen100, size: 22),
+                        Icon(Icons.account_balance,
+                            color: AyurezeTheme.healingGreen100, size: 22),
                         const SizedBox(width: 10),
-                        Text("Bank Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
+                        Text("Bank Details",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
+                                color: AyurezeTheme.textPrimary)),
                       ],
                     ),
                     const SizedBox(height: 20),
                     _buildTextField("Account Holder Name", _accNameController),
-                    _buildTextField("Bank Account Number", _accNumberController, isNumber: true),
-                    _buildTextField("IFSC Code", _ifscController, validator: (val) {
+                    _buildTextField("Bank Account Number", _accNumberController,
+                        isNumber: true),
+                    _buildTextField("IFSC Code", _ifscController,
+                        validator: (val) {
                       if (val == null || val.isEmpty) return "Required";
                       if (val.length != 11) return "Invalid IFSC Code";
                       return null;
                     }),
-                    _buildTextField("UPI ID (Optional)", _upiController, validator: (val) => null),
-
+                    _buildTextField("UPI ID (Optional)", _upiController,
+                        validator: (val) => null),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        Icon(Icons.verified_user, color: AyurezeTheme.healingGreen100, size: 22),
+                        Icon(Icons.verified_user,
+                            color: AyurezeTheme.healingGreen100, size: 22),
                         const SizedBox(width: 10),
-                        Text("KYC Verification", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
+                        Text("KYC Verification",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
+                                color: AyurezeTheme.textPrimary)),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    _buildTextField("PAN Number", _panController, validator: (val) {
+                    _buildTextField("PAN Number", _panController,
+                        validator: (val) {
                       if (val == null || val.isEmpty) return "Required";
                       if (val.length != 10) return "PAN must be 10 characters";
                       return null;
                     }),
-                    _buildTextField("Full Residential Address", _addressController, maxLines: 3),
-
+                    _buildTextField(
+                        "Full Residential Address", _addressController,
+                        maxLines: 3),
                     const SizedBox(height: 30),
                     SizedBox(
                       width: double.infinity,

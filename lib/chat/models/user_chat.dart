@@ -12,7 +12,16 @@ class UserChat {
   String token;
   String userId;
 
-  UserChat({required this.id, required this.photoUrl, required this.nickname, required this.content, required this.shopId, required this.userType, required this.doctorId, required this.token, required this.userId});
+  UserChat(
+      {required this.id,
+      required this.photoUrl,
+      required this.nickname,
+      required this.content,
+      required this.shopId,
+      required this.userType,
+      required this.doctorId,
+      required this.token,
+      required this.userId});
 
   Map<String, String> toJson() {
     return {
@@ -61,6 +70,15 @@ class UserChat {
     try {
       userId = doc.get(FirestoreConstants.userId);
     } catch (e) {}
-    return UserChat(userId: userId, id: doc.id, photoUrl: photoUrl, nickname: nickname, content: content, shopId: shopId, userType: userType, doctorId: doctorId, token: token);
+    return UserChat(
+        userId: userId,
+        id: doc.id,
+        photoUrl: photoUrl,
+        nickname: nickname,
+        content: content,
+        shopId: shopId,
+        userType: userType,
+        doctorId: doctorId,
+        token: token);
   }
 }

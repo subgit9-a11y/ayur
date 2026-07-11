@@ -23,7 +23,6 @@ import 'package:doctro/widgets/osler_status_badge.dart';
 import 'package:doctro/core/theme/glass_theme.dart';
 import 'package:doctro/shared/glass_card.dart';
 
-
 class AppointmentHistoryScreen extends StatefulWidget {
   @override
   _AppointmentHistoryScreen createState() => _AppointmentHistoryScreen();
@@ -179,425 +178,252 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                   backgroundColor: Colors.transparent,
                   drawer: const ModernDrawer(),
                   appBar: PreferredSize(
-                  preferredSize: Size(20, 140),
-                  child: SafeArea(
-                      top: true,
-                      child: Column(children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: width * 0.06,
-                                  right: width * 0.06,
-                                  top: height * 0.00),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
+                      preferredSize: Size(20, 140),
+                      child: SafeArea(
+                          top: true,
+                          child: Column(children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(
+                                      left: width * 0.06,
+                                      right: width * 0.06,
+                                      top: height * 0.00),
+                                  child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            child: Text(
+                                              getTranslated(
+                                                      context,
+                                                      AppString
+                                                          .appointment_history_heading)
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontSize: width * 0.05,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: hintColor),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                       Container(
-                                        child: Text(
-                                          getTranslated(
-                                                  context,
-                                                  AppString
-                                                      .appointment_history_heading)
-                                              .toString(),
-                                          style: TextStyle(
-                                              fontSize: width * 0.05,
-                                              fontWeight: FontWeight.w800,
-                                              color: hintColor),
+                                        margin: EdgeInsets.only(),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            _scaffoldKey.currentState!
+                                                .openDrawer();
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/dMenuBar.svg",
+                                            height: 16.0,
+                                            color: AyurezeTheme.forestDeep,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        _scaffoldKey.currentState!.openDrawer();
-                                      },
-                                      icon: SvgPicture.asset(
-                                        "assets/icons/dMenuBar.svg",
-                                        height: 16.0,
-                                        color: AyurezeTheme.forestDeep,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: height * 0.01),
+                              padding: EdgeInsets.all(10),
+                              child: Container(
+                                decoration: AyurezeTheme.panelDecoration(),
+                                child: Container(
+                                    alignment: AlignmentDirectional.center,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: width * 0.05, vertical: 6),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          // height: height * 0.06,
+                                          width: width * 0.7,
+                                          child: TextField(
+                                            controller: _search,
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              filled: false,
+                                              hintText: getTranslated(
+                                                      context,
+                                                      AppString
+                                                          .search_appointment_history)
+                                                  .toString(),
+                                              hintStyle: TextStyle(
+                                                fontSize: width * 0.045,
+                                                color:
+                                                    hintColor.withOpacity(0.45),
+                                              ),
+                                            ),
+                                            onChanged: onSearchTextChanged,
+                                            textAlign: TextAlign.left,
+                                          ),
+                                        ),
+                                        Container(
+                                          child: SvgPicture.asset(
+                                            'assets/icons/dSearch.svg',
+                                            height: 20,
+                                            color: AyurezeTheme.forestDeep,
+                                          ),
+                                        ),
+                                      ],
+                                    )),
                               ),
                             ),
-                          ],
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: height * 0.01),
-                          padding: EdgeInsets.all(10),
-                          child: Container(
-                            decoration: AyurezeTheme.panelDecoration(),
-                            child: Container(
-                                alignment: AlignmentDirectional.center,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.05, vertical: 6),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // height: height * 0.06,
-                                      width: width * 0.7,
-                                      child: TextField(
-                                        controller: _search,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          filled: false,
-                                          hintText: getTranslated(
-                                                  context,
-                                                  AppString
-                                                      .search_appointment_history)
-                                              .toString(),
-                                          hintStyle: TextStyle(
-                                            fontSize: width * 0.045,
-                                            color: hintColor.withOpacity(0.45),
+                          ]))),
+                  body: WillPopScope(
+                    onWillPop: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, 'loginHome', (route) => false);
+                      return Future<bool>.value(false);
+                    },
+                    child: RefreshIndicator(
+                      onRefresh: appointmentHistoryScreen,
+                      child: FutureBuilder(
+                          future: appointment,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              return GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: () {
+                                  FocusScope.of(context)
+                                      .requestFocus(new FocusNode());
+                                },
+                                child: GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: () {
+                                    FocusScope.of(context)
+                                        .requestFocus(new FocusNode());
+                                  },
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    physics: AlwaysScrollableScrollPhysics(),
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                top: 10, left: 16, right: 16),
+                                            decoration: BoxDecoration(
+                                              color: GlassTheme.primaryGreen
+                                                  .withOpacity(0.1),
+                                              borderRadius:
+                                                  BorderRadius.circular(22),
+                                            ),
+                                            padding: EdgeInsets.all(8),
+                                            child: new TabBar(
+                                              labelColor:
+                                                  GlassTheme.textPrimaryLight,
+                                              controller: _tabController,
+                                              indicatorSize:
+                                                  TabBarIndicatorSize.tab,
+                                              indicatorColor:
+                                                  GlassTheme.primaryGreen,
+                                              indicator: BoxDecoration(
+                                                color: GlassTheme.primaryGreen
+                                                    .withOpacity(0.2),
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                              ),
+                                              tabs: tabList,
+                                              unselectedLabelColor:
+                                                  GlassTheme.textSecondaryLight,
+                                            ),
                                           ),
-                                        ),
-                                        onChanged: onSearchTextChanged,
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ),
-                                    Container(
-                                      child: SvgPicture.asset(
-                                        'assets/icons/dSearch.svg',
-                                        height: 20,
-                                        color: AyurezeTheme.forestDeep,
-                                      ),
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        ),
-                      ]))),
-              body: WillPopScope(
-                onWillPop: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, 'loginHome', (route) => false);
-                  return Future<bool>.value(false);
-                },
-                child: RefreshIndicator(
-                  onRefresh: appointmentHistoryScreen,
-                  child: FutureBuilder(
-                      future: appointment,
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          return GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () {
-                              FocusScope.of(context)
-                                  .requestFocus(new FocusNode());
-                            },
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.opaque,
-                              onTap: () {
-                                FocusScope.of(context)
-                                    .requestFocus(new FocusNode());
-                              },
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                physics: AlwaysScrollableScrollPhysics(),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.only(top: 10, left: 16, right: 16),
-                                        decoration: BoxDecoration(
-                                          color: GlassTheme.primaryGreen.withOpacity(0.1),
-                                          borderRadius: BorderRadius.circular(22),
-                                        ),
-                                        padding: EdgeInsets.all(8),
-                                        child: new TabBar(
-                                          labelColor: GlassTheme.textPrimaryLight,
-                                          controller: _tabController,
-                                          indicatorSize:
-                                              TabBarIndicatorSize.tab,
-                                          indicatorColor: GlassTheme.primaryGreen,
-                                          indicator: BoxDecoration(
-                                             color: GlassTheme.primaryGreen.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                          tabs: tabList,
-                                          unselectedLabelColor: GlassTheme.textSecondaryLight,
-                                        ),
-                                      ),
-                                      Container(
-                                        height: height * 0.65,
-                                        child: TabBarView(
-                                          controller: _tabController,
-                                          children: [
-                                            upcomingAppointmentReq.length == 0
-                                                ? Container(
-                                                    child: Center(
-                                                      child: Image.asset(
-                                                          "assets/images/no-data.png"),
-                                                    ),
-                                                  )
-                                                : _search.text.isNotEmpty
-                                                    ? _searchResult.length > 0
-                                                        ? ListView.builder(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    bottom: 40),
-                                                            scrollDirection:
-                                                                Axis.vertical,
-                                                            shrinkWrap: true,
-                                                            physics:
-                                                                AlwaysScrollableScrollPhysics(),
-                                                            itemCount:
-                                                                _searchResult
-                                                                    .length,
-                                                            itemBuilder:
-                                                                (context, i) {
-                                                              String
-                                                                  searchDate =
-                                                                  _searchResult[
-                                                                          i]
-                                                                      .date!;
-                                                              var statusColor =
-                                                                  status;
-                                                              if (_searchResult[
-                                                                          i]
-                                                                      .appointmentStatus!
-                                                                      .toUpperCase() ==
-                                                                  getTranslated(
-                                                                          context,
-                                                                          AppString
-                                                                              .status_pending)
-                                                                      .toString()) {
-                                                                statusColor =
-                                                                    hintColor
-                                                                        .withOpacity(
-                                                                            0.6);
-                                                              } else if (_searchResult[
-                                                                          i]
-                                                                      .appointmentStatus!
-                                                                      .toUpperCase() ==
-                                                                  getTranslated(
-                                                                          context,
-                                                                          AppString
-                                                                              .status_cancel)
-                                                                      .toString()) {
-                                                                statusColor =
-                                                                    statusCancel;
-                                                              } else if (_searchResult[
-                                                                          i]
-                                                                      .appointmentStatus!
-                                                                      .toUpperCase() ==
-                                                                  getTranslated(
-                                                                          context,
-                                                                          AppString
-                                                                              .status_approve)
-                                                                      .toString()) {
-                                                                statusColor =
-                                                                    status;
-                                                              }
-                                                              return Container(
-                                                                  width: width *
-                                                                      0.87,
-                                                                  child: GlassCard(child: Column(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: <Widget>[
-                                                                            Container(
-                                                                              child: ListTile(
-                                                                                isThreeLine: true,
-                                                                                leading: SizedBox(
-                                                                                  height: height * 0.20,
-                                                                                  width: width * 0.15,
-                                                                                  child: ClipRRect(
-                                                                                    borderRadius: BorderRadius.circular(10),
-                                                                                    child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(_searchResult[i].user!.fullImage!)))),
-                                                                                  ),
-                                                                                ),
-                                                                                title: Text(_searchResult[i].patientName!, style: TextStyle(fontSize: 16.0)),
-                                                                                trailing: Container(
-                                                                                  child: Text(
-                                                                                    _searchResult[i].appointmentStatus!.toUpperCase(),
-                                                                                    style: TextStyle(color: statusColor),
-                                                                                  ),
-                                                                                ),
-                                                                                subtitle: Column(
-                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                  children: <Widget>[
-                                                                                    Text(
-                                                                                      _searchResult[i].treatment!,
-                                                                                      style: TextStyle(fontSize: 14, color: passwordVisibility),
-                                                                                    ),
-                                                                                    Text(
-                                                                                      _searchResult[i].patientAddress!,
-                                                                                      style: TextStyle(fontSize: 12, color: passwordVisibility),
-                                                                                      overflow: TextOverflow.ellipsis,
-                                                                                      maxLines: 2,
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            Container(
-                                                                              margin: EdgeInsets.symmetric(horizontal: 20),
-                                                                              child: Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                children: [
-                                                                                  Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                    children: [
-                                                                                      Text(getTranslated(context, AppString.date_and_time).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
-                                                                                      Row(
-                                                                                        children: [
-                                                                                          Text('$searchDate', style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                          SizedBox(width: 5),
-                                                                                          Text(_searchResult[i].time!, style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                  Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                    children: [
-                                                                                      Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
-                                                                                      Container(
-                                                                                        margin: EdgeInsets.only(),
-                                                                                        child: Text(_searchResult[i].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                            Divider(
-                                                                              color: divider,
-                                                                            ),
-                                                                            Container(
-                                                                              margin: EdgeInsets.symmetric(horizontal: 20),
-                                                                              child: Column(
-                                                                                children: [
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      Text(getTranslated(context, AppString.hospital_name_heading).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
-                                                                                      Text(getTranslated(context, AppString.hospital_address).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
-                                                                                    ],
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      _searchResult[i].hospital != null
-                                                                                          ? Container(
-                                                                                              width: 120,
-                                                                                              child: Text(_searchResult[i].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
-                                                                                            )
-                                                                                          : Text('', style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                      _searchResult[i].hospital != null
-                                                                                          ? Container(
-                                                                                              width: 120,
-                                                                                              child: Text(_searchResult[i].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
-                                                                                            )
-                                                                                          : Text(''),
-                                                                                    ],
-                                                                                  ),
-                                                                                  SizedBox(height: 5)
-                                                                                ],
-                                                                              ),
-                                                                            ),
-                                                                          ])));
-                                                            },
-                                                          )
-                                                        : Center(
-                                                            child: Container(
-                                                            child: Text(getTranslated(
-                                                                    context,
-                                                                    AppString
-                                                                        .result_not_found)
-                                                                .toString()),
-                                                          ))
-                                                    : ListView.builder(
-                                                        physics:
-                                                            AlwaysScrollableScrollPhysics(),
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 40),
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            upcomingAppointmentReq
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          var statusColor =
-                                                              status;
-                                                          if (upcomingAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_pending)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                hintColor
-                                                                    .withOpacity(
-                                                                        0.6);
-                                                          } else if (upcomingAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_cancel)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                statusCancel;
-                                                          } else if (upcomingAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_approve)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                status;
-                                                          }
-                                                          //Set Date Formate dd-mm-yy
-                                                          String date =
-                                                              upcomingAppointmentReq[
-                                                                      index]
-                                                                  .date!;
-                                                          return Container(
-                                                              width:
-                                                                  width * 0.87,
-                                                              child: Card(
-                                                                  elevation: 2,
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            15.0),
-                                                                  ),
-                                                                  child: Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: <Widget>[
+                                          Container(
+                                            height: height * 0.65,
+                                            child: TabBarView(
+                                              controller: _tabController,
+                                              children: [
+                                                upcomingAppointmentReq.length ==
+                                                        0
+                                                    ? Container(
+                                                        child: Center(
+                                                          child: Image.asset(
+                                                              "assets/images/no-data.png"),
+                                                        ),
+                                                      )
+                                                    : _search.text.isNotEmpty
+                                                        ? _searchResult.length >
+                                                                0
+                                                            ? ListView.builder(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        bottom:
+                                                                            40),
+                                                                scrollDirection:
+                                                                    Axis.vertical,
+                                                                shrinkWrap:
+                                                                    true,
+                                                                physics:
+                                                                    AlwaysScrollableScrollPhysics(),
+                                                                itemCount:
+                                                                    _searchResult
+                                                                        .length,
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        i) {
+                                                                  String
+                                                                      searchDate =
+                                                                      _searchResult[
+                                                                              i]
+                                                                          .date!;
+                                                                  var statusColor =
+                                                                      status;
+                                                                  if (_searchResult[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString
+                                                                                  .status_pending)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        hintColor
+                                                                            .withOpacity(0.6);
+                                                                  } else if (_searchResult[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString
+                                                                                  .status_cancel)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        statusCancel;
+                                                                  } else if (_searchResult[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString.status_approve)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        status;
+                                                                  }
+                                                                  return Container(
+                                                                      width: width *
+                                                                          0.87,
+                                                                      child: GlassCard(
+                                                                          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
                                                                         Container(
                                                                           child:
                                                                               ListTile(
@@ -609,15 +435,15 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               width: width * 0.15,
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(10),
-                                                                                child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(upcomingAppointmentReq[index].user!.fullImage!)))),
+                                                                                child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(_searchResult[i].user!.fullImage!)))),
                                                                               ),
                                                                             ),
                                                                             title:
-                                                                                Text(upcomingAppointmentReq[index].patientName!, style: TextStyle(fontSize: 16.0)),
+                                                                                Text(_searchResult[i].patientName!, style: TextStyle(fontSize: 16.0)),
                                                                             trailing:
                                                                                 Container(
                                                                               child: Text(
-                                                                                upcomingAppointmentReq[index].appointmentStatus!.toUpperCase(),
+                                                                                _searchResult[i].appointmentStatus!.toUpperCase(),
                                                                                 style: TextStyle(color: statusColor),
                                                                               ),
                                                                             ),
@@ -626,11 +452,11 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: <Widget>[
                                                                                 Text(
-                                                                                  upcomingAppointmentReq[index].treatment!,
+                                                                                  _searchResult[i].treatment!,
                                                                                   style: TextStyle(fontSize: 14, color: passwordVisibility),
                                                                                 ),
                                                                                 Text(
-                                                                                  upcomingAppointmentReq[index].patientAddress!,
+                                                                                  _searchResult[i].patientAddress!,
                                                                                   style: TextStyle(fontSize: 12, color: passwordVisibility),
                                                                                   overflow: TextOverflow.ellipsis,
                                                                                   maxLines: 2,
@@ -654,9 +480,9 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   Text(getTranslated(context, AppString.date_and_time).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                   Row(
                                                                                     children: [
-                                                                                      Text('$date', style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                      Text('$searchDate', style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                       SizedBox(width: 5),
-                                                                                      Text(upcomingAppointmentReq[index].time!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                      Text(_searchResult[i].time!, style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                     ],
                                                                                   ),
                                                                                 ],
@@ -668,7 +494,7 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                   Container(
                                                                                     margin: EdgeInsets.only(),
-                                                                                    child: Text(upcomingAppointmentReq[index].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                    child: Text(_searchResult[i].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                   ),
                                                                                 ],
                                                                               ),
@@ -687,7 +513,6 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                             children: [
                                                                               Row(
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                crossAxisAlignment: CrossAxisAlignment.end,
                                                                                 children: [
                                                                                   Text(getTranslated(context, AppString.hospital_name_heading).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                   Text(getTranslated(context, AppString.hospital_address).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
@@ -696,16 +521,16 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               Row(
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: [
-                                                                                  upcomingAppointmentReq[index].hospital != null
+                                                                                  _searchResult[i].hospital != null
                                                                                       ? Container(
                                                                                           width: 120,
-                                                                                          child: Text(upcomingAppointmentReq[index].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                          child: Text(_searchResult[i].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                         )
                                                                                       : Text('', style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                  upcomingAppointmentReq[index].hospital != null
+                                                                                  _searchResult[i].hospital != null
                                                                                       ? Container(
-                                                                                          width: 100,
-                                                                                          child: Text(upcomingAppointmentReq[index].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                          width: 120,
+                                                                                          child: Text(_searchResult[i].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                         )
                                                                                       : Text(''),
                                                                                 ],
@@ -715,33 +540,36 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                           ),
                                                                         ),
                                                                       ])));
-                                                        },
-                                                      ),
-                                            pastAppointmentReq.length == 0
-                                                ? Container(
-                                                    height: height / 2,
-                                                    child: Image.asset(
-                                                        "assets/images/no-data.png"),
-                                                  )
-                                                : _search.text.isNotEmpty
-                                                    ? _pastSearch.length > 0
-                                                        ? new ListView.builder(
+                                                                },
+                                                              )
+                                                            : Center(
+                                                                child:
+                                                                    Container(
+                                                                child: Text(getTranslated(
+                                                                        context,
+                                                                        AppString
+                                                                            .result_not_found)
+                                                                    .toString()),
+                                                              ))
+                                                        : ListView.builder(
+                                                            physics:
+                                                                AlwaysScrollableScrollPhysics(),
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     bottom: 40),
                                                             shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
                                                             itemCount:
-                                                                _pastSearch
+                                                                upcomingAppointmentReq
                                                                     .length,
                                                             itemBuilder:
-                                                                (context, i) {
-                                                              String
-                                                                  searchDate =
-                                                                  _pastSearch[i]
-                                                                      .date!;
+                                                                (context,
+                                                                    index) {
                                                               var statusColor =
                                                                   status;
-                                                              if (_pastSearch[i]
+                                                              if (upcomingAppointmentReq[
+                                                                          index]
                                                                       .appointmentStatus!
                                                                       .toUpperCase() ==
                                                                   getTranslated(
@@ -753,8 +581,8 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                     hintColor
                                                                         .withOpacity(
                                                                             0.6);
-                                                              } else if (_pastSearch[
-                                                                          i]
+                                                              } else if (upcomingAppointmentReq[
+                                                                          index]
                                                                       .appointmentStatus!
                                                                       .toUpperCase() ==
                                                                   getTranslated(
@@ -764,8 +592,8 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                       .toString()) {
                                                                 statusColor =
                                                                     statusCancel;
-                                                              } else if (_pastSearch[
-                                                                          i]
+                                                              } else if (upcomingAppointmentReq[
+                                                                          index]
                                                                       .appointmentStatus!
                                                                       .toUpperCase() ==
                                                                   getTranslated(
@@ -776,12 +604,25 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                 statusColor =
                                                                     status;
                                                               }
+                                                              //Set Date Formate dd-mm-yy
+                                                              String date =
+                                                                  upcomingAppointmentReq[
+                                                                          index]
+                                                                      .date!;
                                                               return Container(
                                                                   width: width *
                                                                       0.87,
-                                                                  child: GlassCard(child: Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
+                                                                  child: Card(
+                                                                      elevation:
+                                                                          2,
+                                                                      shape:
+                                                                          RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(15.0),
+                                                                      ),
+                                                                      child: Column(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
                                                                           children: <Widget>[
                                                                             Container(
                                                                               child: ListTile(
@@ -791,13 +632,13 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   width: width * 0.15,
                                                                                   child: ClipRRect(
                                                                                     borderRadius: BorderRadius.circular(10),
-                                                                                    child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(_pastSearch[i].user!.fullImage!)))),
+                                                                                    child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(upcomingAppointmentReq[index].user!.fullImage!)))),
                                                                                   ),
                                                                                 ),
-                                                                                title: Text(_pastSearch[i].patientName!, style: TextStyle(fontSize: 16.0)),
+                                                                                title: Text(upcomingAppointmentReq[index].patientName!, style: TextStyle(fontSize: 16.0)),
                                                                                 trailing: Container(
                                                                                   child: Text(
-                                                                                    _pastSearch[i].appointmentStatus!.toUpperCase(),
+                                                                                    upcomingAppointmentReq[index].appointmentStatus!.toUpperCase(),
                                                                                     style: TextStyle(color: statusColor),
                                                                                   ),
                                                                                 ),
@@ -805,11 +646,11 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: <Widget>[
                                                                                     Text(
-                                                                                      _pastSearch[i].treatment!,
+                                                                                      upcomingAppointmentReq[index].treatment!,
                                                                                       style: TextStyle(fontSize: 14, color: passwordVisibility),
                                                                                     ),
                                                                                     Text(
-                                                                                      _pastSearch[i].patientAddress!,
+                                                                                      upcomingAppointmentReq[index].patientAddress!,
                                                                                       style: TextStyle(fontSize: 12, color: passwordVisibility),
                                                                                       overflow: TextOverflow.ellipsis,
                                                                                       maxLines: 2,
@@ -830,11 +671,9 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                       Text(getTranslated(context, AppString.date_and_time).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                       Row(
                                                                                         children: [
-                                                                                          Text("$searchDate", style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                          Container(
-                                                                                            margin: EdgeInsets.only(left: 5),
-                                                                                            child: Text(_pastSearch[i].time!, style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                          ),
+                                                                                          Text('$date', style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                          SizedBox(width: 5),
+                                                                                          Text(upcomingAppointmentReq[index].time!, style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                         ],
                                                                                       ),
                                                                                     ],
@@ -846,7 +685,7 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                       Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                       Container(
                                                                                         margin: EdgeInsets.only(),
-                                                                                        child: Text(_pastSearch[i].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                        child: Text(upcomingAppointmentReq[index].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -871,16 +710,16 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   Row(
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                     children: [
-                                                                                      _pastSearch[i].hospital?.name != null
+                                                                                      upcomingAppointmentReq[index].hospital != null
                                                                                           ? Container(
                                                                                               width: 120,
-                                                                                              child: Text(_pastSearch[i].hospital!.name.toString(), style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                              child: Text(upcomingAppointmentReq[index].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                             )
                                                                                           : Text('', style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                      _pastSearch[i].hospital?.address != null
+                                                                                      upcomingAppointmentReq[index].hospital != null
                                                                                           ? Container(
                                                                                               width: 100,
-                                                                                              child: Text(_pastSearch[i].hospital!.address.toString(), style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                              child: Text(upcomingAppointmentReq[index].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                             )
                                                                                           : Text(''),
                                                                                     ],
@@ -891,87 +730,75 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                             ),
                                                                           ])));
                                                             },
-                                                          )
-                                                        : Center(
-                                                            child: Container(
-                                                            child: Text(getTranslated(
-                                                                    context,
-                                                                    AppString
-                                                                        .result_not_found)
-                                                                .toString()),
-                                                          ))
-                                                    : ListView.builder(
-                                                        physics:
-                                                            AlwaysScrollableScrollPhysics(),
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 40),
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            pastAppointmentReq
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          String date =
-                                                              pastAppointmentReq[
-                                                                      index]
-                                                                  .date!;
-                                                          var statusColor =
-                                                              status;
-                                                          if (pastAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_pending)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                hintColor
-                                                                    .withOpacity(
-                                                                        0.6);
-                                                          } else if (pastAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_cancel)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                statusCancel;
-                                                          } else if (pastAppointmentReq[
-                                                                      index]
-                                                                  .appointmentStatus!
-                                                                  .toUpperCase() ==
-                                                              getTranslated(
-                                                                      context,
-                                                                      AppString
-                                                                          .status_approve)
-                                                                  .toString()) {
-                                                            statusColor =
-                                                                status;
-                                                          }
-                                                          return Container(
-                                                              width:
-                                                                  width * 0.87,
-                                                              child: Card(
-                                                                  elevation: 2,
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            15.0),
-                                                                  ),
-                                                                  child: Column(
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: <Widget>[
+                                                          ),
+                                                pastAppointmentReq.length == 0
+                                                    ? Container(
+                                                        height: height / 2,
+                                                        child: Image.asset(
+                                                            "assets/images/no-data.png"),
+                                                      )
+                                                    : _search.text.isNotEmpty
+                                                        ? _pastSearch.length > 0
+                                                            ? new ListView
+                                                                .builder(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        bottom:
+                                                                            40),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount:
+                                                                    _pastSearch
+                                                                        .length,
+                                                                itemBuilder:
+                                                                    (context,
+                                                                        i) {
+                                                                  String
+                                                                      searchDate =
+                                                                      _pastSearch[
+                                                                              i]
+                                                                          .date!;
+                                                                  var statusColor =
+                                                                      status;
+                                                                  if (_pastSearch[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString
+                                                                                  .status_pending)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        hintColor
+                                                                            .withOpacity(0.6);
+                                                                  } else if (_pastSearch[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString
+                                                                                  .status_cancel)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        statusCancel;
+                                                                  } else if (_pastSearch[
+                                                                              i]
+                                                                          .appointmentStatus!
+                                                                          .toUpperCase() ==
+                                                                      getTranslated(
+                                                                              context,
+                                                                              AppString.status_approve)
+                                                                          .toString()) {
+                                                                    statusColor =
+                                                                        status;
+                                                                  }
+                                                                  return Container(
+                                                                      width: width *
+                                                                          0.87,
+                                                                      child: GlassCard(
+                                                                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                                                                         Container(
                                                                           child:
                                                                               ListTile(
@@ -983,15 +810,15 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               width: width * 0.15,
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(10),
-                                                                                child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(pastAppointmentReq[index].user!.fullImage!)))),
+                                                                                child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(_pastSearch[i].user!.fullImage!)))),
                                                                               ),
                                                                             ),
                                                                             title:
-                                                                                Text(pastAppointmentReq[index].patientName!, style: TextStyle(fontSize: 16.0)),
+                                                                                Text(_pastSearch[i].patientName!, style: TextStyle(fontSize: 16.0)),
                                                                             trailing:
                                                                                 Container(
                                                                               child: Text(
-                                                                                pastAppointmentReq[index].appointmentStatus!.toUpperCase(),
+                                                                                _pastSearch[i].appointmentStatus!.toUpperCase(),
                                                                                 style: TextStyle(color: statusColor),
                                                                               ),
                                                                             ),
@@ -1000,11 +827,11 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: <Widget>[
                                                                                 Text(
-                                                                                  pastAppointmentReq[index].treatment!,
+                                                                                  _pastSearch[i].treatment!,
                                                                                   style: TextStyle(fontSize: 14, color: passwordVisibility),
                                                                                 ),
                                                                                 Text(
-                                                                                  pastAppointmentReq[index].patientAddress!,
+                                                                                  _pastSearch[i].patientAddress!,
                                                                                   style: TextStyle(fontSize: 12, color: passwordVisibility),
                                                                                   overflow: TextOverflow.ellipsis,
                                                                                   maxLines: 2,
@@ -1028,27 +855,25 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                                   Text(getTranslated(context, AppString.date_and_time).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
                                                                                   Row(
                                                                                     children: [
-                                                                                      Text("$date", style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                      Text("$searchDate", style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                       Container(
                                                                                         margin: EdgeInsets.only(left: 5),
-                                                                                        child: Text(pastAppointmentReq[index].time!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                        child: Text(_pastSearch[i].time!, style: TextStyle(fontSize: 14, color: hintColor)),
                                                                                       ),
                                                                                     ],
                                                                                   ),
                                                                                 ],
                                                                               ),
-                                                                              Container(
-                                                                                child: Column(
-                                                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                  children: [
-                                                                                    Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
-                                                                                    Container(
-                                                                                      margin: EdgeInsets.only(),
-                                                                                      child: Text(pastAppointmentReq[index].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              Column(
+                                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                children: [
+                                                                                  Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
+                                                                                  Container(
+                                                                                    margin: EdgeInsets.only(),
+                                                                                    child: Text(_pastSearch[i].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                  ),
+                                                                                ],
                                                                               ),
                                                                             ],
                                                                           ),
@@ -1074,16 +899,16 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                               Row(
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: [
-                                                                                  pastAppointmentReq[index].hospital != null
+                                                                                  _pastSearch[i].hospital?.name != null
                                                                                       ? Container(
                                                                                           width: 120,
-                                                                                          child: Text(pastAppointmentReq[index].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                          child: Text(_pastSearch[i].hospital!.name.toString(), style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                         )
                                                                                       : Text('', style: TextStyle(fontSize: 14, color: hintColor)),
-                                                                                  pastAppointmentReq[index].hospital != null
+                                                                                  _pastSearch[i].hospital?.address != null
                                                                                       ? Container(
                                                                                           width: 100,
-                                                                                          child: Text(pastAppointmentReq[index].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                          child: Text(_pastSearch[i].hospital!.address.toString(), style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
                                                                                         )
                                                                                       : Text(''),
                                                                                 ],
@@ -1093,25 +918,219 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
                                                                           ),
                                                                         ),
                                                                       ])));
-                                                        },
-                                                      ),
-                                          ],
-                                        ),
+                                                                },
+                                                              )
+                                                            : Center(
+                                                                child:
+                                                                    Container(
+                                                                child: Text(getTranslated(
+                                                                        context,
+                                                                        AppString
+                                                                            .result_not_found)
+                                                                    .toString()),
+                                                              ))
+                                                        : ListView.builder(
+                                                            physics:
+                                                                AlwaysScrollableScrollPhysics(),
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom: 40),
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                pastAppointmentReq
+                                                                    .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              String date =
+                                                                  pastAppointmentReq[
+                                                                          index]
+                                                                      .date!;
+                                                              var statusColor =
+                                                                  status;
+                                                              if (pastAppointmentReq[
+                                                                          index]
+                                                                      .appointmentStatus!
+                                                                      .toUpperCase() ==
+                                                                  getTranslated(
+                                                                          context,
+                                                                          AppString
+                                                                              .status_pending)
+                                                                      .toString()) {
+                                                                statusColor =
+                                                                    hintColor
+                                                                        .withOpacity(
+                                                                            0.6);
+                                                              } else if (pastAppointmentReq[
+                                                                          index]
+                                                                      .appointmentStatus!
+                                                                      .toUpperCase() ==
+                                                                  getTranslated(
+                                                                          context,
+                                                                          AppString
+                                                                              .status_cancel)
+                                                                      .toString()) {
+                                                                statusColor =
+                                                                    statusCancel;
+                                                              } else if (pastAppointmentReq[
+                                                                          index]
+                                                                      .appointmentStatus!
+                                                                      .toUpperCase() ==
+                                                                  getTranslated(
+                                                                          context,
+                                                                          AppString
+                                                                              .status_approve)
+                                                                      .toString()) {
+                                                                statusColor =
+                                                                    status;
+                                                              }
+                                                              return Container(
+                                                                  width: width *
+                                                                      0.87,
+                                                                  child: Card(
+                                                                      elevation:
+                                                                          2,
+                                                                      shape:
+                                                                          RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(15.0),
+                                                                      ),
+                                                                      child: Column(
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.start,
+                                                                          children: <Widget>[
+                                                                            Container(
+                                                                              child: ListTile(
+                                                                                isThreeLine: true,
+                                                                                leading: SizedBox(
+                                                                                  height: height * 0.20,
+                                                                                  width: width * 0.15,
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(10),
+                                                                                    child: Container(decoration: new BoxDecoration(image: new DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(pastAppointmentReq[index].user!.fullImage!)))),
+                                                                                  ),
+                                                                                ),
+                                                                                title: Text(pastAppointmentReq[index].patientName!, style: TextStyle(fontSize: 16.0)),
+                                                                                trailing: Container(
+                                                                                  child: Text(
+                                                                                    pastAppointmentReq[index].appointmentStatus!.toUpperCase(),
+                                                                                    style: TextStyle(color: statusColor),
+                                                                                  ),
+                                                                                ),
+                                                                                subtitle: Column(
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: <Widget>[
+                                                                                    Text(
+                                                                                      pastAppointmentReq[index].treatment!,
+                                                                                      style: TextStyle(fontSize: 14, color: passwordVisibility),
+                                                                                    ),
+                                                                                    Text(
+                                                                                      pastAppointmentReq[index].patientAddress!,
+                                                                                      style: TextStyle(fontSize: 12, color: passwordVisibility),
+                                                                                      overflow: TextOverflow.ellipsis,
+                                                                                      maxLines: 2,
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              margin: EdgeInsets.symmetric(horizontal: 20),
+                                                                              child: Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+                                                                                  Column(
+                                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      Text(getTranslated(context, AppString.date_and_time).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
+                                                                                      Row(
+                                                                                        children: [
+                                                                                          Text("$date", style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                          Container(
+                                                                                            margin: EdgeInsets.only(left: 5),
+                                                                                            child: Text(pastAppointmentReq[index].time!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                          ),
+                                                                                        ],
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                  Container(
+                                                                                    child: Column(
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                      children: [
+                                                                                        Text(getTranslated(context, AppString.doctor_name).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
+                                                                                        Container(
+                                                                                          margin: EdgeInsets.only(),
+                                                                                          child: Text(pastAppointmentReq[index].doctorName!, style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            Divider(
+                                                                              color: divider,
+                                                                            ),
+                                                                            Container(
+                                                                              margin: EdgeInsets.symmetric(horizontal: 20),
+                                                                              child: Column(
+                                                                                children: [
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                    children: [
+                                                                                      Text(getTranslated(context, AppString.hospital_name_heading).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
+                                                                                      Text(getTranslated(context, AppString.hospital_address).toString(), style: TextStyle(fontSize: 14, color: passwordVisibility)),
+                                                                                    ],
+                                                                                  ),
+                                                                                  Row(
+                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                    children: [
+                                                                                      pastAppointmentReq[index].hospital != null
+                                                                                          ? Container(
+                                                                                              width: 120,
+                                                                                              child: Text(pastAppointmentReq[index].hospital!.name!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                            )
+                                                                                          : Text('', style: TextStyle(fontSize: 14, color: hintColor)),
+                                                                                      pastAppointmentReq[index].hospital != null
+                                                                                          ? Container(
+                                                                                              width: 100,
+                                                                                              child: Text(pastAppointmentReq[index].hospital!.address!, style: TextStyle(fontSize: 14, color: hintColor), overflow: TextOverflow.ellipsis, maxLines: 2),
+                                                                                            )
+                                                                                          : Text(''),
+                                                                                    ],
+                                                                                  ),
+                                                                                  SizedBox(height: 5)
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ])));
+                                                            },
+                                                          ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          );
-                        } else {
-                          return Center(child: CircularProgressIndicator(color: AyurezeTheme.forestDeep));
-                        }
-                      }),
+                              );
+                            } else {
+                              return Center(
+                                  child: CircularProgressIndicator(
+                                      color: AyurezeTheme.forestDeep));
+                            }
+                          }),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            ],
+              ],
             );
           },
         );
@@ -1215,4 +1234,3 @@ class _AppointmentHistoryScreen extends State<AppointmentHistoryScreen>
     setState(() {});
   }
 }
-

@@ -9,7 +9,7 @@ import 'package:doctro/constant/prefConstatnt.dart';
 import 'package:doctro/constant/preferences.dart';
 
 /// Astra AI Healthcare API Service
-/// 
+///
 /// This service connects the Doctor App to the Astra AI Backend
 /// Includes essential endpoints for:
 /// - Authentication
@@ -50,12 +50,12 @@ class AstraApiService {
         client.connectionTimeout = const Duration(seconds: 45);
         client.badCertificateCallback = (cert, host, port) {
           // Trust all certificates for Astra domain to bypass SSL/TLS handshake issues
-          return host.contains('astra.ayureze.in') || host.contains('82.25.105.156');
+          return host.contains('astra.ayureze.in') ||
+              host.contains('82.25.105.156');
         };
         return client;
       };
     }
-
 
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
@@ -70,7 +70,8 @@ class AstraApiService {
 
         // Fallback to app auth token (doctor login token)
         if (options.headers['Authorization'] == null) {
-          final String appToken = SharedPreferenceHelper.getString(Preferences.auth_token);
+          final String appToken =
+              SharedPreferenceHelper.getString(Preferences.auth_token);
           if (appToken.isNotEmpty && appToken != 'N_A') {
             options.headers['Authorization'] = 'Bearer $appToken';
           }
@@ -143,7 +144,8 @@ class AstraApiService {
   /// Register a new doctor
   Future<Map<String, dynamic>> registerDoctor(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/api/doctors/register', data: data);
+      final response =
+          await _dio.post('/api/v1/api/doctors/register', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -161,9 +163,11 @@ class AstraApiService {
   }
 
   /// Update doctor profile
-  Future<Map<String, dynamic>> updateDoctorProfile(String doctorId, Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> updateDoctorProfile(
+      String doctorId, Map<String, dynamic> data) async {
     try {
-      final response = await _dio.put('/api/v1/api/doctors/$doctorId', data: data);
+      final response =
+          await _dio.put('/api/v1/api/doctors/$doctorId', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -196,7 +200,8 @@ class AstraApiService {
   /// Get doctor dashboard stats
   Future<Map<String, dynamic>> getDashboardStats(String doctorId) async {
     try {
-      final response = await _dio.get('/api/v1/api/doctors/$doctorId/dashboard-stats');
+      final response =
+          await _dio.get('/api/v1/api/doctors/$doctorId/dashboard-stats');
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -204,9 +209,11 @@ class AstraApiService {
   }
 
   /// Request withdrawal
-  Future<Map<String, dynamic>> requestWithdraw(String doctorId, Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> requestWithdraw(
+      String doctorId, Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/api/doctors/$doctorId/withdraw', data: data);
+      final response =
+          await _dio.post('/api/v1/api/doctors/$doctorId/withdraw', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -240,7 +247,8 @@ class AstraApiService {
   /// Submit KYC / Bank Details
   Future<Map<String, dynamic>> submitKyc(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/finance/kyc/submit', data: data);
+      final response =
+          await _dio.post('/api/v1/finance/kyc/submit', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -252,7 +260,8 @@ class AstraApiService {
   // ============================================================
 
   /// Register a new patient
-  Future<Map<String, dynamic>> registerPatient(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> registerPatient(
+      Map<String, dynamic> data) async {
     try {
       final response = await _dio.post('/api/v1/patients/register', data: data);
       return response.data;
@@ -264,7 +273,8 @@ class AstraApiService {
   /// Search patients by name, phone, or ID
   Future<List<dynamic>> searchPatients(String searchTerm) async {
     try {
-      final String path = Apis.astra_search_patients.replaceFirst('{search_term}', searchTerm);
+      final String path =
+          Apis.astra_search_patients.replaceFirst('{search_term}', searchTerm);
       final response = await _dio.get(path);
       return response.data ?? [];
     } catch (e) {
@@ -275,7 +285,8 @@ class AstraApiService {
   /// Verify patient by code
   Future<Map<String, dynamic>> verifyPatientCode(String patientCode) async {
     try {
-      final String path = Apis.astra_verify_patient.replaceFirst('{patient_code}', patientCode);
+      final String path =
+          Apis.astra_verify_patient.replaceFirst('{patient_code}', patientCode);
       final response = await _dio.get(path);
       return response.data;
     } catch (e) {
@@ -286,7 +297,8 @@ class AstraApiService {
   /// Get patient profile
   Future<Map<String, dynamic>> getPatientProfile(String patientId) async {
     try {
-      final String path = Apis.astra_patient_profile.replaceFirst('{patient_id}', patientId);
+      final String path =
+          Apis.astra_patient_profile.replaceFirst('{patient_id}', patientId);
       final response = await _dio.get(path);
       return response.data;
     } catch (e) {
@@ -295,9 +307,11 @@ class AstraApiService {
   }
 
   /// Create consultation record
-  Future<Map<String, dynamic>> createConsultation(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> createConsultation(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post(Apis.astra_create_consultation, data: data);
+      final response =
+          await _dio.post(Apis.astra_create_consultation, data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -309,9 +323,11 @@ class AstraApiService {
   // ============================================================
 
   /// Create a new prescription
-  Future<Map<String, dynamic>> createPrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> createPrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post(Apis.astra_create_prescription, data: data);
+      final response =
+          await _dio.post(Apis.astra_create_prescription, data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -321,7 +337,8 @@ class AstraApiService {
   /// Get prescription by ID
   Future<Map<String, dynamic>> getPrescription(String prescriptionId) async {
     try {
-      final String path = Apis.astra_get_prescription.replaceFirst('{prescription_id}', prescriptionId);
+      final String path = Apis.astra_get_prescription
+          .replaceFirst('{prescription_id}', prescriptionId);
       final response = await _dio.get(path);
       return response.data;
     } catch (e) {
@@ -330,9 +347,11 @@ class AstraApiService {
   }
 
   /// Update prescription
-  Future<Map<String, dynamic>> updatePrescription(String prescriptionId, Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> updatePrescription(
+      String prescriptionId, Map<String, dynamic> data) async {
     try {
-      final String path = Apis.astra_update_prescription.replaceFirst('{prescription_id}', prescriptionId);
+      final String path = Apis.astra_update_prescription
+          .replaceFirst('{prescription_id}', prescriptionId);
       final response = await _dio.put(path, data: data);
       return response.data;
     } catch (e) {
@@ -343,7 +362,8 @@ class AstraApiService {
   /// Get all prescriptions for a patient
   Future<List<dynamic>> getPatientPrescriptions(String patientId) async {
     try {
-      final String path = Apis.astra_patient_prescriptions.replaceFirst('{patient_id}', patientId);
+      final String path = Apis.astra_patient_prescriptions
+          .replaceFirst('{patient_id}', patientId);
       final response = await _dio.get(path);
       return response.data ?? [];
     } catch (e) {
@@ -352,9 +372,11 @@ class AstraApiService {
   }
 
   /// Process prescription (triggers automation)
-  Future<Map<String, dynamic>> processPrescription(String prescriptionId) async {
+  Future<Map<String, dynamic>> processPrescription(
+      String prescriptionId) async {
     try {
-      final response = await _dio.post('/api/v1/api/prescriptions/$prescriptionId/process');
+      final response =
+          await _dio.post('/api/v1/api/prescriptions/$prescriptionId/process');
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -362,9 +384,11 @@ class AstraApiService {
   }
 
   /// Get prescription summary
-  Future<Map<String, dynamic>> getPrescriptionSummary(String prescriptionId) async {
+  Future<Map<String, dynamic>> getPrescriptionSummary(
+      String prescriptionId) async {
     try {
-      final response = await _dio.get('/api/v1/api/prescriptions/$prescriptionId/summary');
+      final response =
+          await _dio.get('/api/v1/api/prescriptions/$prescriptionId/summary');
       return response.data;
     } catch (e) {
       return {};
@@ -374,7 +398,8 @@ class AstraApiService {
   /// Get pending prescription queue
   Future<List<dynamic>> getPendingPrescriptionQueue() async {
     try {
-      final response = await _dio.get('/api/v1/api/prescriptions/queue/pending');
+      final response =
+          await _dio.get('/api/v1/api/prescriptions/queue/pending');
       return response.data ?? [];
     } catch (e) {
       throw _handleError(e);
@@ -409,9 +434,11 @@ class AstraApiService {
   }
 
   /// Generate catchy prescription from data
-  Future<Map<String, dynamic>> generateCatchyFromData(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> generateCatchyFromData(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/prescriptions/catchy-from-data', data: data);
+      final response =
+          await _dio.post('/api/v1/prescriptions/catchy-from-data', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -419,9 +446,11 @@ class AstraApiService {
   }
 
   /// Auto-generate catchy prescription
-  Future<Map<String, dynamic>> autoGenerateCatchyPrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> autoGenerateCatchyPrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/prescriptions/auto-generate-catchy', data: data);
+      final response = await _dio
+          .post('/api/v1/prescriptions/auto-generate-catchy', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -433,7 +462,8 @@ class AstraApiService {
   // ============================================================
 
   /// Execute unified prescription workflow (Save, PDF, WhatsApp, Cart, Reminders)
-  Future<Map<String, dynamic>> executePrescriptionWorkflow(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> executePrescriptionWorkflow(
+      Map<String, dynamic> data) async {
     try {
       final response = await _dio.post(Apis.astra_execute_workflow, data: data);
       return response.data;
@@ -443,9 +473,11 @@ class AstraApiService {
   }
 
   /// Check workflow status
-  Future<Map<String, dynamic>> checkWorkflowStatus(String prescriptionId) async {
+  Future<Map<String, dynamic>> checkWorkflowStatus(
+      String prescriptionId) async {
     try {
-      final String path = Apis.astra_workflow_status.replaceFirst('{prescription_id}', prescriptionId);
+      final String path = Apis.astra_workflow_status
+          .replaceFirst('{prescription_id}', prescriptionId);
       final response = await _dio.get(path);
       return response.data;
     } catch (e) {
@@ -490,7 +522,8 @@ class AstraApiService {
   /// AI Shop Assist - Smart medicine recommendations
   Future<Map<String, dynamic>> aiShopAssist(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/shopify/ai-shop-assist', data: data);
+      final response =
+          await _dio.post('/api/v1/shopify/ai-shop-assist', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -498,9 +531,11 @@ class AstraApiService {
   }
 
   /// Create prescription draft order
-  Future<Map<String, dynamic>> createDraftOrder(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> createDraftOrder(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/shopify/draft-order', data: data);
+      final response =
+          await _dio.post('/api/v1/shopify/draft-order', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -510,7 +545,8 @@ class AstraApiService {
   /// Search medicine products
   Future<List<dynamic>> searchMedicineProducts(String medicineName) async {
     try {
-      final response = await _dio.get('/api/v1/shopify/products/search/$medicineName');
+      final response =
+          await _dio.get('/api/v1/shopify/products/search/$medicineName');
       return _extractProducts(response.data);
     } catch (e) {
       return [];
@@ -552,7 +588,11 @@ class AstraApiService {
       try {
         final response = await _dio.get('/api/v1/shopify/products');
         List products = _extractProducts(response.data);
-        return {'success': true, 'products': products, 'count': products.length};
+        return {
+          'success': true,
+          'products': products,
+          'count': products.length
+        };
       } catch (e2) {
         return {'success': false, 'error': e2.toString()};
       }
@@ -572,7 +612,8 @@ class AstraApiService {
   /// Get draft order status
   Future<Map<String, dynamic>> getDraftOrderStatus(String draftOrderId) async {
     try {
-      final response = await _dio.get('/api/v1/shopify/draft-order/$draftOrderId');
+      final response =
+          await _dio.get('/api/v1/shopify/draft-order/$draftOrderId');
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -580,9 +621,11 @@ class AstraApiService {
   }
 
   /// Validate prescription only (without creating order)
-  Future<Map<String, dynamic>> validatePrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> validatePrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/shopify/validate-prescription', data: data);
+      final response =
+          await _dio.post('/api/v1/shopify/validate-prescription', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -600,11 +643,13 @@ class AstraApiService {
       // Ensure role is doctor
       if (data['user_metadata'] == null) {
         data['user_metadata'] = {'role': 'doctor'};
-      } else if (data['user_metadata'] is Map && data['user_metadata']['role'] == null) {
+      } else if (data['user_metadata'] is Map &&
+          data['user_metadata']['role'] == null) {
         data['user_metadata']['role'] = 'doctor';
       }
-      
-      final response = await _postWithDnsFallback(Apis.astra_brain_chat, data: data);
+
+      final response =
+          await _postWithDnsFallback(Apis.astra_brain_chat, data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -612,9 +657,11 @@ class AstraApiService {
   }
 
   /// AI-powered doctor summary generation
-  Future<Map<String, dynamic>> generateDoctorSummary(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> generateDoctorSummary(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/doctor-summary', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/doctor-summary', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -624,7 +671,8 @@ class AstraApiService {
   /// Analyze medication safety
   Future<Map<String, dynamic>> analyzeSafety(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/analyze-safety', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/analyze-safety', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -632,9 +680,11 @@ class AstraApiService {
   }
 
   /// Extract medication schedule from text
-  Future<Map<String, dynamic>> extractSchedule(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> extractSchedule(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/extract-schedule', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/extract-schedule', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -642,9 +692,11 @@ class AstraApiService {
   }
 
   /// Patient profile analysis
-  Future<Map<String, dynamic>> profileAnalysis(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> profileAnalysis(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/profile-analysis', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/profile-analysis', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -652,9 +704,11 @@ class AstraApiService {
   }
 
   /// Generate wellness recommendations
-  Future<Map<String, dynamic>> generateWellness(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> generateWellness(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/brain/generate-wellness', data: data);
+      final response =
+          await _dio.post('/api/v1/brain/generate-wellness', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -664,7 +718,8 @@ class AstraApiService {
   /// Get order details
   Future<Map<String, dynamic>> getOrderDetails(String draftOrderId) async {
     try {
-      final response = await _dio.get('/api/v1/shopify/order-details/$draftOrderId');
+      final response =
+          await _dio.get('/api/v1/shopify/order-details/$draftOrderId');
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -676,7 +731,8 @@ class AstraApiService {
   // ============================================================
 
   /// Process voice for prescription extraction
-  Future<Map<String, dynamic>> processVoice(File audioFile, String userId, {String languageCode = "en-IN"}) async {
+  Future<Map<String, dynamic>> processVoice(File audioFile, String userId,
+      {String languageCode = "en-IN"}) async {
     try {
       String fileName = p.basename(audioFile.path);
       FormData formData = FormData.fromMap({
@@ -703,7 +759,8 @@ class AstraApiService {
   /// Process text for prescription extraction
   Future<Map<String, dynamic>> processText(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/astra-fill/process-text', data: data);
+      final response =
+          await _dio.post('/api/v1/astra-fill/process-text', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -711,9 +768,11 @@ class AstraApiService {
   }
 
   /// Confirm extraction data
-  Future<Map<String, dynamic>> confirmExtraction(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> confirmExtraction(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/astra-fill/confirm', data: data);
+      final response =
+          await _dio.post('/api/v1/astra-fill/confirm', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -735,12 +794,13 @@ class AstraApiService {
   // ============================================================
 
   /// Upload a document (prescription image, lab report, etc.)
-  Future<Map<String, dynamic>> uploadDocument(File file, String patientId, String documentType) async {
+  Future<Map<String, dynamic>> uploadDocument(
+      File file, String patientId, String documentType) async {
     try {
       String fileName = p.basename(file.path);
       String ext = p.extension(file.path).replaceFirst('.', '').toLowerCase();
       String mimeType = ext == 'pdf' ? 'application/pdf' : 'image/$ext';
-      
+
       FormData formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(
           file.path,
@@ -785,7 +845,8 @@ class AstraApiService {
   /// Generate shareable link for document
   Future<String> generateShareLink(String documentId) async {
     try {
-      final response = await _dio.get('/api/v1/documents/share-link/$documentId');
+      final response =
+          await _dio.get('/api/v1/documents/share-link/$documentId');
       return response.data['share_link'] ?? '';
     } catch (e) {
       return '';
@@ -793,9 +854,11 @@ class AstraApiService {
   }
 
   /// Share document via WhatsApp
-  Future<Map<String, dynamic>> shareDocumentViaWhatsApp(String documentId) async {
+  Future<Map<String, dynamic>> shareDocumentViaWhatsApp(
+      String documentId) async {
     try {
-      final response = await _dio.post('/api/v1/documents/share-whatsapp/$documentId');
+      final response =
+          await _dio.post('/api/v1/documents/share-whatsapp/$documentId');
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -816,9 +879,11 @@ class AstraApiService {
   // ============================================================
 
   /// Save prescription record to orders
-  Future<Map<String, dynamic>> savePrescriptionRecord(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> savePrescriptionRecord(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/orders/prescription/save', data: data);
+      final response =
+          await _dio.post('/api/v1/orders/prescription/save', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -826,9 +891,11 @@ class AstraApiService {
   }
 
   /// Update order status
-  Future<Map<String, dynamic>> updateOrderStatus(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> updateOrderStatus(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.patch('/api/v1/orders/prescription/status', data: data);
+      final response =
+          await _dio.patch('/api/v1/orders/prescription/status', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -846,9 +913,11 @@ class AstraApiService {
   }
 
   /// Get prescription details from orders
-  Future<Map<String, dynamic>> getOrderPrescriptionDetails(String prescriptionId) async {
+  Future<Map<String, dynamic>> getOrderPrescriptionDetails(
+      String prescriptionId) async {
     try {
-      final response = await _dio.get('/api/v1/orders/prescription/$prescriptionId');
+      final response =
+          await _dio.get('/api/v1/orders/prescription/$prescriptionId');
       return response.data;
     } catch (e) {
       return {};
@@ -870,9 +939,11 @@ class AstraApiService {
   // ============================================================
 
   /// Store FCM token for push notifications
-  Future<Map<String, dynamic>> storeFcmToken(String token, String userId) async {
+  Future<Map<String, dynamic>> storeFcmToken(
+      String token, String userId) async {
     try {
-      final response = await _dio.post('/api/v1/notifications/store-fcm-token', data: {
+      final response =
+          await _dio.post('/api/v1/notifications/store-fcm-token', data: {
         'token': token,
         'user_id': userId,
         'user_type': 'doctor',
@@ -907,9 +978,12 @@ class AstraApiService {
   // ============================================================
 
   /// Create reminders from prescription
-  Future<Map<String, dynamic>> createRemindersFromPrescription(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> createRemindersFromPrescription(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/medicine-reminders/create-from-prescription', data: data);
+      final response = await _dio.post(
+          '/api/v1/medicine-reminders/create-from-prescription',
+          data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -921,7 +995,8 @@ class AstraApiService {
   // ============================================================
 
   /// Translate text
-  Future<Map<String, dynamic>> translateText(String text, String targetLanguage, {String? sourceLanguage}) async {
+  Future<Map<String, dynamic>> translateText(String text, String targetLanguage,
+      {String? sourceLanguage}) async {
     try {
       final response = await _dio.post('/api/v1/api/translate/', data: {
         'text': text,
@@ -947,7 +1022,8 @@ class AstraApiService {
   /// Auto-translate (detect source language)
   Future<Map<String, dynamic>> autoTranslate(Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/api/translate/auto-translate', data: data);
+      final response =
+          await _dio.post('/api/v1/api/translate/auto-translate', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -1044,9 +1120,11 @@ class AstraApiService {
   // ============================================================
 
   /// Send prescription PDF manually
-  Future<Map<String, dynamic>> sendPrescriptionPdf(Map<String, dynamic> data) async {
+  Future<Map<String, dynamic>> sendPrescriptionPdf(
+      Map<String, dynamic> data) async {
     try {
-      final response = await _dio.post('/api/v1/prescription-pdf/send', data: data);
+      final response =
+          await _dio.post('/api/v1/prescription-pdf/send', data: data);
       return response.data;
     } catch (e) {
       throw _handleError(e);
@@ -1061,7 +1139,7 @@ class AstraApiService {
   Exception _handleError(dynamic error) {
     if (error is DioException) {
       String message = 'Network error occurred';
-      
+
       if (error.response != null) {
         final data = error.response?.data;
         if (data is Map && data.containsKey('detail')) {
@@ -1078,9 +1156,10 @@ class AstraApiService {
       } else if (error.type == DioExceptionType.receiveTimeout) {
         message = 'Request timeout. Please try again.';
       } else if (error.type == DioExceptionType.connectionError) {
-        message = 'Unable to reach Astra server. Check internet/VPN or try again in a moment.';
+        message =
+            'Unable to reach Astra server. Check internet/VPN or try again in a moment.';
       }
-      
+
       return AstraApiException(message, error.response?.statusCode);
     }
     return Exception('An unexpected error occurred: $error');
@@ -1124,7 +1203,8 @@ class AstraApiService {
         text.contains('timed out');
   }
 
-  Future<Response<dynamic>> _postWithDnsFallback(String path, {dynamic data}) async {
+  Future<Response<dynamic>> _postWithDnsFallback(String path,
+      {dynamic data}) async {
     try {
       return await _dio.post(path, data: data);
     } on DioException catch (e) {

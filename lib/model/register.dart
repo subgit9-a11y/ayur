@@ -6,7 +6,13 @@ class Register {
   String? refreshToken;
   String? expiresIn;
 
-  Register({this.success, this.data, this.msg, this.token, this.refreshToken, this.expiresIn});
+  Register(
+      {this.success,
+      this.data,
+      this.msg,
+      this.token,
+      this.refreshToken,
+      this.expiresIn});
 
   Register.fromJson(Map<String, dynamic> json) {
     success = json['success'];
@@ -50,7 +56,24 @@ class Data {
   String? fullImage;
   List<Roles>? roles;
 
-  Data({this.name, this.email, this.verify, this.phone, this.phoneCode, this.status, this.updatedAt, this.createdAt, this.id, this.uniqueId, this.token, this.image, this.gender, this.dob, this.otp, this.fullImage, this.roles});
+  Data(
+      {this.name,
+      this.email,
+      this.verify,
+      this.phone,
+      this.phoneCode,
+      this.status,
+      this.updatedAt,
+      this.createdAt,
+      this.id,
+      this.uniqueId,
+      this.token,
+      this.image,
+      this.gender,
+      this.dob,
+      this.otp,
+      this.fullImage,
+      this.roles});
 
   Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -110,7 +133,13 @@ class Roles {
   String? updatedAt;
   Pivot? pivot;
 
-  Roles({this.id, this.name, this.guardName, this.createdAt, this.updatedAt, this.pivot});
+  Roles(
+      {this.id,
+      this.name,
+      this.guardName,
+      this.createdAt,
+      this.updatedAt,
+      this.pivot});
 
   Roles.fromJson(Map<String, dynamic> json) {
     id = json['id'];

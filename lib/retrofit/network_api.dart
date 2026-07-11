@@ -35,7 +35,6 @@ import 'package:doctro/screens/videoCall/model/doctorAgoraTokenGenerateModel.dar
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
-
 part 'network_api.g.dart';
 
 @RestApi(baseUrl: Apis.baseUrl)

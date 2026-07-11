@@ -75,9 +75,11 @@ class AstraPrescription {
       if (doctorId != null) 'doctor_id': doctorId,
       if (patientId != null) 'patient_id': patientId,
       if (diagnosis != null) 'diagnosis': diagnosis,
-      if (medicines != null) 'medicines': medicines!.map((m) => m.toJson()).toList(),
+      if (medicines != null)
+        'medicines': medicines!.map((m) => m.toJson()).toList(),
       if (lifestyleAdvice != null) 'lifestyle_advice': lifestyleAdvice,
-      if (dietaryRecommendations != null) 'dietary_recommendations': dietaryRecommendations,
+      if (dietaryRecommendations != null)
+        'dietary_recommendations': dietaryRecommendations,
       if (followUpDate != null) 'follow_up_date': followUpDate,
       if (notes != null) 'notes': notes,
       if (status != null) 'status': status,
@@ -190,7 +192,8 @@ class CreatePrescriptionRequest {
       'diagnosis': diagnosis,
       'medicines': medicines.map((m) => m.toJson()).toList(),
       if (lifestyleAdvice != null) 'lifestyle_advice': lifestyleAdvice,
-      if (dietaryRecommendations != null) 'dietary_recommendations': dietaryRecommendations,
+      if (dietaryRecommendations != null)
+        'dietary_recommendations': dietaryRecommendations,
       if (followUpDate != null) 'follow_up_date': followUpDate,
       if (notes != null) 'notes': notes,
       'auto_process': autoProcess,
@@ -229,9 +232,7 @@ class WorkflowResult {
       remindersCreated: json['reminders_created'],
       whatsappSent: json['whatsapp_sent'],
       message: json['message'],
-      errors: json['errors'] != null
-          ? List<String>.from(json['errors'])
-          : null,
+      errors: json['errors'] != null ? List<String>.from(json['errors']) : null,
     );
   }
 

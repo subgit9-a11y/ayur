@@ -41,7 +41,7 @@ class PrescriptionScreen extends StatefulWidget {
 class _PrescriptionScreenState extends State<PrescriptionScreen> {
   final _diagnosisController = TextEditingController();
   final AstraApiService _astraApiService = AstraApiService();
-  
+
   List<Map<String, dynamic>> _medicines = [];
   bool _isLoading = false;
   Map<String, dynamic>? _patientData;
@@ -68,8 +68,10 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
     if (astraFill['extracted_symptoms'] != null) {
       dynamic symptoms = astraFill['extracted_symptoms'];
       if (symptoms != null) {
-        String symptomsText = (symptoms is List) ? symptoms.join(', ') : symptoms.toString();
-        _diagnosisController.text = "Possible condition related to: $symptomsText";
+        String symptomsText =
+            (symptoms is List) ? symptoms.join(', ') : symptoms.toString();
+        _diagnosisController.text =
+            "Possible condition related to: $symptomsText";
       }
     }
   }
@@ -82,7 +84,9 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
       setState(() {
         _patientData = data;
         var latestFill = data['latest_astra_fill'];
-        if (latestFill != null && latestFill is Map<String, dynamic> && latestFill.isNotEmpty) {
+        if (latestFill != null &&
+            latestFill is Map<String, dynamic> &&
+            latestFill.isNotEmpty) {
           _processAstraFillData(latestFill);
         } else {
           if (_patientData != null) _patientData!['latest_astra_fill'] = null;
@@ -90,7 +94,8 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
       });
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to load patient AI view")));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Failed to load patient AI view")));
       }
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -98,10 +103,12 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
   }
 
   void _addMedicine(Map<String, dynamic> medicine) {
-    final List variants = (medicine['variants'] is List) ? medicine['variants'] : [];
-    final Map<String, dynamic>? firstVariant = variants.isNotEmpty && variants.first is Map<String, dynamic>
-        ? variants.first as Map<String, dynamic>
-        : null;
+    final List variants =
+        (medicine['variants'] is List) ? medicine['variants'] : [];
+    final Map<String, dynamic>? firstVariant =
+        variants.isNotEmpty && variants.first is Map<String, dynamic>
+            ? variants.first as Map<String, dynamic>
+            : null;
 
     final dynamic variantId = medicine['shopify_variant_id'] ??
         medicine['variant_id'] ??
@@ -148,7 +155,10 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
             borderRadius: BorderRadius.circular(16),
             side: BorderSide(color: Colors.white.withOpacity(0.4), width: 1),
           ),
-          title: Text("Edit Dosage", style: TextStyle(color: GlassTheme.textPrimaryLight, fontWeight: FontWeight.bold)),
+          title: Text("Edit Dosage",
+              style: TextStyle(
+                  color: GlassTheme.textPrimaryLight,
+                  fontWeight: FontWeight.bold)),
           content: StatefulBuilder(
             builder: (context, setLocalState) {
               return Column(
@@ -156,9 +166,10 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                 children: [
                   TextField(
                     controller: dosageController,
-                    decoration: const InputDecoration(labelText: "Dosage (e.g. 1 tablet)"),
+                    decoration: const InputDecoration(
+                        labelText: "Dosage (e.g. 1 tablet)"),
                   ),
-const SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   OslerDropdown(
                     label: '',
                     hint: "Select frequency",
@@ -174,7 +185,8 @@ const SizedBox(height: 10),
                   TextField(
                     controller: durationController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: "Duration (days)"),
+                    decoration:
+                        const InputDecoration(labelText: "Duration (days)"),
                   ),
                 ],
               );
@@ -182,18 +194,22 @@ const SizedBox(height: 10),
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), 
-              child: Text("Cancel", style: TextStyle(color: GlassTheme.textSecondaryLight)),
+              onPressed: () => Navigator.pop(context),
+              child: Text("Cancel",
+                  style: TextStyle(color: GlassTheme.textSecondaryLight)),
             ),
             TextButton(
               onPressed: () {
-                final int parsedDays = int.tryParse(durationController.text.trim()) ?? 5;
+                final int parsedDays =
+                    int.tryParse(durationController.text.trim()) ?? 5;
                 setState(() {
-                  _medicines[index]['dosage'] = dosageController.text.trim().isEmpty
-                      ? '1 tablet'
-                      : dosageController.text.trim();
+                  _medicines[index]['dosage'] =
+                      dosageController.text.trim().isEmpty
+                          ? '1 tablet'
+                          : dosageController.text.trim();
                   _medicines[index]['frequency'] = frequency;
-                  _medicines[index]['duration_days'] = parsedDays < 1 ? 1 : parsedDays;
+                  _medicines[index]['duration_days'] =
+                      parsedDays < 1 ? 1 : parsedDays;
                 });
                 Navigator.pop(context);
               },
@@ -205,29 +221,33 @@ const SizedBox(height: 10),
     );
   }
 
-
   Future<void> _submitPrescription() async {
     if (_medicines.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please add at least one medicine")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Please add at least one medicine")));
       return;
     }
 
     if (_signatureBytes == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Please provide your signature")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Please provide your signature")));
       return;
     }
 
     setState(() => _isLoading = true);
     try {
-      final String doctorId = (widget.doctorId != null && widget.doctorId!.isNotEmpty)
-          ? widget.doctorId!
-          : SharedPreferenceHelper.getString(Preferences.doctorId);
+      final String doctorId =
+          (widget.doctorId != null && widget.doctorId!.isNotEmpty)
+              ? widget.doctorId!
+              : SharedPreferenceHelper.getString(Preferences.doctorId);
       if (doctorId.isEmpty || doctorId == 'N_A') {
         throw Exception("Doctor ID missing. Please re-login once.");
       }
 
-      bool allHaveShopify = _medicines.every((m) => m['shopify_variant_id'] != null && m['shopify_variant_id'].toString().isNotEmpty);
-      
+      bool allHaveShopify = _medicines.every((m) =>
+          m['shopify_variant_id'] != null &&
+          m['shopify_variant_id'].toString().isNotEmpty);
+
       final payload = {
         "doctor_id": doctorId,
         "patient_id": widget.patientId,
@@ -235,14 +255,14 @@ const SizedBox(height: 10),
         "patient_phone": widget.patientPhone,
         "diagnosis": _diagnosisController.text,
         "medicines": _medicines,
-        "lifestyle_advice": "Rest and hydration", 
+        "lifestyle_advice": "Rest and hydration",
         "auto_process": true,
         "create_shopify_cart": allHaveShopify,
         "signature_image": base64Encode(_signatureBytes!),
       };
 
       await _astraApiService.executePrescriptionWorkflow(payload);
-      
+
       if (!mounted) return;
 
       String msg = "Prescription Sent via WhatsApp!";
@@ -254,10 +274,11 @@ const SizedBox(height: 10),
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(msg),
-        backgroundColor: allHaveShopify ? AyurezeTheme.forestDeep : AyurezeTheme.warning,
+        backgroundColor:
+            allHaveShopify ? AyurezeTheme.forestDeep : AyurezeTheme.warning,
         duration: Duration(seconds: 4),
       ));
-      
+
       Navigator.pop(context);
     } catch (e) {
       final String err = e.toString();
@@ -270,7 +291,10 @@ const SizedBox(height: 10),
       }
       if (err.contains("Doctor ID missing")) {
         message = "Doctor session missing. Please login again.";
-      } else if (err.contains("unreachable") || err.contains("Network error") || err.contains("connection") || err.contains("timeout")) {
+      } else if (err.contains("unreachable") ||
+          err.contains("Network error") ||
+          err.contains("connection") ||
+          err.contains("timeout")) {
         message = "Astra server unreachable. Check internet/VPN and retry.";
       }
       if (mounted) {
@@ -315,178 +339,216 @@ const SizedBox(height: 10),
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: Text("Prescription for ${widget.patientName}"),
-        backgroundColor: Colors.transparent,
-        foregroundColor: GlassTheme.textPrimaryLight,
-        elevation: 0,
-      ),
-      body: _isLoading && _patientData == null
-          ? Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (_patientData != null && _patientData!['latest_astra_fill'] != null)
-                    AstraFillCompactWidget(astraFillData: _patientData!['latest_astra_fill']),
-                  
-                  SizedBox(height: 20),
-                  
-                  TextField(
-                    controller: _diagnosisController,
-                    decoration: InputDecoration(
-                      labelText: "Diagnosis",
-                      border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.medical_services),
-                    ),
-                  ),
-                  
-                  SizedBox(height: 20),
-                  
-                  Text("Medicines", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
-                  ..._medicines.asMap().entries.map((entry) {
-                    int idx = entry.key;
-                    Map med = entry.value;
-                    bool noShopify = med['shopify_variant_id'] == null;
+          appBar: AppBar(
+            title: Text("Prescription for ${widget.patientName}"),
+            backgroundColor: Colors.transparent,
+            foregroundColor: GlassTheme.textPrimaryLight,
+            elevation: 0,
+          ),
+          body: _isLoading && _patientData == null
+              ? Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (_patientData != null &&
+                          _patientData!['latest_astra_fill'] != null)
+                        AstraFillCompactWidget(
+                            astraFillData: _patientData!['latest_astra_fill']),
+                      SizedBox(height: 20),
+                      TextField(
+                        controller: _diagnosisController,
+                        decoration: InputDecoration(
+                          labelText: "Diagnosis",
+                          border: OutlineInputBorder(),
+                          suffixIcon: Icon(Icons.medical_services),
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text("Medicines",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      SizedBox(height: 10),
+                      ..._medicines.asMap().entries.map((entry) {
+                        int idx = entry.key;
+                        Map med = entry.value;
+                        bool noShopify = med['shopify_variant_id'] == null;
 
-                    return GlassCard(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: noShopify ? AyurezeTheme.warning : GlassTheme.primaryGreen,
-                            child: Text("${idx + 1}", style: TextStyle(color: Colors.white))),
-                          title: Row(
-                            children: [
-                              Expanded(child: Text(med['medicine_name'] ?? 'Unknown', style: TextStyle(fontWeight: FontWeight.bold))),
-                              if (noShopify)
-                                Tooltip(
-                                  message: "Not available for Auto-Cart",
-                                   child: Icon(Icons.warning_amber_rounded, color: AyurezeTheme.warning, size: 20),
-                                ),
-                            ],
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${med['dosage']} | ${med['frequency']} | ${med['duration_days']} days"),
-                              Row(
+                        return GlassCard(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                  backgroundColor: noShopify
+                                      ? AyurezeTheme.warning
+                                      : GlassTheme.primaryGreen,
+                                  child: Text("${idx + 1}",
+                                      style: TextStyle(color: Colors.white))),
+                              title: Row(
                                 children: [
-                                  IconButton(
-                                    icon: Icon(Icons.edit, size: 18, color: GlassTheme.primaryGreen),
-                                    tooltip: "Edit dosage",
-                                    onPressed: () => _editMedicineDetails(idx),
-                                  ),
-                                  Text("Qty: ", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-                                  DropdownButton<int>(
-                                    value: med['quantity'],
-                                    items: [1, 2, 3, 5, 10, 20, 30].map((int value) {
-                                      return DropdownMenuItem<int>(
-                                        value: value,
-                                        child: Text(value.toString()),
-                                      );
-                                    }).toList(),
-                                    onChanged: (val) => _updateMedicineQuantity(idx, val!),
-                                  ),
-                                  Spacer(),
-                                  if (med['price'] != null)
-                                     Text("₹ ${med['price']}", style: TextStyle(color: GlassTheme.primaryGreen, fontWeight: FontWeight.bold)),
+                                  Expanded(
+                                      child: Text(
+                                          med['medicine_name'] ?? 'Unknown',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold))),
+                                  if (noShopify)
+                                    Tooltip(
+                                      message: "Not available for Auto-Cart",
+                                      child: Icon(Icons.warning_amber_rounded,
+                                          color: AyurezeTheme.warning,
+                                          size: 20),
+                                    ),
                                 ],
                               ),
-                            ],
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      "${med['dosage']} | ${med['frequency']} | ${med['duration_days']} days"),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(Icons.edit,
+                                            size: 18,
+                                            color: GlassTheme.primaryGreen),
+                                        tooltip: "Edit dosage",
+                                        onPressed: () =>
+                                            _editMedicineDetails(idx),
+                                      ),
+                                      Text("Qty: ",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold)),
+                                      DropdownButton<int>(
+                                        value: med['quantity'],
+                                        items: [1, 2, 3, 5, 10, 20, 30]
+                                            .map((int value) {
+                                          return DropdownMenuItem<int>(
+                                            value: value,
+                                            child: Text(value.toString()),
+                                          );
+                                        }).toList(),
+                                        onChanged: (val) =>
+                                            _updateMedicineQuantity(idx, val!),
+                                      ),
+                                      Spacer(),
+                                      if (med['price'] != null)
+                                        Text("₹ ${med['price']}",
+                                            style: TextStyle(
+                                                color: GlassTheme.primaryGreen,
+                                                fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              trailing: IconButton(
+                                icon: Icon(AppIcons.delete,
+                                    color: AyurezeTheme.danger),
+                                onPressed: () =>
+                                    setState(() => _medicines.removeAt(idx)),
+                              ),
+                            ),
                           ),
-                          trailing: IconButton(
-                            icon: Icon(AppIcons.delete, color: AyurezeTheme.danger),
-                            onPressed: () => setState(() => _medicines.removeAt(idx)),
+                        );
+                      }).toList(),
+                      SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: _showSearchSheet,
+                        icon: Icon(AppIcons.add, size: 18),
+                        label: Text("Add Medicine"),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(double.infinity, 45),
+                          backgroundColor:
+                              GlassTheme.primaryGreen.withOpacity(0.15),
+                          foregroundColor: GlassTheme.primaryGreen,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            side: BorderSide(
+                                color:
+                                    GlassTheme.primaryGreen.withOpacity(0.3)),
                           ),
                         ),
                       ),
-                    );
-                  }).toList(),
-                  
-                  SizedBox(height: 16),
-                  
-                  ElevatedButton.icon(
-                    onPressed: _showSearchSheet,
-                    icon: Icon(AppIcons.add, size: 18),
-                    label: Text("Add Medicine"),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 45),
-                      backgroundColor: GlassTheme.primaryGreen.withOpacity(0.15),
-                      foregroundColor: GlassTheme.primaryGreen,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                        side: BorderSide(color: GlassTheme.primaryGreen.withOpacity(0.3)),
+                      SizedBox(height: 32),
+                      Text("Doctor Digital Signature",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              color: AyurezeTheme.textPrimary)),
+                      SizedBox(height: 12),
+                      Container(
+                        height: 160,
+                        width: double.infinity,
+                        decoration: AyurezeTheme.panelDecoration(),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(28),
+                          child: DoctorSignaturePad(
+                            onChanged: (bytes) {
+                              setState(() {
+                                _signatureBytes = bytes;
+                              });
+                            },
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  
-                  SizedBox(height: 32),
-
-                  Text("Doctor Digital Signature", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: AyurezeTheme.textPrimary)),
-                  SizedBox(height: 12),
-                  Container(
-                    height: 160,
-                    width: double.infinity,
-                    decoration: AyurezeTheme.panelDecoration(),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(28),
-                      child: DoctorSignaturePad(
-                        onChanged: (bytes) {
-                          setState(() {
-                            _signatureBytes = bytes;
-                          });
-                        },
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton.icon(
+                          onPressed: () =>
+                              setState(() => _signatureBytes = null),
+                          icon: Icon(Icons.clear, size: 16),
+                          label: Text("Clear Signature",
+                              style: TextStyle(fontSize: 12)),
+                        ),
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton.icon(
-                      onPressed: () => setState(() => _signatureBytes = null), 
-                      icon: Icon(Icons.clear, size: 16),
-                      label: Text("Clear Signature", style: TextStyle(fontSize: 12)),
-                    ),
-                  ),
-                  
-                  SizedBox(height: 20),
-                  
-                  Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [GlassTheme.primaryGreen, GlassTheme.accentTeal],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                      SizedBox(height: 20),
+                      Container(
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              GlassTheme.primaryGreen,
+                              GlassTheme.accentTeal
+                            ],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: GlassTheme.primaryGreen.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                            )
+                          ],
+                        ),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                          ),
+                          onPressed: _isLoading ? null : _submitPrescription,
+                          child: _isLoading
+                              ? SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                      color: Colors.white, strokeWidth: 2))
+                              : Text("Submit & Automate (PDF + WhatsApp)",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16)),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: GlassTheme.primaryGreen.withOpacity(0.3),
-                          blurRadius: 10,
-                          offset: Offset(0, 4),
-                        )
-                      ],
-                    ),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                      onPressed: _isLoading ? null : _submitPrescription,
-                      child: _isLoading 
-                        ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                        : Text("Submit & Automate (PDF + WhatsApp)", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
         ),
       ],
     );
@@ -495,7 +557,8 @@ const SizedBox(height: 10),
 
 class SearchMedicineSheet extends StatefulWidget {
   final Function(Map<String, dynamic>) onSelect;
-  const SearchMedicineSheet({Key? key, required this.onSelect}) : super(key: key);
+  const SearchMedicineSheet({Key? key, required this.onSelect})
+      : super(key: key);
 
   @override
   _SearchMedicineSheetState createState() => _SearchMedicineSheetState();
@@ -537,7 +600,8 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to load medicines")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Failed to load medicines")));
       }
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -550,10 +614,13 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
       await _astraApiService.syncShopifyProducts();
       await _loadAvailableMedicines();
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Shopify Sync Complete")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Shopify Sync Complete")));
       }
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Sync failed")));
+      if (mounted)
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Sync failed")));
     } finally {
       if (mounted) setState(() => _isSyncing = false);
     }
@@ -578,7 +645,9 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
         setState(() => _results = results);
       }
     } catch (e) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Search failed")));
+      if (mounted)
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Search failed")));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -598,14 +667,23 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("Search Medicines", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: GlassTheme.textPrimaryLight)),
+              const Text("Search Medicines",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: GlassTheme.textPrimaryLight)),
               if (_isSyncing)
-                SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2))
               else
                 TextButton.icon(
                   onPressed: _syncShopify,
-                  icon: Icon(Icons.sync, size: 16, color: GlassTheme.primaryGreen),
-                  label: Text("Sync Shopify", style: TextStyle(color: GlassTheme.primaryGreen)),
+                  icon: Icon(Icons.sync,
+                      size: 16, color: GlassTheme.primaryGreen),
+                  label: Text("Sync Shopify",
+                      style: TextStyle(color: GlassTheme.primaryGreen)),
                 ),
             ],
           ),
@@ -615,26 +693,34 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
             decoration: InputDecoration(
               hintText: "Type medicine name",
               prefixIcon: Icon(AppIcons.search),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             ),
             onChanged: _onSearchChanged,
           ),
           SizedBox(height: 10),
           Expanded(
-            child: _isLoading 
-              ? Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                  itemCount: _results.length,
-                  itemBuilder: (context, index) {
-                    final item = _results[index];
-                    return ListTile(
-                      title: Text(item['medicine_name'] ?? item['title'] ?? 'Unknown', style: TextStyle(color: GlassTheme.textPrimaryLight, fontWeight: FontWeight.bold)),
-                      subtitle: Text("₹ ${item['price'] ?? '0'}", style: TextStyle(color: GlassTheme.textSecondaryLight)),
-                      trailing: Icon(Icons.add_circle, color: GlassTheme.primaryGreen),
-                      onTap: () => widget.onSelect(item),
-                    );
-                  },
-                ),
+            child: _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    itemCount: _results.length,
+                    itemBuilder: (context, index) {
+                      final item = _results[index];
+                      return ListTile(
+                        title: Text(
+                            item['medicine_name'] ?? item['title'] ?? 'Unknown',
+                            style: TextStyle(
+                                color: GlassTheme.textPrimaryLight,
+                                fontWeight: FontWeight.bold)),
+                        subtitle: Text("₹ ${item['price'] ?? '0'}",
+                            style: TextStyle(
+                                color: GlassTheme.textSecondaryLight)),
+                        trailing: Icon(Icons.add_circle,
+                            color: GlassTheme.primaryGreen),
+                        onTap: () => widget.onSelect(item),
+                      );
+                    },
+                  ),
           ),
         ],
       ),
@@ -644,7 +730,8 @@ class _SearchMedicineSheetState extends State<SearchMedicineSheet> {
 
 class DoctorSignaturePad extends StatefulWidget {
   final Function(Uint8List) onChanged;
-  const DoctorSignaturePad({Key? key, required this.onChanged}) : super(key: key);
+  const DoctorSignaturePad({Key? key, required this.onChanged})
+      : super(key: key);
 
   @override
   _DoctorSignaturePadState createState() => _DoctorSignaturePadState();
@@ -679,8 +766,9 @@ class _DoctorSignaturePadState extends State<DoctorSignaturePad> {
   Future<Uint8List?> _captureSignature() async {
     try {
       final recorder = ui.PictureRecorder();
-      final canvas = Canvas(recorder, Rect.fromPoints(Offset(0, 0), Offset(500, 200)));
-      
+      final canvas =
+          Canvas(recorder, Rect.fromPoints(Offset(0, 0), Offset(500, 200)));
+
       final paint = Paint()
         ..color = Colors.black
         ..strokeCap = StrokeCap.round
@@ -694,7 +782,8 @@ class _DoctorSignaturePadState extends State<DoctorSignaturePad> {
 
       final picture = recorder.endRecording();
       final img = await picture.toImage(500, 200);
-      final ByteData? byteData = await img.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? byteData =
+          await img.toByteData(format: ui.ImageByteFormat.png);
       return byteData?.buffer.asUint8List();
     } catch (e) {
       return null;

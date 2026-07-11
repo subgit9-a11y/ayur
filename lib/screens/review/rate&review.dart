@@ -56,7 +56,6 @@ class _RateAndReviewRoutesScreenState extends State<RateAndReviewRoutesScreen> {
   //set HospitalName & HospitalAddress app bar
   String? hospitalName, hospitalAddress;
 
-
   @override
   void initState() {
     super.initState();
@@ -488,8 +487,6 @@ class _RateAndReviewRoutesScreenState extends State<RateAndReviewRoutesScreen> {
     }
     return BaseModel()..data = response;
   }
-
-
 
   onSearchTextChanged(String text) async {
     _searchResult.clear();

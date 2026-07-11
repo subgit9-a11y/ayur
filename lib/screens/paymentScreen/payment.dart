@@ -265,7 +265,9 @@ class _PaymentScreen extends State<PaymentScreen> {
   List<Widget> _buildPaymentItems() {
     final List<Payments> source = _searching()
         ? _searchResult
-        : paymentsRequest.take(_paymentRequest ? paymentsRequest.length : 5).toList();
+        : paymentsRequest
+            .take(_paymentRequest ? paymentsRequest.length : 5)
+            .toList();
 
     if (_searching() && source.isEmpty) {
       return [
@@ -532,11 +534,12 @@ class _PaymentScreen extends State<PaymentScreen> {
     }
 
     _userPayment.forEach((payment) {
-      if ((payment.user?.name ?? "").toLowerCase().contains(text.toLowerCase())) {
+      if ((payment.user?.name ?? "")
+          .toLowerCase()
+          .contains(text.toLowerCase())) {
         _searchResult.add(payment);
       }
     });
     setState(() {});
   }
 }
-

@@ -71,7 +71,8 @@ class _SubSubscriptionState extends State<SubSubscription> {
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
             return Center(
-              child: CircularProgressIndicator(color: AyurezeTheme.healingGreen100),
+              child: CircularProgressIndicator(
+                  color: AyurezeTheme.healingGreen100),
             );
           }
 
@@ -83,11 +84,11 @@ class _SubSubscriptionState extends State<SubSubscription> {
                 _buildHero(),
                 const SizedBox(height: 18),
                 ...subscribeReq.asMap().entries.map(
-                  (entry) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: _buildPlanCard(entry.key, entry.value),
-                  ),
-                ),
+                      (entry) => Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: _buildPlanCard(entry.key, entry.value),
+                      ),
+                    ),
               ],
             ),
           );
@@ -160,7 +161,8 @@ class _SubSubscriptionState extends State<SubSubscription> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 decoration: BoxDecoration(
                   color: AyurezeTheme.healingGreen100,
                   borderRadius: BorderRadius.circular(16),
@@ -188,7 +190,9 @@ class _SubSubscriptionState extends State<SubSubscription> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    hasMultipleOptions ? "Flexible billing options" : "Single plan option",
+                    hasMultipleOptions
+                        ? "Flexible billing options"
+                        : "Single plan option",
                     style: TextStyle(
                       fontSize: 12,
                       color: AyurezeTheme.textSecondary,
@@ -201,16 +205,19 @@ class _SubSubscriptionState extends State<SubSubscription> {
           const SizedBox(height: 16),
           if (hasMultipleOptions)
             ...planOptions.asMap().entries.map(
-              (entry) => _buildOptionTile(entry.key, entry.value),
-            )
+                  (entry) => _buildOptionTile(entry.key, entry.value),
+                )
           else
             _buildSingleOption(planOptions[0]),
           const SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
             child: OslerButton(
-              text: getTranslated(context, AppString.subscription_buy).toString(),
-              customColor: data.name == 'free' ? AyurezeTheme.oslerGray50 : AyurezeTheme.healingGreen100,
+              text:
+                  getTranslated(context, AppString.subscription_buy).toString(),
+              customColor: data.name == 'free'
+                  ? AyurezeTheme.oslerGray50
+                  : AyurezeTheme.healingGreen100,
               onPressed: () {
                 if (data.name == 'free') {
                   return;
@@ -296,7 +303,9 @@ class _SubSubscriptionState extends State<SubSubscription> {
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: selected ? AyurezeTheme.healingGreen10 : AyurezeTheme.surfaceMuted,
+          color: selected
+              ? AyurezeTheme.healingGreen10
+              : AyurezeTheme.surfaceMuted,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
             color: selected ? AyurezeTheme.healingGreen50 : AyurezeTheme.border,
@@ -308,7 +317,9 @@ class _SubSubscriptionState extends State<SubSubscription> {
               selected
                   ? Icons.radio_button_checked_rounded
                   : Icons.radio_button_off_rounded,
-              color: selected ? AyurezeTheme.healingGreen100 : AyurezeTheme.textSecondary,
+              color: selected
+                  ? AyurezeTheme.healingGreen100
+                  : AyurezeTheme.textSecondary,
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -384,4 +395,3 @@ class PaymentData {
     return data;
   }
 }
-
