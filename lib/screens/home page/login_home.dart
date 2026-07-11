@@ -265,7 +265,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
           body: RefreshIndicator(
             onRefresh: todayAppointmentsFunction,
             color: AyurezeTheme.healingGreen100,
-            child: FutureBuilder(
+            child: FutureBuilder<BaseModel<TodayAppointment>>(
               future: todayAppointment,
               builder: (context, snapshot) {
                 return Column(
@@ -1017,7 +1017,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
       margin: AyurezeTheme.screenPadding,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: GlassTheme.surfaceDark.withOpacity(0.5),
+        color: GlassTheme.bgDark.withOpacity(0.5),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: GlassTheme.primaryGreen.withOpacity(0.3),
