@@ -265,33 +265,27 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
           body: RefreshIndicator(
             onRefresh: todayAppointmentsFunction,
             color: AyurezeTheme.healingGreen100,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: AyurezeTheme.screenPadding,
-              child: FutureBuilder(
-                future: todayAppointment,
-                builder: (context, snapshot) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildWelcomeHeader(),
-                      const SizedBox(height: 25),
-                      _buildStatsGrid(),
-                      const SizedBox(height: 25),
-                      _buildQuickActions(),
-                      const SizedBox(height: 25),
-                      _buildSectionTitle(
-                          getTranslated(context, AppString.home_title)
-                              .toString(),
-                          todayAppointments.length),
-                      const SizedBox(height: 15),
-                      _buildAppointmentList(
-                          snapshot.connectionState == ConnectionState.waiting),
-                      const SizedBox(height: 30),
-                    ],
-                  );
-                },
-              ),
+            child: FutureBuilder(
+              future: todayAppointment,
+              builder: (context, snapshot) {
+                return Column(
+                  children: [
+                    _buildMinimalTabBar(),
+                    Expanded(
+                      child: DefaultTabController(
+                        length: 3,
+                        child: TabBarView(
+                          children: [
+                            _buildMinimalOverviewTab(snapshot),
+                            _buildMinimalAppointmentsTab(snapshot),
+                            _buildMinimalActionsTab(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           floatingActionButton: ScaleTransition(
@@ -317,62 +311,32 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
   }
 
   Widget _buildWelcomeHeader() {
-    return GlassCard(
-      padding: const EdgeInsets.all(22),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: GlassTheme.primaryGreen.withOpacity(0.14),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: Text(
-                    "Daily overview",
-                    style: TextStyle(
-                      color: GlassTheme.primaryGreen,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  "Hello, Dr. ${dName?.split(' ').first ?? 'Doctor'}",
-                  style: TextStyle(
-                    color: GlassTheme.textPrimaryLight,
-                    fontSize: 24,
-                    height: 1.05,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "You have ${todayAppointments.length} appointments scheduled for today.",
-                  style: TextStyle(
-                      color: GlassTheme.textSecondaryLight, fontSize: 14),
-                ),
-              ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: GlassTheme.primaryGreen.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Text(
+            "Daily overview",
+            style: TextStyle(
+              color: GlassTheme.primaryGreen,
+              fontSize: 11,
+              fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(width: 16),
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: GlassTheme.primaryGreen.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Icon(AppIcons.medical,
-                color: GlassTheme.primaryGreen, size: 30),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          "You have ${todayAppointments.length} appointments today.",
+          style: TextStyle(
+              color: GlassTheme.textSecondaryLight, fontSize: 14),
+        ),
+      ],
     );
   }
 
@@ -1047,5 +1011,114 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
       return BaseModel()..setException(ServerError.withError(error: error));
     }
     return BaseModel()..data = response;
+  }
+
+  Widget _buildMinimalTabBar() {
+    return Container(
+      margin: AyurezeTheme.screenPadding,
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: GlassTheme.surfaceDark.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: GlassTheme.primaryGreen.withOpacity(0.3),
+          width: 1,
+        ),
+      ),
+      child: TabBar(
+        tabs: [
+          _buildMinimalTabItem(Icons.dashboard, "Overview"),
+          _buildMinimalTabItem(Icons.calendar_today, "Appointments"),
+          _buildMinimalTabItem(Icons.flash_on, "Actions"),
+        ],
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: GlassTheme.primaryGreen.withOpacity(0.15),
+        ),
+        labelColor: GlassTheme.primaryGreen,
+        unselectedLabelColor: GlassTheme.textSecondaryLight,
+        labelStyle: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+        unselectedLabelStyle: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+        dividerColor: Colors.transparent,
+        indicatorSize: TabBarIndicatorSize.tab,
+      ),
+    );
+  }
+
+  Widget _buildMinimalTabItem(IconData icon, String label) {
+    return Tab(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 20),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMinimalOverviewTab(AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      padding: AyurezeTheme.screenPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildStatsGrid(),
+          const SizedBox(height: 20),
+          _buildSectionTitle(
+              getTranslated(context, AppString.home_title).toString(),
+              todayAppointments.length),
+          const SizedBox(height: 15),
+          _buildAppointmentList(
+              snapshot.connectionState == ConnectionState.waiting),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMinimalAppointmentsTab(AsyncSnapshot<BaseModel<TodayAppointment>> snapshot) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      padding: AyurezeTheme.screenPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle(
+              getTranslated(context, AppString.tomorrow_appointment).toString(),
+              tomorrowAppointments.length),
+          const SizedBox(height: 15),
+          _buildAppointmentList(
+              snapshot.connectionState == ConnectionState.waiting),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMinimalActionsTab() {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      padding: AyurezeTheme.screenPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            getTranslated(context, AppString.dashboard_quick_actions).toString(),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+                color: GlassTheme.textPrimaryLight),
+          ),
+          const SizedBox(height: 15),
+          _buildQuickActions(),
+        ],
+      ),
+    );
   }
 }
