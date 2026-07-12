@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GlassTheme {
   // Brand Colors (Ayurveda Green Palette)
@@ -26,17 +27,16 @@ class GlassTheme {
       brightness: Brightness.light,
       primaryColor: primaryGreen,
       scaffoldBackgroundColor: bgLight,
+      textTheme: GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
       colorScheme: const ColorScheme.light(
         primary: primaryGreen,
         secondary: accentTeal,
       ),
-      fontFamily:
-          'SF Pro Display', // Defaulting to system fonts or custom if added
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: textPrimaryLight),
-        titleTextStyle: TextStyle(
+        iconTheme: const IconThemeData(color: textPrimaryLight),
+        titleTextStyle: GoogleFonts.poppins(
           color: textPrimaryLight,
           fontSize: 20,
           fontWeight: FontWeight.w600,
@@ -50,15 +50,16 @@ class GlassTheme {
       brightness: Brightness.dark,
       primaryColor: primaryGreen,
       scaffoldBackgroundColor: bgDark,
+      textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
       colorScheme: const ColorScheme.dark(
         primary: primaryGreen,
         secondary: accentTeal,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: textPrimaryDark),
-        titleTextStyle: TextStyle(
+        iconTheme: const IconThemeData(color: textPrimaryDark),
+        titleTextStyle: GoogleFonts.poppins(
           color: textPrimaryDark,
           fontSize: 20,
           fontWeight: FontWeight.w600,
