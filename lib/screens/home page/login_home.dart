@@ -269,6 +269,14 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
             child: FutureBuilder<BaseModel<TodayAppointment>>(
               future: todayAppointment,
               builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(
+                      "Error loading appointments: ${snapshot.error}",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  );
+                }
                 return DefaultTabController(
                   length: 3,
                   child: Column(
@@ -752,7 +760,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
         patientCount = uniquePatients.length;
       });
     } catch (error, stacktrace) {
-      // print("Exception occur: $error stackTrace: $stacktrace");
+      debugPrint("Exception occur in todayAppointmentsFunction: $error stackTrace: $stacktrace");
       return BaseModel()..setException(ServerError.withError(error: error));
     }
     return BaseModel()..data = response;
