@@ -26,6 +26,7 @@ import 'package:doctro/screens/subscription/Subscription.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:doctro/screens/astra/astra_ai_chat_screen.dart';
 import 'package:doctro/screens/auth/professional_registration_screen.dart';
 import 'package:doctro/theme/ayureze_theme.dart';
@@ -198,7 +199,7 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
       OslerToast.info(context,
           getTranslated(context, AppString.tap_again_to_exit_app).toString());
     } else {
-      Navigator.of(context).pop();
+      SystemNavigator.pop();
     }
   }
 
