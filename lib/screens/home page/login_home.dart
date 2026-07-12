@@ -268,12 +268,12 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
             child: FutureBuilder<BaseModel<TodayAppointment>>(
               future: todayAppointment,
               builder: (context, snapshot) {
-                return Column(
-                  children: [
-                    _buildMinimalTabBar(),
-                    Expanded(
-                      child: DefaultTabController(
-                        length: 3,
+                return DefaultTabController(
+                  length: 3,
+                  child: Column(
+                    children: [
+                      _buildMinimalTabBar(),
+                      Expanded(
                         child: TabBarView(
                           children: [
                             _buildMinimalOverviewTab(snapshot),
@@ -282,8 +282,8 @@ class _LoginHomeScreenState extends State<LoginHomeScreen>
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
